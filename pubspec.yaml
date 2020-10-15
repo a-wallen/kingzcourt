@@ -60,7 +60,23 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
+  fonts:
+      - family: SansitaSwashed
+        fonts:
+          - asset: fonts/SansitaSwashed-Black.ttf
+            # style: Black
+          - asset: fonts/SansitaSwashed-Bold.ttf
+            # style: Bold
+          - asset: fonts/SansitaSwashed-ExtraBold.ttf
+            # style: ExtraBold
+          - asset: fonts/SansitaSwashed-Light.ttf
+            # style: Light
+          - asset: fonts/SansitaSwashed-Medium.ttf
+            # style: Medium
+          - asset: fonts/SansitaSwashed-Regular.ttf
+            # style: Regular
+          - asset: fonts/SansitaSwashed-SemiBold.ttf
+            # style: SemiBold
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
