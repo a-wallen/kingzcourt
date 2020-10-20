@@ -28,6 +28,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
+  google_fonts: ^0.1.1
+  bottom_navy_bar: ^5.5.0
 
 dev_dependencies:
   flutter_test:
@@ -61,22 +63,38 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
+      - family: Montserrat
+        fonts:
+          - asset: fonts/Montserrat/Montserrat-Black.ttf
+          - asset: fonts/Montserrat/Montserrat-Black.ttf
+          - asset: fonts/Montserrat/Montserrat-BlackItalic.ttf
+          - asset: fonts/Montserrat/Montserrat-Bold.ttf
+          - asset: fonts/Montserrat/Montserrat-BoldItalic.ttf
+          - asset: fonts/Montserrat/Montserrat-ExtraBold.ttf
+          - asset: fonts/Montserrat/Montserrat-ExtraBoldItalic.ttf
+          - asset: fonts/Montserrat/Montserrat-ExtraLight.ttf
+          - asset: fonts/Montserrat/Montserrat-ExtraLightItalic.ttf
+          - asset: fonts/Montserrat/Montserrat-Italic.ttf
+          - asset: fonts/Montserrat/Montserrat-Light.ttf
+          - asset: fonts/Montserrat/Montserrat-LightItalic.ttf
+          - asset: fonts/Montserrat/Montserrat-Medium.ttf
+          - asset: fonts/Montserrat/Montserrat-MediumItalic.ttf
+          - asset: fonts/Montserrat/Montserrat-Regular.ttf
+          - asset: fonts/Montserrat/Montserrat-SemiBold.ttf
+          - asset: fonts/Montserrat/Montserrat-SemiBoldItalic.ttf
+          - asset: fonts/Montserrat/Montserrat-Thin.ttf
+          - asset: fonts/Montserrat/Montserrat-ThinItalic.ttf
       - family: SansitaSwashed
         fonts:
-          - asset: fonts/SansitaSwashed-Black.ttf
-            # style: Black
-          - asset: fonts/SansitaSwashed-Bold.ttf
-            # style: Bold
-          - asset: fonts/SansitaSwashed-ExtraBold.ttf
-            # style: ExtraBold
-          - asset: fonts/SansitaSwashed-Light.ttf
-            # style: Light
-          - asset: fonts/SansitaSwashed-Medium.ttf
-            # style: Medium
-          - asset: fonts/SansitaSwashed-Regular.ttf
-            # style: Regular
-          - asset: fonts/SansitaSwashed-SemiBold.ttf
-            # style: SemiBold
+          - asset: fonts/SansitaSwashed/SansitaSwashed-Black.ttf
+          - asset: fonts/SansitaSwashed/SansitaSwashed-Bold.ttf
+            weight: 700
+          - asset: fonts/SansitaSwashed/SansitaSwashed-ExtraBold.ttf
+          - asset: fonts/SansitaSwashed/SansitaSwashed-Light.ttf
+          - asset: fonts/SansitaSwashed/SansitaSwashed-Medium.ttf
+            weight: 400
+          - asset: fonts/SansitaSwashed/SansitaSwashed-Regular.ttf
+          - asset: fonts/SansitaSwashed/SansitaSwashed-SemiBold.ttf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf

@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-ThemeData appTheme() {
+double cornerRadius = 9.0;
+
+ThemeData kingzTheme() {
   double myelevation = 10.0;
   double margins = 5.0;
   double borderRadius = 5.0;
+
   TextTheme _basicText(TextTheme base) {
     return base.copyWith(
-      headline1: base.headline1.copyWith(
+      title: base.headline1.copyWith(
         fontFamily: 'SansitaSwashed',
+        fontWeight: FontWeight.w700,
         color: Colors.red,
       ),
     );
@@ -17,7 +22,6 @@ ThemeData appTheme() {
     return base.copyWith(
       centerTitle: true,
       color: Colors.white,
-      elevation: myelevation,
     );
   }
 
@@ -41,5 +45,8 @@ ThemeData appTheme() {
   final ThemeData base = ThemeData.light();
   return base.copyWith(
     textTheme: _basicText(base.textTheme),
+    appBarTheme: _appbarTheme(base.appBarTheme),
+    bottomAppBarTheme: _bottombarTheme(base.bottomAppBarTheme),
+    cardTheme: _cardTheme(base.cardTheme),
   );
 }
