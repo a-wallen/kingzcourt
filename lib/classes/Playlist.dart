@@ -169,8 +169,8 @@ class Playlist extends Iterable {
 
   /// Removes each element of elements from the playlist.
   void removeAll(Iterable<Player> elements) {
-    for (Player player in this) {
-      if (elements.contains(player)) {
+    for (Player player in elements) {
+      if (contains(player)) {
         remove(player);
       }
     }
