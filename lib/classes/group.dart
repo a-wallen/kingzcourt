@@ -5,12 +5,17 @@ class Group {
   String _groupName;
   List<Player> _playerList; //array of Players
 
-  Group(int myGroupSize, String myGroupName, List<Player> myPlayerList) {
+  //constructor, leaves the player list empty for now so that players can be added
+  Group(
+    int myGroupSize,
+    String myGroupName,
+    /*List<Player> myPlayerList*/
+  ) {
     _groupSize = myGroupSize;
     _groupName = myGroupName;
 
-    for (int i = 0; i < myPlayerList.length; i++)
-      _playerList[i] = myPlayerList[i];
+    //for (int i = 0; i < myPlayerList.length; i++)
+    //_playerList[i] = myPlayerList[i];
   }
 
   //getters:
@@ -42,4 +47,9 @@ class Group {
     Player playerToRemove = o;
     _playerList.remove(playerToRemove);
   }
+
+  //not sure how to return the Player list so it can be printed
+  /*String toString() {
+    return "Group name: $getGroupName() " + "Group size: $getGroupSize()";
+  }*/
 }

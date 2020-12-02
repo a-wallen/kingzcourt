@@ -62,4 +62,14 @@ class Player {
         player._waitingTime == this._waitingTime &&
         player._imageFilePath == this._imageFilePath);
   }
+
+  //idea: players should have unique names, so when a player is added,
+  //they cannot have the same name as an existing player
+
+  /*String toString() {
+    return "Player name: $getName " +
+        " Player position: $getPosition() " +
+        " Waiting time: $getWaitingTime() " +
+        " File path to their profile picture: $getImageFilePath() ";
+  }*/
 }

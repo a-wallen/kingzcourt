@@ -1,16 +1,17 @@
 import 'player.dart';
-import 'group.dart';
+//import 'group.dart';
 
 class Team {
   static const int TEAM_SIZE = 6; //a constant for the team size
   String _teamName;
   List<Player> _playerList; //array of Players on the Team
 
-  Team(String myTeamName, List<Player> myPlayerList) {
+  //constructor, leave the player list empty for now
+  Team(String myTeamName /*, List<Player> myPlayerList*/) {
     _teamName = myTeamName;
-    for (int i = 0; i < TEAM_SIZE; i++) {
+    /*for (int i = 0; i < TEAM_SIZE; i++) {
       _playerList[i] = myPlayerList[i];
-    }
+    }*/
   }
 
   //getters:
@@ -35,4 +36,10 @@ class Team {
     Player playerToRemove = o;
     _playerList.remove(playerToRemove);
   }
+
+  //not sure how to return the player list so it can be printed
+  /*
+  String toString() {
+    return "Team name: $getTeamName() " + "Team size: $_playerList.size";
+  }*/
 }
