@@ -37,4 +37,9 @@ class Group {
   void setGroupName(String newGroupName) {
     _groupName = newGroupName;
   }
+
+  void removePlayer(Object o) {
+    Player playerToRemove = o;
+    _playerList.remove(playerToRemove);
+  }
 }
