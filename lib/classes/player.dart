@@ -1,44 +1,65 @@
 class Player {
   //String rank;
-  String position;
-  int waitingTime; //measured by the number of games waited
-  String imageFilePath; //file path to the profile picture
+  String _name; //player name
+  String _position;
+  int _waitingTime; //measured by the number of games waited
+  String _imageFilePath; //file path to the profile picture
 
-  Player(String myPosition, int myWaitingTime, String myImageFilePath) {
-    position = myPosition;
-    waitingTime = myWaitingTime;
-    imageFilePath = myImageFilePath;
+  Player(String myName, String myPosition, int myWaitingTime,
+      String myImageFilePath) {
+    _name = myName;
+    _position = myPosition;
+    _waitingTime = myWaitingTime;
+    _imageFilePath = myImageFilePath;
   }
 
   //getters:
+  String getName() {
+    return _name;
+  }
+
   String getPosition() {
-    return position;
+    return _position;
   }
 
   int getWaitingTime() {
-    return waitingTime;
+    return _waitingTime;
   }
 
   String getImageFilePath() {
-    return imageFilePath;
+    return _imageFilePath;
   }
 
   //setters:
+  void setName(String newName) {
+    _name = newName;
+  }
+
   void setPosition(String newPosition) {
-    position = newPosition;
+    _position = newPosition;
   }
 
   //adds one more game to user's waiting time
   void increaseWaitingTime() {
-    waitingTime++;
+    _waitingTime++;
   }
 
   //sets the waiting time to -1 to indicate that the player wants to play ASAP
   void playASAP() {
-    waitingTime = -1;
+    _waitingTime = -1;
   }
 
   void setImageFilePath(String newImageFilePath) {
-    imageFilePath = newImageFilePath;
+    _imageFilePath = newImageFilePath;
+  }
+
+  //checks if one player is equal to another to avoid the same player being added multiple times
+  bool equals(Object o) {
+    if (this == o) return true;
+    Player player = o;
+    return (player._name == this._name &&
+        player._position == this._position &&
+        player._waitingTime == this._waitingTime &&
+        player._imageFilePath == this._imageFilePath);
   }
 }
