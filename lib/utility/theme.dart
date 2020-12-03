@@ -43,6 +43,13 @@ ThemeData kingzTheme() {
     );
   }
 
+  FloatingActionButtonThemeData _floatingActionButtonTheme(
+      FloatingActionButtonThemeData base) {
+    return base.copyWith(
+      backgroundColor: Colors.red,
+    );
+  }
+
   final ThemeData base = ThemeData.light();
   return base.copyWith(
     textTheme: _basicText(base.textTheme),

@@ -75,7 +75,9 @@ class DatabaseHelper {
     List<Player> playerLibrary;
     Database db = await instance.database;
     List<Map<String, dynamic>> table = await getPlayerLib(db);
+    print("Before for Each");
     table.forEach((row) {
+      print("in for loop");
       playerLibrary.add(Player.fromMap(row));
     });
     return playerLibrary;

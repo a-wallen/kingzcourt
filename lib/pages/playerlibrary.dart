@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 
+import 'package:kingzcourt/utility/theme.dart';
 import 'package:kingzcourt/widgets/drawer.dart';
+import '../database/databaseHelper.dart';
+import '../classes/player.dart';
 
 class PlayerLibraryPage extends StatefulWidget {
   @override
@@ -9,6 +11,14 @@ class PlayerLibraryPage extends StatefulWidget {
 }
 
 class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
+  List<Player> library = [];
+  // add player to database
+  void addPlayer(Player p) async {
+    DatabaseHelper.instance.insertPlayer(p);
+    //library = await DatabaseHelper.instance.getPlayerLibrary();
+    //print(library);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,6 +26,8 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
         textTheme: Theme.of(context).textTheme,
         title: Text("Saved Players"),
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () => addPlayer(Player("Alex", "OH", 0, "path/path"))),
     );
   }
 }

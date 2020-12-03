@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 
 import 'package:kingzcourt/widgets/drawer.dart';
 
@@ -12,17 +11,6 @@ class LandingPage extends StatefulWidget {
 
 class _LandingPageState extends State<LandingPage> {
   int currentIndex = 0;
-
-  List<BottomNavyBarItem> kingzNavBar = [
-    BottomNavyBarItem(
-      icon: Icon(Icons.map),
-      title: Text('Open Gym'),
-    ),
-    BottomNavyBarItem(
-      icon: Icon(Icons.people),
-      title: Text('Tournament'),
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
