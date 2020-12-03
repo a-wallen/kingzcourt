@@ -1,5 +1,6 @@
 class Player {
   //String rank;
+  int _pid; // player id (for database)
   String _name; //player name
   String _position;
   int _waitingTime; //measured by the number of games waited
@@ -11,6 +12,24 @@ class Player {
     _position = myPosition;
     _waitingTime = myWaitingTime;
     _imageFilePath = myImageFilePath;
+  }
+
+  // this method is for the database
+  Map<String, dynamic> toMap() {
+    var map = new Map<String, dynamic>();
+    if (_pid != null) map['pid'] = _pid;
+    map['name'] = _name;
+    map['position'] = _position;
+    map['imageFilePath'] = _imageFilePath;
+    return map;
+  }
+
+  // Also for the databse
+  Player.fromMap(Map<String, dynamic> map) {
+    this._pid = map['pid'];
+    this._name = map['name'];
+    this._position = map['position'];
+    this._imageFilePath = map['imageFilePath'];
   }
 
   //getters:

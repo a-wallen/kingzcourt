@@ -1,6 +1,7 @@
 import 'player.dart';
 
 class Group {
+  int _gid;
   int _groupSize; //number of people in a group
   String _groupName;
   List<Player> _playerList; //array of Players
@@ -16,6 +17,20 @@ class Group {
 
     //for (int i = 0; i < myPlayerList.length; i++)
     //_playerList[i] = myPlayerList[i];
+  }
+
+  Map<String, dynamic> toMap() {
+    var map = new Map<String, dynamic>();
+    if (_gid != null) map['gid'] = _gid;
+    map['groupName'] = _groupName;
+    map['groupSize'] = _groupSize;
+    return map;
+  }
+
+  Group.fromMap(Map<String, dynamic> map) {
+    this._gid = map['gid'];
+    this._groupName = map['groupName'];
+    this._groupSize = map['groupSize'];
   }
 
   //getters:
