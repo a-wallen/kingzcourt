@@ -22,6 +22,7 @@ ThemeData kingzTheme() {
     return base.copyWith(
       centerTitle: true,
       color: Colors.white,
+      iconTheme: IconThemeData(color: Colors.red),
     );
   }
 

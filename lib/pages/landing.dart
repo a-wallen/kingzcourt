@@ -31,9 +31,7 @@ class _LandingPageState extends State<LandingPage> {
         textTheme: Theme.of(context).textTheme,
         title: Text(widget.title),
       ),
-      drawer: Drawer(
-        child: kingzDrawer(),
-      ),
+      drawer: KingzDrawer(),
       // bottomNavigationBar: BottomNavyBar(
       //   mainAxisAlignment: MainAxisAlignment.spaceAround,
       //   selectedIndex: currentIndex,
