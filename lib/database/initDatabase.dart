@@ -50,21 +50,21 @@ class DatabaseHelper {
   }
 
   // Inserts a map with player data into player table
-  Future<int> insertPlayer(Database db, Player p) async {
+  Future<int> insertPlayer(Player p) async {
     Database db = await instance.database;
     Map<String, dynamic> row = p.toMap();
     return await insertPlayerValue(db, row);
   }
 
   // Insert a new group into db
-  Future<int> insertGroup(Database db, Group g) async {
+  Future<int> insertGroup(Group g) async {
     Database db = await instance.database;
     Map<String, dynamic> row = g.toMap();
     return await insertGroupValue(db, row);
   }
 
   // Insert an intermediate value into the database
-  Future<int> insertIntermediate(Database db, Intermediate i) async {
+  Future<int> insertIntermediate(Intermediate i) async {
     Database db = await instance.database;
     Map<String, dynamic> row = i.toMap();
     return await insertIntermediateValue(db, row);
@@ -119,5 +119,6 @@ class DatabaseHelper {
     groups.forEach((row) {
       playerGroups.add(Group.fromMap(row));
     });
+    return playerGroups;
   }
 }

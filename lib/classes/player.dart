@@ -3,8 +3,9 @@ class Player {
   int _pid; // player id (for database)
   String _name; //player name
   String _position;
-  int _waitingTime; //measured by the number of games waited
   String _imageFilePath; //file path to the profile picture
+
+  int _waitingTime; //measured by the number of games waited
 
   Player(String myName, String myPosition, int myWaitingTime,
       String myImageFilePath) {

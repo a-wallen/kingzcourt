@@ -5,7 +5,10 @@ import 'package:kingzcourt/pages/landing.dart';
 
 import 'utility/theme.dart';
 
+import 'db_testing.dart';
+
 void main() {
+  db_test();
   runApp(MyApp());
 }
 
