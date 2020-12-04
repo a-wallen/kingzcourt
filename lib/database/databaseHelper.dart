@@ -1,7 +1,5 @@
 import 'dart:ffi';
 
-import 'package:path_provider/path_provider.dart';
-
 import 'dart:io';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
@@ -24,15 +22,14 @@ import '../classes/group.dart';
 import '../classes/intermediate.dart';
 
 class DatabaseHelper {
-  static final _dbName = "myDatabase.db";
+  static final _dbName = "kingzcourt.db";
   static final _dbVersion = 1;
   DatabaseHelper._privateConstructor();
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
   static Database _database;
 
   Future<Database> get database async {
-    if (_database != null) return _database;
-    _database = await _initiateDatabase();
+    if (_database == null) _database = await _initiateDatabase();
     return _database;
   }
 
@@ -46,25 +43,25 @@ class DatabaseHelper {
   Future _onCreate(Database db, int version) async {
     await createGroupTable(db, version);
     await createPlayerTable(db, version);
-    await createIntermediateTable(db, version);
+    // await createIntermediateTable(db, version);
   }
 
   // Inserts a map with player data into player table
-  Future<int> insertPlayer(Player p) async {
+  Future<void> insertPlayer(Player p) async {
     Database db = await instance.database;
     Map<String, dynamic> row = p.toMap();
     return await insertPlayerValue(db, row);
   }
 
   // Insert a new group into db
-  Future<int> insertGroup(Group g) async {
+  Future<void> insertGroup(Group g) async {
     Database db = await instance.database;
     Map<String, dynamic> row = g.toMap();
     return await insertGroupValue(db, row);
   }
 
   // Insert an intermediate value into the database
-  Future<int> insertIntermediate(Intermediate i) async {
+  Future<void> insertIntermediate(Intermediate i) async {
     Database db = await instance.database;
     Map<String, dynamic> row = i.toMap();
     return await insertIntermediateValue(db, row);
@@ -72,12 +69,10 @@ class DatabaseHelper {
 
   // Gets all players in db
   Future<List<Player>> getPlayerLibrary() async {
-    List<Player> playerLibrary;
+    List<Player> playerLibrary = [];
     Database db = await instance.database;
     List<Map<String, dynamic>> table = await getPlayerLib(db);
-    print("Before for Each");
     table.forEach((row) {
-      print("in for loop");
       playerLibrary.add(Player.fromMap(row));
     });
     return playerLibrary;
@@ -85,7 +80,7 @@ class DatabaseHelper {
 
   // Get all groups in db
   Future<List<Group>> getGroupLibrary() async {
-    List<Group> groupLibrary;
+    List<Group> groupLibrary = [];
     Database db = await instance.database;
     List<Map<String, dynamic>> table = await getGroupLib(db);
     table.forEach((row) {
@@ -105,7 +100,7 @@ class DatabaseHelper {
 
   // Get all players in group by group id
   Future<List<Player>> getGroup(int id) async {
-    List<Player> groupPlayers;
+    List<Player> groupPlayers = [];
     Database db = await instance.database;
     List<Map<String, dynamic>> group = await getGroupRows(db, id);
     group.forEach((entry) {
@@ -115,7 +110,7 @@ class DatabaseHelper {
   }
 
   Future<List<Group>> getPlayerGroups(int id) async {
-    List<Group> playerGroups;
+    List<Group> playerGroups = [];
     Database db = await instance.database;
     List<Map<String, dynamic>> groups = await getPlayerGroupRows(db, id);
     groups.forEach((row) {
