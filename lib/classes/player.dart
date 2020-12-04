@@ -4,14 +4,13 @@ class Player {
   String _name; //player name
   String _position;
   String _imageFilePath; //file path to the profile picture
-
   int _waitingTime; //measured by the number of games waited
 
-  Player(String myName, String myPosition, int myWaitingTime,
-      String myImageFilePath) {
+  //don't need pid because it's given from database
+  Player(String myName, String myPosition, String myImageFilePath) {
     _name = myName;
     _position = myPosition;
-    _waitingTime = myWaitingTime;
+    _waitingTime = 0;
     _imageFilePath = myImageFilePath;
   }
 
@@ -75,12 +74,9 @@ class Player {
 
   //checks if one player is equal to another to avoid the same player being added multiple times
   bool equals(Object o) {
-    if (this == o) return true;
+    //if (this._pid == o) return true;
     Player player = o;
-    return (player._name == this._name &&
-        player._position == this._position &&
-        player._waitingTime == this._waitingTime &&
-        player._imageFilePath == this._imageFilePath);
+    return (this._pid == player._pid);
   }
 
   //idea: players should have unique names, so when a player is added,

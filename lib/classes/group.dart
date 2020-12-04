@@ -1,12 +1,8 @@
 import 'player.dart';
 
 class Group {
-<<<<<<< Updated upstream
   int _gid;
   int _groupSize; //number of people in a group
-=======
-  //int _groupSize; //number of people in a group
->>>>>>> Stashed changes
   String _groupName;
   List<Player> _playerList; //array of Players
 
@@ -16,7 +12,7 @@ class Group {
     String myGroupName,
     /*List<Player> myPlayerList*/
   ) {
-    //_groupSize = myGroupSize;
+    _groupSize = 0;
     _groupName = myGroupName;
 
     //for (int i = 0; i < myPlayerList.length; i++)

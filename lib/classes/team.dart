@@ -2,9 +2,10 @@ import 'player.dart';
 //import 'group.dart';
 
 class Team {
-  static const int TEAM_SIZE = 6; //a constant for the team size
+  //static const int TEAM_SIZE = 6; //a constant for the team size
   String _teamName;
   List<Player> _playerList; //array of Players on the Team
+  //List<String> _positionList;
 
   //constructor, leave the player list empty for now
   Team(String myTeamName /*, List<Player> myPlayerList*/) {
@@ -29,13 +30,17 @@ class Team {
   }
 
   void addPlayer(String name, String position, String imageFilePath) {
-    _playerList.add(Player(name, position, 0, imageFilePath));
+    _playerList.add(Player(name, position, imageFilePath));
   }
 
   void removePlayer(Object o) {
     Player playerToRemove = o;
     _playerList.remove(playerToRemove);
   }
+
+  /*boolean isTeamFull(){
+    if(this._playerList.length() )
+  }*/
 
   //not sure how to return the player list so it can be printed
   /*
