@@ -37,11 +37,23 @@ void main() {
 
   Player anotherPlayer = Player("Jane", "Outside hitter", 0, "randomfile.jpg");
   if (anotherPlayer.equals(jane))
-    print("anotherPlayer is equal to jane");
+    print("anotherPlayer is equal to jane\n\n");
   else
-    print("anotherPlayer is not equal to jane");
+    print("anotherPlayer is not equal to jane\n\n");
 
   //testing Group class:
+  Group myGroup = Group("Group 1");
+  print("Group name: $myGroup.getGroupName()");
+
+  myGroup.addPlayer(jane);
+  myGroup.addPlayer(anotherPlayer);
+  myGroup.addPlayer(Player("Alex", "Libero", 0, "imageFile.pdf"));
+  //print(myGroup.getPlayerList()); //can you print a list in Dart?
+  List<Player> playerList = myGroup.getPlayerList();
+  for (int i = 0; i < playerList.length; i++) {
+    print(playerList[i].getName());
+    print(playerList[i].getPosition());
+  }
 
   //testing Team class:
 }

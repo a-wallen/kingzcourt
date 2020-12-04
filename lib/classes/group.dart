@@ -1,18 +1,22 @@
 import 'player.dart';
 
 class Group {
+<<<<<<< Updated upstream
   int _gid;
   int _groupSize; //number of people in a group
+=======
+  //int _groupSize; //number of people in a group
+>>>>>>> Stashed changes
   String _groupName;
   List<Player> _playerList; //array of Players
 
   //constructor, leaves the player list empty for now so that players can be added
   Group(
-    int myGroupSize,
+    //int myGroupSize,
     String myGroupName,
     /*List<Player> myPlayerList*/
   ) {
-    _groupSize = myGroupSize;
+    //_groupSize = myGroupSize;
     _groupName = myGroupName;
 
     //for (int i = 0; i < myPlayerList.length; i++)
@@ -34,9 +38,9 @@ class Group {
   }
 
   //getters:
-  int getGroupSize() {
+  /*int getGroupSize() {
     return _groupSize;
-  }
+  }*/
 
   String getGroupName() {
     return _groupName;
@@ -48,9 +52,10 @@ class Group {
 
   //setters:
   //adds a player and sets their waiting time to 0
-  void addPlayer(String name, String position, String imageFilePath) {
-    _groupSize++;
-    _playerList.add(Player(name, position, 0, imageFilePath));
+  void addPlayer(Object o) {
+    //_groupSize++;
+    Player playerToAdd = o;
+    _playerList.add(playerToAdd);
   }
 
   //sets group name
