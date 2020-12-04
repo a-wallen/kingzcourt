@@ -1,24 +1,28 @@
 class Player {
   //String rank;
   int _pid; // player id (for database)
-  String _name; //player name
+  String _last_name; //player name
+  String _first_name; //player name
   String _position;
   String _imageFilePath; //file path to the profile picture
+
   int _waitingTime; //measured by the number of games waited
 
-  //don't need pid because it's given from database
-  Player(String myName, String myPosition, String myImageFilePath) {
-    _name = myName;
-    _position = myPosition;
-    _waitingTime = 0;
-    _imageFilePath = myImageFilePath;
+  Player(String myFirstName, String myLastName, String myPosition,
+      int myWaitingTime, String myImageFilePath) {
+    this._first_name = myFirstName;
+    this._last_name = myLastName;
+    this._position = myPosition;
+    this._waitingTime = myWaitingTime;
+    this._imageFilePath = myImageFilePath;
   }
 
   // this method is for the database
   Map<String, dynamic> toMap() {
     var map = new Map<String, dynamic>();
     if (_pid != null) map['pid'] = _pid;
-    map['name'] = _name;
+    map['first_name'] = _first_name;
+    map['last_name'] = _last_name;
     map['position'] = _position;
     map['imageFilePath'] = _imageFilePath;
     return map;
@@ -27,14 +31,19 @@ class Player {
   // Also for the databse
   Player.fromMap(Map<String, dynamic> map) {
     this._pid = map['pid'];
-    this._name = map['name'];
+    this._first_name = map['first_name'];
+    this._last_name = map['last_name'];
     this._position = map['position'];
     this._imageFilePath = map['imageFilePath'];
   }
 
   //getters:
-  String getName() {
-    return _name;
+  String getFirstName() {
+    return _first_name;
+  }
+
+  String getLastName() {
+    return _last_name;
   }
 
   String getPosition() {
@@ -50,8 +59,12 @@ class Player {
   }
 
   //setters:
-  void setName(String newName) {
-    _name = newName;
+  void setFirstName(String newName) {
+    _first_name = newName;
+  }
+
+  void setLastName(String newName) {
+    _last_name = newName;
   }
 
   void setPosition(String newPosition) {
@@ -74,9 +87,13 @@ class Player {
 
   //checks if one player is equal to another to avoid the same player being added multiple times
   bool equals(Object o) {
-    //if (this._pid == o) return true;
+    if (this == o) return true;
     Player player = o;
-    return (this._pid == player._pid);
+    return (player._first_name == this._first_name &&
+        player._last_name == this._last_name &&
+        player._position == this._position &&
+        player._waitingTime == this._waitingTime &&
+        player._imageFilePath == this._imageFilePath);
   }
 
   //idea: players should have unique names, so when a player is added,
