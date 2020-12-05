@@ -63,10 +63,9 @@ class Playlist extends Iterable {
   }
 
   /// Deprioritizes plyer in playlist so player can have a rest (invoked by Wait button).
-  //TODO: add skip method to Player class
   void wait(Player player) {
     if (player.equals(_tail.player)) {
-      //TODO
+      player.changeSkipGame();
       return;
     }
 
@@ -79,7 +78,7 @@ class Playlist extends Iterable {
         _tail.next = targetPlayer;
         targetPlayer.previous = _tail;
         _tail = targetPlayer;
-        //TODO
+        player.changeSkipGame();
         return;
       }
       curNode = curNode.next;
