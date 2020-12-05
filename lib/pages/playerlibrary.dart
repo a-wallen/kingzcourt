@@ -15,8 +15,7 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
   // add player to database
   void addPlayer(Player p) async {
     DatabaseHelper.instance.insertPlayer(p);
-    //library = await DatabaseHelper.instance.getPlayerLibrary();
-    //print(library);
+    library = await DatabaseHelper.instance.getPlayerLibrary();
   }
 
   @override
@@ -27,7 +26,8 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
         title: Text("Saved Players"),
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: () => addPlayer(Player("Alex", "OH", 0, "path/path"))),
+          onPressed: () =>
+              addPlayer(Player("Alex", "Wallen", "OH", 0, "path/path"))),
     );
   }
 }

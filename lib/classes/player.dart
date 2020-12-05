@@ -23,7 +23,7 @@ class Player {
   // this method is for the database
   Map<String, dynamic> toMap() {
     var map = new Map<String, dynamic>();
-    if (_pid != null) map['pid'] = _pid;
+    if (_pid != null) map['p_id'] = _pid;
     map['first_name'] = _first_name;
     map['last_name'] = _last_name;
     map['position'] = _position;
@@ -33,7 +33,7 @@ class Player {
 
   // Also for the databse
   Player.fromMap(Map<String, dynamic> map) {
-    this._pid = map['pid'];
+    this._pid = map['p_id'];
     this._first_name = map['first_name'];
     this._last_name = map['last_name'];
     this._position = map['position'];
