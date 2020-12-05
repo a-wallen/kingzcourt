@@ -33,6 +33,12 @@ void main() {
 
   algorithm(team1, team2, playlist);
 
-  print(team1.getPlayersOnTeam());
-  print(team2.getPlayersOnTeam());
+  for (Player player in team1.getPlayersOnTeam()) {
+    print(player);
+  }
+  print("---" * 10);
+
+  for (Player player in team2.getPlayersOnTeam()) {
+    print(player);
+  }
 }

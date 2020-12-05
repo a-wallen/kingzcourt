@@ -176,6 +176,19 @@ class Playlist extends Iterable {
     }
   }
 
+  /// Creates a List containing the elements of the playlist.
+  List<Player> convertToList() {
+    List<Player> list = List(_size);
+    int counter = 0;
+
+    for (Player player in this) {
+      list[counter] = player;
+      counter++;
+    }
+
+    return list;
+  }
+
   /// Removes all elements in the playlist.
   void clear() {
     _head = null;
@@ -184,7 +197,7 @@ class Playlist extends Iterable {
   }
 }
 
-///Class to implement iterator for playlist.
+/// Class to implement iterator for playlist.
 class PlaylistIterator extends Iterator<Player> {
   Node _curNode;
 

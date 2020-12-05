@@ -15,15 +15,15 @@ class Node {
   /// Sets _next value.
   set next(Node next) => _next = next;
 
-  /// Retrns _next value.
+  /// Returns _next value.
   Node get next => _next;
 
   /// Sets _previous value.
   set previous(Node previous) => _previous = previous;
 
-  /// Retrns _previous value.
+  /// Returns _previous value.
   Node get previous => _previous;
 
-  /// Retrns _player value.
+  /// Returns _player value.
   Player get player => _player;
 }

@@ -109,11 +109,11 @@ class Player {
 
   //idea: players should have unique names, so when a player is added,
   //they cannot have the same name as an existing player
-
-  /*String toString() {
-    return "Player name: $getName " +
-        " Player position: $getPosition() " +
-        " Waiting time: $getWaitingTime() " +
-        " File path to their profile picture: $getImageFilePath() ";
-  }*/
+  @override
+  String toString() {
+    return 'Player name: $_first_name $_last_name ' +
+        ' Player position: $_position ' +
+        ' Waiting time: $_waitingTime ' +
+        ' File path to their profile picture: $_imageFilePath ';
+  }
 }
