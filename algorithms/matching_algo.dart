@@ -16,10 +16,10 @@ void algorithm(Team team1, Team team2, Playlist playlist) {
   Player firstPlayer; //to be matched and removed in while loop
   //playlist.add(Player("Alex", "Wallen", "L", 0, "filePath"));
 
-  List<Player> staticPlaylist = playlist.convertToList();
+  int index = 0;
 
-  for (int i = 0; i < staticPlaylist.length; i++) {
-    currentPlayer = staticPlaylist[i];
+  for (int i = 0; index < playlist.length; i++) {
+    currentPlayer = playlist.elementAt(index);
     if (currentPlayer.getSkipGame() == false) {
       if (i % 2 == 0) {
         if (team1.getPositions().contains(currentPlayer.getPosition())) {
@@ -30,6 +30,8 @@ void algorithm(Team team1, Team team2, Playlist playlist) {
           team2.addPlayer(currentPlayer);
           team2.getPositions().remove(currentPlayer.getPosition());
           playlist.remove(currentPlayer);
+        } else {
+          index++;
         }
       } else {
         if (team2.getPositions().contains(currentPlayer.getPosition())) {
@@ -40,13 +42,14 @@ void algorithm(Team team1, Team team2, Playlist playlist) {
           team1.addPlayer(currentPlayer);
           team1.getPositions().remove(currentPlayer.getPosition());
           playlist.remove(currentPlayer);
+        } else {
+          index++;
         }
       }
     }
   }
 
   while ((team1.isTeamFull() == false) || (team2.isTeamFull() == false)) {
-    if (playlist.first == null) print('null');
     firstPlayer = playlist.first;
     if (team1.isTeamFull() == false) {
       team1.addPlayer(firstPlayer);
@@ -57,5 +60,9 @@ void algorithm(Team team1, Team team2, Playlist playlist) {
       team2.getPositions().remove(team2.getPositions().last);
       playlist.remove(firstPlayer);
     }
+  }
+
+  for (Player player in playlist) {
+    player.increaseWaitingTime();
   }
 }
