@@ -1,3 +1,5 @@
+//import 'dart:html';
+
 class Player {
   //String rank;
   int _pid; // player id (for database)
@@ -5,6 +7,7 @@ class Player {
   String _first_name; //player name
   String _position;
   String _imageFilePath; //file path to the profile picture
+  bool _skipGame = false; //whether player wants to skip a game
 
   int _waitingTime; //measured by the number of games waited
 
@@ -58,6 +61,10 @@ class Player {
     return _imageFilePath;
   }
 
+  bool getSkipGame() {
+    return _skipGame;
+  }
+
   //setters:
   void setFirstName(String newName) {
     _first_name = newName;
@@ -83,6 +90,10 @@ class Player {
 
   void setImageFilePath(String newImageFilePath) {
     _imageFilePath = newImageFilePath;
+  }
+
+  void changeSkipGame() {
+    _skipGame = !_skipGame;
   }
 
   //checks if one player is equal to another to avoid the same player being added multiple times

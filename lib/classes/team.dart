@@ -5,11 +5,13 @@ class Team {
   //static const int TEAM_SIZE = 6; //a constant for the team size
   String _teamName;
   List<Player> _playerList; //array of Players on the Team
-  //List<String> _positionList;
+  List<String> _positions;
 
   //constructor, leave the player list empty for now
   Team(String myTeamName /*, List<Player> myPlayerList*/) {
     _teamName = myTeamName;
+    _positions = ["OH", "OH", "L", "OP", "M", "S"];
+    _playerList = List(); //makes an empty list
     /*for (int i = 0; i < TEAM_SIZE; i++) {
       _playerList[i] = myPlayerList[i];
     }*/
@@ -24,13 +26,18 @@ class Team {
     return _playerList;
   }
 
+  List<String> getPositions() {
+    return _positions;
+  }
+
   //setters:
   void setTeamName(String newTeamName) {
     _teamName = newTeamName;
   }
 
-  void addPlayer(String name, String position, String imageFilePath) {
-    _playerList.add(Player(name, position, imageFilePath));
+  void addPlayer(Object o) {
+    Player player = o;
+    _playerList.add(player);
   }
 
   void removePlayer(Object o) {
@@ -38,9 +45,9 @@ class Team {
     _playerList.remove(playerToRemove);
   }
 
-  /*boolean isTeamFull(){
-    if(this._playerList.length() )
-  }*/
+  bool isTeamFull() {
+    return _positions.isEmpty;
+  }
 
   //not sure how to return the player list so it can be printed
   /*
