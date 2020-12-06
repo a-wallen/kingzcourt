@@ -1,5 +1,9 @@
+//import 'dart:js';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kingzcourt/classes/colors.dart';
 
 double cornerRadius = 9.0;
 
@@ -11,24 +15,22 @@ ThemeData kingzTheme() {
   TextTheme _basicText(TextTheme base) {
     return base.copyWith(
       title: base.headline1.copyWith(
-        fontFamily: 'SansitaSwashed',
-        fontWeight: FontWeight.w700,
-        color: Colors.red,
-      ),
+          fontFamily: 'SansitaSwashed',
+          fontWeight: FontWeight.w700,
+          color: AppColors.primaryDarkColor),
     );
   }
 
   AppBarTheme _appbarTheme(AppBarTheme base) {
     return base.copyWith(
       centerTitle: true,
-      color: Colors.white,
-      iconTheme: IconThemeData(color: Colors.red),
+      color: AppColors.primaryColor,
     );
   }
 
   BottomAppBarTheme _bottombarTheme(BottomAppBarTheme base) {
     return base.copyWith(
-      color: Colors.white,
+      color: AppColors.primaryDarkColor,
       elevation: myelevation,
     );
   }
@@ -40,13 +42,6 @@ ThemeData kingzTheme() {
       margin: EdgeInsets.all(margins),
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius)),
-    );
-  }
-
-  FloatingActionButtonThemeData _floatingActionButtonTheme(
-      FloatingActionButtonThemeData base) {
-    return base.copyWith(
-      backgroundColor: Colors.red,
     );
   }
 
