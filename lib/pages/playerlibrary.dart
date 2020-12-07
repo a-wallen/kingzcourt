@@ -19,28 +19,23 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
   }
 
   // add player to database
-  void addPlayer(Player p) async {
-    await DatabaseHelper.instance.insertPlayer(p);
-    library = await DatabaseHelper.instance.getPlayerLibrary();
-    library.forEach((player) {
-      print(player.toString());
-    });
+  Future<int> addPlayer(Player p) async {
+    int newPlayerId = await DatabaseHelper.instance.insertPlayer(p);
+    getPlayerLibrary();
+    return newPlayerId;
   }
 
-  void updatePlayerData(Player originalData, Player newData) async {
-    await DatabaseHelper.instance.updatePlayer(originalData, newData);
+  Future<int> updatePlayerData(Player originalData, Player newData) async {
+    int result =
+        await DatabaseHelper.instance.updatePlayer(originalData, newData);
     getPlayerLibrary();
-    library.forEach((player) {
-      print(player.toString());
-    });
+    return result;
   }
 
-  void removePlayerByID(Player p) async {
-    await DatabaseHelper.instance.removePlayer(p);
+  Future<int> removePlayerByID(Player p) async {
+    int result = await DatabaseHelper.instance.removePlayer(p);
     getPlayerLibrary();
-    library.forEach((player) {
-      print(player.toString());
-    });
+    return result;
   }
 
   @override
@@ -61,7 +56,7 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
         onPressed: () {
           addPlayer(Player("Alex", "Wallen", "OH", 0, "path/path"));
           updatePlayerData(
-              library[3], Player("Hector", "Herrada", "OH", 0, "path/path"));
+              library[9], Player("Hector", "Herrada", "OH", 0, "path/path"));
           removePlayerByID(library[1]);
         },
       ),
