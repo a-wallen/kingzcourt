@@ -114,7 +114,8 @@ class Player {
 
   @override
   String toString() {
-    return 'Player name: $_first_name $_last_name ' +
+    return 'Player id: ${this._pid} ' +
+        'Player name: $_first_name $_last_name ' +
         ' Player position: $_position ' +
         ' Waiting time: $_waitingTime ' +
         ' File path to their profile picture: $_imageFilePath ';

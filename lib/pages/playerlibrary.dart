@@ -12,22 +12,32 @@ class PlayerLibraryPage extends StatefulWidget {
 
 class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
   List<Player> library = [];
-  // add player to database
-  void addPlayer(Player p) async {
-    DatabaseHelper.instance.insertPlayer(p);
-    print(library);
-  }
 
+  // refresh player library or get it for the first time
   void getPlayerLibrary() async {
     library = await DatabaseHelper.instance.getPlayerLibrary();
   }
 
-  void updatePlayerData(Player originalData, Player newData) async {
-    await DatabaseHelper.instance.updatePlayer(originalData, newData);
+  // add player to database
+  void addPlayer(Player p) async {
+    await DatabaseHelper.instance.insertPlayer(p);
+    library = await DatabaseHelper.instance.getPlayerLibrary();
+    library.forEach((player) {
+      print(player.toString());
+    });
   }
 
-  void removePlayerByID(int p_id) async {
-    await DatabaseHelper.instance.removePlayer(p_id);
+  void updatePlayerData(Player originalData, Player newData) async {
+    await DatabaseHelper.instance.updatePlayer(originalData, newData);
+    getPlayerLibrary();
+    library.forEach((player) {
+      print(player.toString());
+    });
+  }
+
+  void removePlayerByID(Player p) async {
+    await DatabaseHelper.instance.removePlayer(p);
+    getPlayerLibrary();
   }
 
   @override
@@ -45,8 +55,12 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
         title: Text("Saved Players"),
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: () =>
-              addPlayer(Player("Alex", "Wallen", "OH", 0, "path/path"))),
+        onPressed: () {
+          addPlayer(Player("Alex", "Wallen", "OH", 0, "path/path"));
+          updatePlayerData(
+              library[2], Player("Hector", "Herrada", "OH", 0, "path/path"));
+        },
+      ),
     );
   }
 }

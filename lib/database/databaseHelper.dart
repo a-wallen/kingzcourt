@@ -77,11 +77,11 @@ class DatabaseHelper {
   }
 
   // Find a player by player id
-  Future<Player> getPlayer(int id) async {
+  Future<Player> getPlayer(Player p) async {
     Player player;
     Database db = await instance.database;
-    Map<String, dynamic> row = await getPlayerRow(db, id);
-    player = Player.fromMap(row);
+    List<Map<String, dynamic>> row = await getPlayerRow(db, p.getId());
+    player = Player.fromMap(row[0]);
     return player;
   }
 
@@ -95,12 +95,13 @@ class DatabaseHelper {
   Future<void> updatePlayer(Player originData, Player newData) async {
     Database db = await instance.database;
     Map<String, dynamic> row = newData.toMap();
+    // row["p_id"] = originData.getId();
     return await updatePlayerValue(db, originData.getId(), row);
   }
 
-  Future<int> removePlayer(int p_id) async {
+  Future<int> removePlayer(Player p) async {
     Database db = await instance.database;
-    return await removePlayerByIdValue(db, p_id);
+    return await removePlayerByIdValue(db, p.getId());
   }
 
   // Get all players in group by group id
