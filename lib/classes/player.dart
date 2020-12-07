@@ -57,6 +57,10 @@ class Player {
     return _waitingTime;
   }
 
+  int getId() {
+    return this._pid;
+  }
+
   String getImageFilePath() {
     return _imageFilePath;
   }

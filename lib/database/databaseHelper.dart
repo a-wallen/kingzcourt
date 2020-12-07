@@ -16,6 +16,8 @@ import 'getPlayerLibrary.dart';
 import 'getGroup.dart';
 import 'getPlayer.dart';
 import 'getPlayerGroups.dart';
+import 'updateGroup.dart';
+import 'updatePlayer.dart';
 
 import '../classes/player.dart';
 import '../classes/group.dart';
@@ -42,29 +44,11 @@ class DatabaseHelper {
   // Creates all tables for the database
   Future _onCreate(Database db, int version) async {
     await createGroupTable(db, version);
+    print("Created Group Table");
     await createPlayerTable(db, version);
-    // await createIntermediateTable(db, version);
-  }
-
-  // Inserts a map with player data into player table
-  Future<void> insertPlayer(Player p) async {
-    Database db = await instance.database;
-    Map<String, dynamic> row = p.toMap();
-    return await insertPlayerValue(db, row);
-  }
-
-  // Insert a new group into db
-  Future<void> insertGroup(Group g) async {
-    Database db = await instance.database;
-    Map<String, dynamic> row = g.toMap();
-    return await insertGroupValue(db, row);
-  }
-
-  // Insert an intermediate value into the database
-  Future<void> insertIntermediate(Intermediate i) async {
-    Database db = await instance.database;
-    Map<String, dynamic> row = i.toMap();
-    return await insertIntermediateValue(db, row);
+    print("Created Player Table");
+    await createIntermediateTable(db, version);
+    print("Create Intermediate Table");
   }
 
   // Gets all players in db
@@ -98,6 +82,19 @@ class DatabaseHelper {
     return player;
   }
 
+  // Inserts a map with player data into player table
+  Future<void> insertPlayer(Player p) async {
+    Database db = await instance.database;
+    Map<String, dynamic> row = p.toMap();
+    return await insertPlayerValue(db, row);
+  }
+
+  Future<void> updatePlayer(Player originData, Player newData) async {
+    Database db = await instance.database;
+    Map<String, dynamic> row = newData.toMap();
+    return await updatePlayerValue(db, originData.getId(), row);
+  }
+
   // Get all players in group by group id
   Future<List<Player>> getGroup(int id) async {
     List<Player> groupPlayers = [];
@@ -107,6 +104,26 @@ class DatabaseHelper {
       groupPlayers.add(Player.fromMap(entry));
     });
     return groupPlayers;
+  }
+
+  // Insert a new group into db
+  Future<void> insertGroup(Group g) async {
+    Database db = await instance.database;
+    Map<String, dynamic> row = g.toMap();
+    return await insertGroupValue(db, row);
+  }
+
+  Future<void> updateGroup(Group original, Group newGroup) async {
+    Database db = await instance.database;
+    Map<String, dynamic> row = newGroup.toMap();
+    return await updateGroupValue(db, original.getId(), row);
+  }
+
+  // Insert an intermediate value into the database
+  Future<void> insertIntermediate(Intermediate i) async {
+    Database db = await instance.database;
+    Map<String, dynamic> row = i.toMap();
+    return await insertIntermediateValue(db, row);
   }
 
   Future<List<Group>> getPlayerGroups(int id) async {

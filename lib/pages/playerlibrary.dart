@@ -15,7 +15,17 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
   // add player to database
   void addPlayer(Player p) async {
     DatabaseHelper.instance.insertPlayer(p);
+  }
+
+  void getPlayerLibrary() async {
     library = await DatabaseHelper.instance.getPlayerLibrary();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getPlayerLibrary();
+    super.initState();
   }
 
   @override
