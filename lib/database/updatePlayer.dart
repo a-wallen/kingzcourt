@@ -6,5 +6,6 @@ Future<void> updatePlayerValue(
     "PLAYER",
     row,
     where: "id = ?",
+    whereArgs: [pid],
   );
 }

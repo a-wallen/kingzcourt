@@ -1,5 +1,3 @@
-//import 'dart:html';
-
 class Player {
   //String rank;
   int _pid; // player id (for database)
@@ -42,19 +40,19 @@ class Player {
 
   //getters:
   String getFirstName() {
-    return _first_name;
+    return this._first_name;
   }
 
   String getLastName() {
-    return _last_name;
+    return this._last_name;
   }
 
   String getPosition() {
-    return _position;
+    return this._position;
   }
 
   int getWaitingTime() {
-    return _waitingTime;
+    return this._waitingTime;
   }
 
   int getId() {
@@ -62,11 +60,11 @@ class Player {
   }
 
   String getImageFilePath() {
-    return _imageFilePath;
+    return this._imageFilePath;
   }
 
   bool getSkipGame() {
-    return _skipGame;
+    return this._skipGame;
   }
 
   //setters:
@@ -113,6 +111,7 @@ class Player {
 
   //idea: players should have unique names, so when a player is added,
   //they cannot have the same name as an existing player
+
   @override
   String toString() {
     return 'Player name: $_first_name $_last_name ' +

@@ -18,6 +18,9 @@ import 'getPlayer.dart';
 import 'getPlayerGroups.dart';
 import 'updateGroup.dart';
 import 'updatePlayer.dart';
+import 'removeGroup.dart';
+import 'removeIntermediate.dart';
+import 'removePlayer.dart';
 
 import '../classes/player.dart';
 import '../classes/group.dart';
@@ -93,6 +96,11 @@ class DatabaseHelper {
     Database db = await instance.database;
     Map<String, dynamic> row = newData.toMap();
     return await updatePlayerValue(db, originData.getId(), row);
+  }
+
+  Future<int> removePlayer(int p_id) async {
+    Database db = await instance.database;
+    return await removePlayerByIdValue(db, p_id);
   }
 
   // Get all players in group by group id

@@ -15,10 +15,19 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
   // add player to database
   void addPlayer(Player p) async {
     DatabaseHelper.instance.insertPlayer(p);
+    print(library);
   }
 
   void getPlayerLibrary() async {
     library = await DatabaseHelper.instance.getPlayerLibrary();
+  }
+
+  void updatePlayerData(Player originalData, Player newData) async {
+    await DatabaseHelper.instance.updatePlayer(originalData, newData);
+  }
+
+  void removePlayerByID(int p_id) async {
+    await DatabaseHelper.instance.removePlayer(p_id);
   }
 
   @override
