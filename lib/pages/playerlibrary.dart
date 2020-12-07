@@ -38,6 +38,9 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
   void removePlayerByID(Player p) async {
     await DatabaseHelper.instance.removePlayer(p);
     getPlayerLibrary();
+    library.forEach((player) {
+      print(player.toString());
+    });
   }
 
   @override
@@ -58,7 +61,8 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
         onPressed: () {
           addPlayer(Player("Alex", "Wallen", "OH", 0, "path/path"));
           updatePlayerData(
-              library[2], Player("Hector", "Herrada", "OH", 0, "path/path"));
+              library[3], Player("Hector", "Herrada", "OH", 0, "path/path"));
+          removePlayerByID(library[1]);
         },
       ),
     );
