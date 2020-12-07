@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:kingzcourt/classes/colors.dart';
 import 'package:kingzcourt/utility/theme.dart';
 import 'package:kingzcourt/widgets/drawer.dart';
 import '../database/databaseHelper.dart';
@@ -49,9 +50,8 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        textTheme: Theme.of(context).textTheme,
-        title: Text("Saved Players"),
-      ),
+          textTheme: Theme.of(context).textTheme,
+          title: (Text("Saved Players"))),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           addPlayer(Player("Alex", "Wallen", "OH", 0, "path/path"));
@@ -59,6 +59,8 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
               library[9], Player("Hector", "Herrada", "OH", 0, "path/path"));
           removePlayerByID(library[1]);
         },
+        child: Icon(Icons.add),
+        backgroundColor: AppColors.primaryDarkColor,
       ),
     );
   }

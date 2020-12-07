@@ -5,6 +5,9 @@ import 'package:kingzcourt/database/databaseHelper.dart';
 import 'package:kingzcourt/database/getGroupLibrary.dart';
 import 'package:kingzcourt/widgets/drawer.dart';
 
+import 'package:kingzcourt/classes/colors.dart'; // class AppColors
+import 'package:kingzcourt/utility/theme.dart';
+
 class GroupLibraryPage extends StatefulWidget {
   @override
   _GroupLibraryPageState createState() => _GroupLibraryPageState();
@@ -36,8 +39,10 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
         textTheme: Theme.of(context).textTheme,
         title: Text("Saved Groups"),
       ),
-      floatingActionButton:
-          FloatingActionButton(onPressed: () => addGroup(Group("BeachVB"))),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () => addGroup(Group("BeachVB")),
+          child: Icon(Icons.add),
+          backgroundColor: AppColors.primaryDarkColor),
     );
   }
 }
