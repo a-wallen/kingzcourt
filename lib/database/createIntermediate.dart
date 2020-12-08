@@ -2,10 +2,24 @@ import 'package:sqflite/sqflite.dart';
 
 Future<void> createIntermediateTable(Database db, int version) {
   db.execute('''
-    CREATE TABLE [INTERMEDIATE] (
-    g_id        INTEGER NOT NULL,
-    p_id        INTEGER NOT NULL,
-    PRIMARY KEY (p_id, g_id)
+   CREATE TABLE PLAYER_GROUP (
+    p_id INTEGER PRIMARY KEY
+                 REFERENCES PLAYER (p_id) 
+                 NOT NULL,
+    g_id INTEGER PRIMARY KEY
+                 REFERENCES [GROUP] (g_id) 
+                 NOT NULL
     );
     ''');
 }
+
+/*
+CREATE TABLE PLAYER_GROUP (
+    p_id INTEGER PRIMARY KEY
+                 REFERENCES PLAYER (p_id) 
+                 NOT NULL,
+    g_id INTEGER PRIMARY KEY
+                 REFERENCES [GROUP] (g_id) 
+                 NOT NULL
+);
+*/
