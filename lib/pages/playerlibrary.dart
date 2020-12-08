@@ -54,10 +54,11 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
           title: (Text("Saved Players"))),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          addPlayer(Player("Alex", "Wallen", "OH", 0, "path/path"));
-          updatePlayerData(
-              library[9], Player("Hector", "Herrada", "OH", 0, "path/path"));
-          removePlayerByID(library[1]);
+          // testing
+          // addPlayer(Player("Alex", "Wallen", "OH", 0, "path/path"));
+          // updatePlayerData(
+          //     library[9], Player("Hector", "Herrada", "OH", 0, "path/path"));
+          // removePlayerByID(library[1]);
         },
         child: Icon(Icons.add),
         backgroundColor: AppColors.primaryDarkColor,
