@@ -16,10 +16,27 @@ class _KingzDrawerState extends State<KingzDrawer> {
     return Theme(
       data: Theme.of(context),
       child: Drawer(
+        elevation: 20.0,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            DrawerHeader(child: Text("King's Court", style: Theme.of(context).textTheme.title,),),
+            DrawerHeader(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      // fit: BoxFit.scaleDown,
+                      image: AssetImage('test/pictest.jpg'),
+                      alignment: Alignment.bottomRight,
+                      scale: 8.5,
+                  )
+              ),
+              child: Stack(
+                children: [
+                  Positioned(bottom: 20, left: 16,
+                    child: Text("King's Court", style: Theme.of(context).textTheme.title,),
+                  )
+                ],
+              ),
+            ),
             ListTile(
                 leading: Icon(Icons.person),
                 title: Text("Player Library", style: Theme.of(context).textTheme.title,),

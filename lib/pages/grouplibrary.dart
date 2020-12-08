@@ -1,36 +1,17 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
-
-import 'package:kingzcourt/classes/group.dart';
-import 'package:kingzcourt/database/databaseHelper.dart';
-import 'package:kingzcourt/database/getGroupLibrary.dart';
 import 'package:kingzcourt/widgets/drawer.dart';
-
-import 'package:kingzcourt/classes/colors.dart'; // class AppColors
-import 'package:kingzcourt/utility/theme.dart';
+import 'package:kingzcourt/widgets/testWidget.dart';
 
 class GroupLibraryPage extends StatefulWidget {
+  _GroupLibraryPageState of(BuildContext c) { return c.findAncestorStateOfType<_GroupLibraryPageState>(); }
+
   @override
   _GroupLibraryPageState createState() => _GroupLibraryPageState();
 }
 
 class _GroupLibraryPageState extends State<GroupLibraryPage> {
-  List<Group> library = [];
-  // add player to database
-  void addGroup(Group g) async {
-    DatabaseHelper.instance.insertGroup(g);
-    getGroupLib();
-  }
-
-  void getGroupLib() async {
-    library = await DatabaseHelper.instance.getGroupLibrary();
-  }
-
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   getGroupLib();
-  //   super.initState();
-  // }
+  int test = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +20,14 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
         textTheme: Theme.of(context).textTheme,
         title: Text("Saved Groups"),
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () => addGroup(Group("BeachVB")),
-          child: Icon(Icons.add),
-          backgroundColor: AppColors.primaryDarkColor),
+      body: Container(
+        child: Column(
+          children: [
+            Text("$test", style: TextStyle(fontSize: 50)),
+            TestWidget(),
+          ],
+        ),
+      ),
     );
   }
 }
