@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kingzcourt/classes/colors.dart';
 
 import 'package:kingzcourt/pages/playerlibrary.dart';
 import 'package:kingzcourt/pages/grouplibrary.dart';
@@ -16,45 +17,58 @@ class _KingzDrawerState extends State<KingzDrawer> {
     return Theme(
       data: Theme.of(context),
       child: Drawer(
-        elevation: 20.0,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
-                  image: DecorationImage(
-                      // fit: BoxFit.scaleDown,
-                      image: AssetImage('test/pictest.jpg'),
-                      alignment: Alignment.bottomRight,
-                      scale: 8.5,
-                  )
+                color: AppColors.primaryDarkColor,
               ),
-              child: Stack(
-                children: [
-                  Positioned(bottom: 20, left: 16,
-                    child: Text("King's Court", style: Theme.of(context).textTheme.title,),
-                  )
-                ],
+              child: Text(
+                "King's Court",
+                style: Theme.of(context).textTheme.title,
               ),
             ),
             ListTile(
                 leading: Icon(Icons.person),
-                title: Text("Player Library", style: Theme.of(context).textTheme.title,),
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PlayerLibraryPage()))
+                title: Text(
+                  "Player Library",
+                  style: Theme.of(context).textTheme.title,
+                ),
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PlayerLibraryPage()))),
+            Divider(
+              thickness: 1,
+              height: 10,
             ),
-            Divider(thickness: 1, height: 10,),
             ListTile(
                 leading: Icon(Icons.group_sharp),
-                title: Text("Group Library", style: Theme.of(context).textTheme.title,),
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => GroupLibraryPage()))
+                title: Text(
+                  "Group Library",
+                  style: Theme.of(context).textTheme.title,
+                ),
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => GroupLibraryPage()))),
+            Divider(
+              thickness: 1,
+              height: 10,
             ),
-            Divider(thickness: 1, height: 10,),
             ListTile(
                 leading: Icon(Icons.info_sharp),
-                title: Text("About", style: Theme.of(context).textTheme.title,),
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => AboutPage()))
+                title: Text(
+                  "About",
+                  style: Theme.of(context).textTheme.title,
+                ),
+                onTap: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AboutPage()))),
+            Divider(
+              thickness: 1,
+              height: 10,
             ),
-            Divider(thickness: 1, height: 10,),
           ],
         ),
       ),
