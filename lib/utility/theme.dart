@@ -17,14 +17,14 @@ ThemeData kingzTheme() {
       title: base.headline1.copyWith(
           fontFamily: 'SansitaSwashed',
           fontWeight: FontWeight.w700,
-          color: AppColors.primaryDarkColor),
+          color: AppColors.primaryColor),
     );
   }
 
   AppBarTheme _appbarTheme(AppBarTheme base) {
     return base.copyWith(
       centerTitle: true,
-      color: AppColors.primaryColor,
+      color: AppColors.primaryDarkColor,
     );
   }
 
@@ -47,6 +47,7 @@ ThemeData kingzTheme() {
 
   final ThemeData base = ThemeData.light();
   return base.copyWith(
+    canvasColor: AppColors.accentColor,
     textTheme: _basicText(base.textTheme),
     appBarTheme: _appbarTheme(base.appBarTheme),
     bottomAppBarTheme: _bottombarTheme(base.bottomAppBarTheme),
