@@ -1,20 +1,16 @@
 import 'package:kingzcourt/classes/Playlist.dart';
 import 'package:kingzcourt/classes/player.dart';
 import 'package:kingzcourt/classes/team.dart';
-import '../test/matching_algo_testing.dart';
 
-List<String> positions = ["OH", "OH", "L", "OP", "M", "S"];
-const int TEAM_SIZE = 6;
+//List<String> positions = ["OH", "OH", "L", "OP", "M", "S"];
+//const int TEAM_SIZE = 6;
 //optional: 1 defense specialist
 //Input: Playlist
 //Output: 2 lists, one for each team
 
-//List<Player> nextPlayers;
-
 void algorithm(Team team1, Team team2, Playlist playlist) {
   Player currentPlayer;
   Player firstPlayer; //to be matched and removed in while loop
-  //playlist.add(Player("Alex", "Wallen", "L", 0, "filePath"));
 
   int index = 0;
 
@@ -49,7 +45,7 @@ void algorithm(Team team1, Team team2, Playlist playlist) {
     }
   }
 
-  while ((team1.isTeamFull() == false) || (team2.isTeamFull() == false)) {
+  while ((!team1.isTeamFull() || !team2.isTeamFull()) && playlist.isNotEmpty) {
     firstPlayer = playlist.first;
     if (team1.isTeamFull() == false) {
       team1.addPlayer(firstPlayer);
@@ -64,5 +60,6 @@ void algorithm(Team team1, Team team2, Playlist playlist) {
 
   for (Player player in playlist) {
     player.increaseWaitingTime();
+    player.changeSkipGame();
   }
 }

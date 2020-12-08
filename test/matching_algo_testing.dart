@@ -1,7 +1,7 @@
 import 'package:kingzcourt/classes/Playlist.dart';
 import 'package:kingzcourt/classes/player.dart';
 import 'package:kingzcourt/classes/team.dart';
-import '../algorithms/matching_algo.dart';
+import 'package:kingzcourt/algorithms/matching_algo.dart';
 
 void main() {
   Playlist playlist = Playlist();
