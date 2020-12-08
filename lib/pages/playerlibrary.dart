@@ -16,7 +16,10 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
 
   // refresh player library or get it for the first time
   void getPlayerLibrary() async {
+    print("start getplayerlibrary");
     library = await DatabaseHelper.instance.getPlayerLibrary();
+    print("end getplayerlibrary");
+    print(library.length);
   }
 
   // add player to database
@@ -42,12 +45,18 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
   @override
   void initState() {
     // TODO: implement initState
+    print("start init");
     getPlayerLibrary();
     super.initState();
+    // library.add(null);
+    print("end init");
+    print(library.length);
   }
 
   @override
   Widget build(BuildContext context) {
+    print("start build");
+    print(library.length);
     return Scaffold(
       appBar: AppBar(
           textTheme: Theme.of(context).textTheme,
@@ -60,8 +69,43 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
           //     library[9], Player("Hector", "Herrada", "OH", 0, "path/path"));
           // removePlayerByID(library[1]);
         },
-        child: Icon(Icons.add),
+        child: Icon(Icons.edit),
         backgroundColor: AppColors.primaryDarkColor,
+      ),
+      body: GridView.builder(
+        padding: EdgeInsets.all(20.0),
+        itemCount: library.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 4,
+          crossAxisSpacing: 7.0,
+          mainAxisSpacing: 20.0,
+        ),
+        itemBuilder: (context, index) {
+          print("build single gridview element");
+          print(library.length);
+          if (index < library.length - 1) {
+            return Card(
+              child: Text("$index", textAlign: TextAlign.right,),
+              elevation: 3.0,
+              shape: CircleBorder(),
+            );
+          }
+          else {
+            return Card(
+              child: IconButton(
+                icon: Icon(Icons.add),
+                iconSize: 25.0,
+                color: AppColors.accentColor,
+                splashColor: AppColors.accentColor,
+                onPressed: () {
+                  /*setState(() {library.add(null);});*/ print(library.length);
+                },
+              ),
+              elevation: 3.0,
+              shape: CircleBorder(),
+            );
+          }
+        },
       ),
     );
   }
