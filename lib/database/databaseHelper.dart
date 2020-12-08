@@ -119,16 +119,22 @@ class DatabaseHelper {
   }
 
   // Insert a new group into db
-  Future<void> insertGroup(Group g) async {
+  Future<int> insertGroup(Group g) async {
     Database db = await instance.database;
     Map<String, dynamic> row = g.toMap();
     return await insertGroupValue(db, row);
   }
 
-  Future<void> updateGroup(Group original, Group newGroup) async {
+  Future<int> updateGroup(Group original, Group newGroup) async {
     Database db = await instance.database;
     Map<String, dynamic> row = newGroup.toMap();
     return await updateGroupValue(db, original.getId(), row);
+  }
+
+  Future<int> removeGroup(Group g) async {
+    Database db = await instance.database;
+    int successCode = await removeGroupValue(db, g.getId());
+    return successCode;
   }
 
   // Insert an intermediate value into the database
