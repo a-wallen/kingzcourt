@@ -57,7 +57,7 @@ void algorithm(Team team1, Team team2, Playlist playlist) {
         }
       }
     }
-​
+
     while (
         curNumberWaited != 0 && (!team1.isTeamFull() || !team2.isTeamFull())) {
       firstPlayer = playlist.first;
@@ -73,7 +73,7 @@ void algorithm(Team team1, Team team2, Playlist playlist) {
     }
     curCheckPlayer--;
   }
-​
+
   // while ((!team1.isTeamFull() || !team2.isTeamFull()) && playlist.isNotEmpty) {
   //   firstPlayer = playlist.first;
   //   if (team1.isTeamFull() == false) {
@@ -86,7 +86,7 @@ void algorithm(Team team1, Team team2, Playlist playlist) {
   //     playlist.remove(firstPlayer);
   //   }
   // }
-​
+
   for (Player player in playlist) {
     player.increaseWaitingTime();
     player.changeSkipGame();

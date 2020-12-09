@@ -18,14 +18,14 @@ List<Object> teamOfFour = [
   ['M', 'L']
 ];
 
-List<Object> teamOfFive = ['OH', 'OP', 'S', 'M', 'L'];​
+List<Object> teamOfFive = ['OH', 'OP', 'S', 'M', 'L'];
 List<Object> teamOfSix = ['OH', 'OH', 'OP', 'S', 'M', 'L'];
 
 class Team {
   String _teamName;
   int _teamSize; //2-6 players
   List<Player> _playerList; //list of Players on the Team
-  
+
   List<Object> _positions;
 
   Team(String myTeamName, int myTeamSize) {
