@@ -60,8 +60,14 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
   @override
   Widget build(BuildContext context) {
     // MediaQueryData media = MediaQuery.of(context);
-    _insertNames();
-    getGroupLib();
+    // Since the function changes the state of the widget,
+    // and the widget is Stateful,
+    // the widget will call the function when it builds.
+    // /Since the widget reacts to those changes,
+    // and calls the function every time, it is infinite.
+    // Please remove the two lines below.
+    // _insertNames();
+    // getGroupLib();
     return Scaffold(
       appBar: AppBar(
         textTheme: Theme.of(context).textTheme,
