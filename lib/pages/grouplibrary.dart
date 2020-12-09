@@ -20,8 +20,12 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
   int test = 1;
   List<Group> library = [];
   // add player to database
-  void getGroupLib() async {
-    library = await DatabaseHelper.instance.getGroupLibrary();
+  void getGroupLib() {
+    DatabaseHelper.instance.getGroupLibrary().then((result) {
+      setState(() {
+        library = result;
+      });
+    });
   }
 
   Future<int> addGroup(Group g) async {
@@ -55,22 +59,31 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
 
   @override
   Widget build(BuildContext context) {
+    // MediaQueryData media = MediaQuery.of(context);
+    // Since the function changes the state of the widget,
+    // and the widget is Stateful,
+    // the widget will call the function when it builds.
+    // /Since the widget reacts to those changes,
+    // and calls the function every time, it is infinite.
+    // Please remove the two lines below.
+    // _insertNames();
+    // getGroupLib();
     return Scaffold(
       appBar: AppBar(
         textTheme: Theme.of(context).textTheme,
         title: Text("Saved Groups"),
       ),
-      body: Container(
-        child: Column(
-          children: [
-            Text("$test", style: TextStyle(fontSize: 50)),
-            //TestWidget(),
-          ],
-        ),
-      ),
+      body: ListView.builder(
+          itemCount: library.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text(
+                  '${library[index].getGroupName()}'), // same syntax as flutter.dev
+            );
+          }),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            addGroup(Group("Beach Volleyball"));
+            addGroup(Group("Sand squad"));
             updateGroupData(library[0], Group("Updated"));
             removeGroupByID(library[3]);
           },
@@ -78,4 +91,28 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
           backgroundColor: AppColors.primaryDarkColor),
     );
   }
+
+  // test function to build database
+  void _insertNames() {
+    List<String> names = ["Sudden Impact", "Kent Juniors", "Puget Sound"];
+    names.forEach((string) {
+      Group group = Group(string);
+      this.addGroup(group);
+    });
+  }
 }
+
+// prev code:
+/*
+body: Container(
+        child: Column(
+          children: [
+            Text(
+              "$test",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            //TestWidget(),
+          ],
+        ),
+      ),
+*/

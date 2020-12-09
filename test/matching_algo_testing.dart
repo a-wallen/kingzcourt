@@ -1,7 +1,7 @@
 import 'package:kingzcourt/classes/Playlist.dart';
 import 'package:kingzcourt/classes/player.dart';
-import 'package:kingzcourt/classes/team.dart';
-import 'package:kingzcourt/algorithms/matching_algo.dart';
+import 'package:kingzcourt/classes/team_ihor.dart';
+import 'package:kingzcourt/algorithms/matching_algo_ihor.dart';
 
 void main() {
   Playlist playlist = Playlist();
@@ -47,7 +47,7 @@ void main() {
   Team team5 = Team("Team 5", 2);
   Team team6 = Team("Team 6", 2);
 
-  match5To6(team1, team2, playlist);
+  algorithm(team1, team2, playlist);
 
   for (Player player in team1.getPlayersOnTeam()) {
     print(player);
@@ -58,7 +58,7 @@ void main() {
     print(player);
   }
 
-  match5To6(team3, team4, playlist);
+  /*match5To6(team3, team4, playlist);
 
   for (Player player in team3.getPlayersOnTeam()) {
     print(player);
@@ -78,5 +78,5 @@ void main() {
 
   for (Player player in team6.getPlayersOnTeam()) {
     print(player);
-  }
+  }*/
 }

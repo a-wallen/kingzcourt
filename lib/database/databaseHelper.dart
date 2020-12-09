@@ -54,17 +54,6 @@ class DatabaseHelper {
     print("Create Intermediate Table");
   }
 
-  // Gets all players in db
-  Future<List<Player>> getPlayerLibrary() async {
-    List<Player> playerLibrary = [];
-    Database db = await instance.database;
-    List<Map<String, dynamic>> table = await getPlayerLib(db);
-    table.forEach((row) {
-      playerLibrary.add(Player.fromMap(row));
-    });
-    return playerLibrary;
-  }
-
   // Get all groups in db
   Future<List<Group>> getGroupLibrary() async {
     List<Group> groupLibrary = [];
@@ -74,6 +63,17 @@ class DatabaseHelper {
       groupLibrary.add(Group.fromMap(row));
     });
     return groupLibrary;
+  }
+
+  // Gets all players in db
+  Future<List<Player>> getPlayerLibrary() async {
+    List<Player> playerLibrary = [];
+    Database db = await instance.database;
+    List<Map<String, dynamic>> table = await getPlayerLib(db);
+    table.forEach((row) {
+      playerLibrary.add(Player.fromMap(row));
+    });
+    return playerLibrary;
   }
 
   // Find a player by player id
@@ -108,7 +108,7 @@ class DatabaseHelper {
   }
 
   // Get all players in group by group id
-  Future<List<Player>> getGroup(int id) async {
+  Future<List<Player>> getGroupsPlayers(int id) async {
     List<Player> groupPlayers = [];
     Database db = await instance.database;
     List<Map<String, dynamic>> group = await getGroupRows(db, id);

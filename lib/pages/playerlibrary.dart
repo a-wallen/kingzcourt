@@ -16,10 +16,11 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
 
   // refresh player library or get it for the first time
   void getPlayerLibrary() async {
-    print("start getplayerlibrary");
-    library = await DatabaseHelper.instance.getPlayerLibrary();
-    print("end getplayerlibrary");
-    print(library.length);
+    DatabaseHelper.instance.getPlayerLibrary().then((result) {
+      setState(() {
+        library = result;
+      });
+    });
   }
 
   // add player to database
@@ -64,7 +65,7 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // testing
-          // addPlayer(Player("Alex", "Wallen", "OH", 0, "path/path"));
+          addPlayer(Player("Alex", "Wallen", "OH", 0, "path/path"));
           // updatePlayerData(
           //     library[9], Player("Hector", "Herrada", "OH", 0, "path/path"));
           // removePlayerByID(library[1]);
@@ -85,12 +86,14 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
           print(library.length);
           if (index < library.length - 1) {
             return Card(
-              child: Text("$index", textAlign: TextAlign.right,),
+              child: Text(
+                "$index",
+                textAlign: TextAlign.right,
+              ),
               elevation: 3.0,
               shape: CircleBorder(),
             );
-          }
-          else {
+          } else {
             return Card(
               child: IconButton(
                 icon: Icon(Icons.add),
