@@ -43,11 +43,11 @@ class Playlist extends Iterable {
   /// Prioritizes a player in playlist (invoked by Queue button).
   void prioritize(Player player) {
     if (player.equals(_head.player)) {
-      _head.player.playASAP();
       return;
     }
     Node curNode = _head.next;
     Node targetPlayer = Node(player, null, null);
+    int maxWaitingTime = _head.player.getWaitingTime();
 
     for (int i = 1; i < _size; i++) {
       if (curNode.player.equals(targetPlayer.player)) {
@@ -55,7 +55,7 @@ class Playlist extends Iterable {
         _head.previous = targetPlayer;
         targetPlayer.next = _head;
         _head = targetPlayer;
-        _head.player.playASAP();
+        _head.player.waitingTime = maxWaitingTime;
         return;
       }
       curNode = curNode.next;
@@ -175,17 +175,14 @@ class Playlist extends Iterable {
     }
   }
 
-  /// Creates a List containing the elements of the playlist.
-  List<Player> convertToList() {
-    List<Player> list = List(_size);
-    int counter = 0;
-
+  int numberOfPlayersByWaitingTime(int waitingTime) {
+    int number = 0;
     for (Player player in this) {
-      list[counter] = player;
-      counter++;
+      if (player.getWaitingTime() == waitingTime) {
+        number++;
+      }
     }
-
-    return list;
+    return number;
   }
 
   /// Removes all elements in the playlist.

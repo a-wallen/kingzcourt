@@ -80,6 +80,8 @@ class Player {
     _position = newPosition;
   }
 
+  void set waitingTime(wt) => _waitingTime = wt;
+
   //adds one more game to user's waiting time
   void increaseWaitingTime() {
     _waitingTime++;
