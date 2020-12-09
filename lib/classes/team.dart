@@ -93,6 +93,14 @@ class Team {
     _playerList.remove(playerToRemove);
   }
 
+  //clears a team when the team is done playing
+  void clearTeam(Object o) {
+    Team team = o;
+    for (int i = 0; i < team._teamSize; i++) {
+      team.removePlayer(i);
+    }
+  }
+
   //not sure how to return the player list so it can be printed
   /*
   String toString() {
