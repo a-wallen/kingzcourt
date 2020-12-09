@@ -96,10 +96,10 @@ class Team {
   bool isTeamFull() {
     return _positions.isEmpty;
   }
-​
+
   void updateTeamSize(int newTeamSize) {
     _teamSize = newTeamSize;
-​
+
     switch (newTeamSize) {
       case 2:
         _positions = teamOfTwo;
