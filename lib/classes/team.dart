@@ -94,12 +94,13 @@ class Team {
   }
 
   //clears a team when the team is done playing
-  void clearTeam(Object o) {
+  /*void clearTeam(Object o) {
     Team team = o;
     for (int i = 0; i < team._teamSize; i++) {
       team.removePlayer(i);
     }
-  }
+    updateTeamSize(0);
+  }*/
 
   //not sure how to return the player list so it can be printed
   /*

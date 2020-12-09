@@ -112,6 +112,12 @@ class Team {
     }
   }
 
+  //clears team when done playing, but still keeps number of positions
+  void clearTeam() {
+    _playerList.clear();
+    updateTeamSize(_teamSize);
+  }
+
   //setters:
   void setTeamName(String newTeamName) {
     _teamName = newTeamName;
