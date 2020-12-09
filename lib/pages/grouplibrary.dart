@@ -20,9 +20,12 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
   int test = 1;
   List<Group> library = [];
   // add player to database
-
-  void getGroupLib() async {
-    library = await DatabaseHelper.instance.getGroupLibrary();
+  void getGroupLib() {
+    DatabaseHelper.instance.getGroupLibrary().then((result) {
+      setState(() {
+        library = result;
+      });
+    });
   }
 
   Future<int> addGroup(Group g) async {
