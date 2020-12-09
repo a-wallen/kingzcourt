@@ -1,26 +1,5 @@
 import 'package:kingzcourt/classes/player.dart';
 
-List<Object> teamOfTwo = [
-  ['OH', 'L'],
-  ['OP', 'M', 'S']
-];
-
-List<Object> teamOfThree = [
-  ['L', 'OH'],
-  'S',
-  ['OP', 'M']
-];
-
-List<Object> teamOfFour = [
-  'OH',
-  'OP',
-  'S',
-  ['M', 'L']
-];
-
-List<Object> teamOfFive = ['OH', 'OP', 'S', 'M', 'L'];
-List<Object> teamOfSix = ['OH', 'OH', 'OP', 'S', 'M', 'L'];
-
 class Team {
   String _teamName;
   int _teamSize; //2-6 players
@@ -70,7 +49,6 @@ class Team {
     }
   }
 
-  //TODO implement contains positions
   bool isPositionAvailiable(String position) {
     bool isAvailiable = false;
     if (_teamSize == 5 || _teamSize == 6) {
@@ -102,22 +80,34 @@ class Team {
 
     switch (newTeamSize) {
       case 2:
-        _positions = teamOfTwo;
+        _positions = [
+          ['OH', 'L'],
+          ['OP', 'M', 'S']
+        ];
         break;
       case 3:
-        _positions = teamOfThree;
+        _positions = [
+          ['L', 'OH'],
+          'S',
+          ['OP', 'M']
+        ];
         break;
       case 4:
-        _positions = teamOfFour;
+        _positions = [
+          'OH',
+          'OP',
+          'S',
+          ['M', 'L']
+        ];
         break;
       case 5:
-        _positions = teamOfFive;
+        _positions = ['OH', 'OP', 'S', 'M', 'L'];
         break;
       case 6:
-        _positions = teamOfSix;
+        _positions = ['OH', 'OH', 'OP', 'S', 'M', 'L'];
         break;
       default:
-        _positions = teamOfSix;
+        _positions = ['OH', 'OH', 'OP', 'S', 'M', 'L'];
         break;
     }
   }
