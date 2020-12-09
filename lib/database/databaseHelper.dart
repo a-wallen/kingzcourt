@@ -138,10 +138,16 @@ class DatabaseHelper {
   }
 
   // Insert an intermediate value into the database
-  Future<void> insertIntermediate(Intermediate i) async {
+  Future<int> insertIntermediate(Intermediate i) async {
     Database db = await instance.database;
     Map<String, dynamic> row = i.toMap();
     return await insertIntermediateValue(db, row);
+  }
+
+  Future<int> removeIntermediate(Intermediate i) async {
+    Database db = await instance.database;
+    Map<String, dynamic> row = i.toMap();
+    return await removeIntermediateValue(db, row);
   }
 
   Future<List<Group>> getPlayerGroups(int id) async {

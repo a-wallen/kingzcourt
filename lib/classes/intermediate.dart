@@ -1,6 +1,6 @@
 class Intermediate {
-  String _pid;
-  String _gid;
+  int _pid;
+  int _gid;
 
   Intermediate(this._pid, this._gid);
 
@@ -16,11 +16,11 @@ class Intermediate {
     this._gid = map['gid'];
   }
 
-  String get pid => _pid;
+  int get pid => _pid;
 
-  set pid(String value) => _pid = value;
+  set pid(int value) => _pid = value;
 
-  String get gid => _gid;
+  int get gid => _gid;
 
-  set gid(String value) => _gid = value;
+  set gid(int value) => _gid = value;
 }
