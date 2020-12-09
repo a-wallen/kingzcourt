@@ -41,11 +41,11 @@ void main() {
   Team team1 = Team("Team 1", 6);
   Team team2 = Team("Team 2", 6);
 
-  Team team3 = Team("Team 3", 5);
+  /*Team team3 = Team("Team 3", 5);
   Team team4 = Team("Team 4", 5);
 
   Team team5 = Team("Team 5", 2);
-  Team team6 = Team("Team 6", 2);
+  Team team6 = Team("Team 6", 2);*/
 
   algorithm(team1, team2, playlist);
 
