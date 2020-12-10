@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import 'package:kingzcourt/classes/group.dart';
 import 'package:kingzcourt/database/databaseHelper.dart';
@@ -57,6 +58,9 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
     super.initState();
   }
 
+  String codeDialog;
+  String valueText;
+
   @override
   Widget build(BuildContext context) {
     // MediaQueryData media = MediaQuery.of(context);
@@ -81,9 +85,43 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
           }),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            addGroup(Group("Sand squad"));
+            /*addGroup(Group("Sand squad"));
             updateGroupData(library[0], Group("Updated"));
-            removeGroupByID(library[3]);
+            removeGroupByID(library[3]);*/
+            showDialog(
+                context: context,
+                builder: (context) => new AlertDialog(
+                        title: Text("Group Names"),
+                        content: TextField(
+                          onChanged: (value) {
+                            setState(() {
+                              valueText = value;
+                            });
+                          },
+                          decoration: InputDecoration(hintText: "Enter Name"),
+                        ),
+                        actions: <Widget>[
+                          new FlatButton(
+                            color: Colors.red,
+                            textColor: Colors.white,
+                            child: Text('CANCEL'),
+                            onPressed: () {
+                              setState(() {
+                                Navigator.pop(context);
+                              });
+                            },
+                          ),
+                          new FlatButton(
+                              color: Colors.green,
+                              textColor: Colors.white,
+                              child: new Text('ADD'),
+                              onPressed: () {
+                                setState(() {
+                                  codeDialog = valueText;
+                                });
+                                Navigator.of(context).pop();
+                              })
+                        ]));
           },
           child: Icon(Icons.add),
           backgroundColor: AppColors.primaryDarkColor),
