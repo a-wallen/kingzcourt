@@ -5,11 +5,11 @@ import 'package:kingzcourt/classes/group.dart';
 void main() {
   //testing Player class:
 
-  Player jane = Player("Jane", "Outside hitter", "default.jpg");
+  Player jane = Player("Jane", "Johnson", "Outside hitter", 0, "default.jpg");
   print(
       "This is player Jane: $jane.getName() + $jane.getPosition() + $jane.getWaitingTime() + $jane.getImageFilePath()\n\n");
 
-  jane.setName("Caitlyn");
+  jane.setFirstName("Caitlyn");
   print("Jane's name has been changed to $jane.getName()\n");
 
   jane.setPosition("Middle");
@@ -29,13 +29,14 @@ void main() {
 
   //testing equals() method
 
-  Player newJane = Player("Jane", "Outside hitter", "pic.jpg");
+  Player newJane = Player("Jane", "Wallen", "Outside hitter", 0, "pic.jpg");
   if (newJane.equals(jane))
     print("newJane is equal to jane");
   else
     print("newJane is not equal to jane");
 
-  Player anotherPlayer = Player("Jane", "Outside hitter", "aPicture.jpg");
+  Player anotherPlayer =
+      Player("Jane", "Thompson", "Outside hitter", 0, "aPicture.jpg");
   if (anotherPlayer.equals(jane))
     print("anotherPlayer is equal to jane\n\n");
   else
@@ -47,11 +48,11 @@ void main() {
 
   myGroup.addPlayer(jane);
   myGroup.addPlayer(anotherPlayer);
-  myGroup.addPlayer(Player("Alex", "Libero", "aPicture.jpg"));
+  myGroup.addPlayer(Player("Alex", "Wallen", "Libero", 0, "aPicture.jpg"));
   //print(myGroup.getPlayerList()); //can you print a list in Dart?
   List<Player> playerList = myGroup.getPlayerList();
   for (int i = 0; i < playerList.length; i++) {
-    print(playerList[i].getName());
+    print(playerList[i].getFirstName());
     print(playerList[i].getPosition());
   }
 
