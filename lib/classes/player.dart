@@ -72,6 +72,10 @@ class Player {
     _first_name = newName;
   }
 
+  void setId(int id) {
+    this._pid = id;
+  }
+
   void setLastName(String newName) {
     _last_name = newName;
   }

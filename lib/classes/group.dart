@@ -58,6 +58,10 @@ class Group {
     _playerList.add(playerToAdd);
   }
 
+  void setId(int id) {
+    this._gid = id;
+  }
+
   //sets group name
   void setGroupName(String newGroupName) {
     _group_name = newGroupName;
