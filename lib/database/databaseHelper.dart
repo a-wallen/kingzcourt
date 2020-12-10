@@ -146,8 +146,7 @@ class DatabaseHelper {
 
   Future<int> removeIntermediate(Intermediate i) async {
     Database db = await instance.database;
-    Map<String, dynamic> row = i.toMap();
-    return await removeIntermediateValue(db, row);
+    int successCode = await removeIntermediateValue(db, i.gid, i.pid);
   }
 
   Future<List<Group>> getPlayerGroups(int id) async {
