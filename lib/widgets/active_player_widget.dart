@@ -16,5 +16,6 @@ class _ActivePlayerWidgetState extends State<ActivePlayerWidget> {
           child: CircleAvatar(backgroundImage: NetworkImage('defaultImage'))),
       Positioned(top: 0, right: 0, child: Text('Position'))
     ]);
+    setState() {}
   }
 }

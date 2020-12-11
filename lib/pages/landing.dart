@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:kingzcourt/widgets/add_player_button.dart';
 import 'package:kingzcourt/widgets/drawer.dart';
 import 'package:flutter/widgets.dart';
-import 'package:kingzcourt/algorithms/matching_algo_ihor.dart';
+import 'package:kingzcourt/widgets/refresh_game_button.dart';
+import 'package:kingzcourt/widgets/active_player_widget.dart';
+import 'package:kingzcourt/widgets/active_game_widget.dart';
 
 class LandingPage extends StatefulWidget {
   LandingPage({Key key, this.title}) : super(key: key);
@@ -20,49 +23,9 @@ class _LandingPageState extends State<LandingPage> {
         textTheme: Theme.of(context).textTheme,
         title: Text(widget.title),
       ),
-      body: Stack(
-        children:[
-          Positioned( 
-            bottom: 0,
-            child: Text('Player name')
-          ),
-
-          Positioned(
-            left: 0,
-            top: 0,
-            child: CircleAvatar(
-              backgroundImage: NetworkImage('defaultImage')
-            )
-          ),
-
-          Positioned(
-            top: 0,
-            right: 0,
-            child: Text('Position')
-          )
-        ],
-      ),
+      body: ActivePlayerWidget(), //AddPlayerButton(),
       drawer: KingzDrawer(),
-      /*floatingActionButton: FloatingActionButton(
-        onPressed(): { //call matching algo
-        child: Text("Button pressed")
-        }        
-        mini: false,
-        elevation: 2, //don't know
-        clipBehavior: Clip, //not sure what to do here
-        onTap(): {
-        }
-      ),*/
-      // bottomNavigationBar: BottomNavyBar(
-      //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //   selectedIndex: currentIndex,
-      //   showElevation: true,
-      //   itemCornerRadius: 9.0,
-      //   onItemSelected: (index) => setState(() {
-      //     currentIndex = index;
-      //   }),
-      //   items: kingzNavBar,
-      // ),
+      floatingActionButton: RefreshGameButton(),
     );
   }
 }

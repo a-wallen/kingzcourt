@@ -4,13 +4,13 @@ import 'package:kingzcourt/classes/player.dart';
 
 class AddPlayerButton extends StatefulWidget {
   @override
-  _AddPlayerButtonState createState() => _AddPlayerButtonState();
+  _AddPlayerButton createState() => _AddPlayerButton();
 }
 
-class _AddPlayerButtonState extends State<AddPlayerButton> {
+class _AddPlayerButton extends State<AddPlayerButton> {
   Playlist playlist = Playlist();
   Widget build(BuildContext context) {
-    return RaisedButton(
+    RaisedButton(
         onPressed: () {
           playlist
               .add(Player("Firstname", "Lastname", "OH", 0, "path/path")); //?
