@@ -80,6 +80,12 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
           itemCount: library.length,
           itemBuilder: (context, index) {
             return ListTile(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EditRoute()),
+                );
+              },
               title: Text('${library[index].getGroupName()}'),
             );
           }),
@@ -125,6 +131,28 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
           },
           child: Icon(Icons.add),
           backgroundColor: AppColors.primaryDarkColor),
+    );
+  }
+}
+
+// TODO: add players for each team
+class EditRoute extends StatelessWidget {
+  final bRad = 45.0; // I'M SORRY I COULDN'T GET RADIUS FROM THEME.DART
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        textTheme: Theme.of(context).textTheme,
+        title: Text("Edit group"),
+      ),
+      body: Center(
+        child: CircleAvatar(
+          backgroundColor: AppColors.primaryColor,
+          radius: bRad,
+          foregroundColor: AppColors.primaryAccent,
+          child: Text("Player name"),
+        ),
+      ),
     );
   }
 }
