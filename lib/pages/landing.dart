@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:kingzcourt/widgets/drawer.dart';
 import 'package:flutter/widgets.dart';
+import 'package:kingzcourt/algorithms/matching_algo_ihor.dart';
 
 class LandingPage extends StatefulWidget {
   LandingPage({Key key, this.title}) : super(key: key);
@@ -43,6 +43,16 @@ class _LandingPageState extends State<LandingPage> {
         ],
       ),
       drawer: KingzDrawer(),
+      /*floatingActionButton: FloatingActionButton(
+        onPressed(): { //call matching algo
+        child: Text("Button pressed")
+        }        
+        mini: false,
+        elevation: 2, //don't know
+        clipBehavior: Clip, //not sure what to do here
+        onTap(): {
+        }
+      ),*/
       // bottomNavigationBar: BottomNavyBar(
       //   mainAxisAlignment: MainAxisAlignment.spaceAround,
       //   selectedIndex: currentIndex,
