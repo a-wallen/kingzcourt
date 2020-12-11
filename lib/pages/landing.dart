@@ -20,7 +20,7 @@ class _LandingPageState extends State<LandingPage> {
         textTheme: Theme.of(context).textTheme,
         title: Text(widget.title),
       ),
-/*      Stack(
+      body: Stack(
         children:[
           Positioned( 
             bottom: 0,
@@ -41,7 +41,7 @@ class _LandingPageState extends State<LandingPage> {
             child: Text('Position')
           )
         ],
-      ),*/
+      ),
       drawer: KingzDrawer(),
       /*floatingActionButton: FloatingActionButton(
         onPressed(): { //call matching algo

@@ -5,14 +5,23 @@ import 'package:kingzcourt/utility/theme.dart';
 import 'package:kingzcourt/widgets/drawer.dart';
 import '../database/databaseHelper.dart';
 import '../classes/player.dart';
+import '../widgets/playerfloatingbuttons.dart';
+import '../widgets/playerpageicon.dart';
 
 class PlayerLibraryPage extends StatefulWidget {
+  _PlayerLibraryPageState of(BuildContext c) {
+    return c.findAncestorStateOfType<_PlayerLibraryPageState>();
+  }
+
   @override
   _PlayerLibraryPageState createState() => _PlayerLibraryPageState();
 }
 
 class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
   List<Player> library = [];
+  bool deleteModeOn = false;
+
+  _PlayerLibraryPageState() { deleteModeOn = false; }
 
   // refresh player library or get it for the first time
   void getPlayerLibrary() async {
@@ -46,33 +55,19 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
   @override
   void initState() {
     // TODO: implement initState
-    print("start init");
     getPlayerLibrary();
     super.initState();
     // library.add(null);
-    print("end init");
-    print(library.length);
   }
 
   @override
   Widget build(BuildContext context) {
-    print("start build");
-    print(library.length);
+    // setState(() { deleteModeOn = false; });
     return Scaffold(
       appBar: AppBar(
           textTheme: Theme.of(context).textTheme,
           title: (Text("Saved Players"))),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // testing
-          addPlayer(Player("Alex", "Wallen", "OH", 0, "path/path"));
-          // updatePlayerData(
-          //     library[9], Player("Hector", "Herrada", "OH", 0, "path/path"));
-          // removePlayerByID(library[1]);
-        },
-        child: Icon(Icons.edit),
-        backgroundColor: AppColors.primaryDarkColor,
-      ),
+      floatingActionButton: PlayerFloatingButtons(),
       body: GridView.builder(
         padding: EdgeInsets.all(20.0),
         itemCount: library.length,
@@ -82,34 +77,47 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
           mainAxisSpacing: 20.0,
         ),
         itemBuilder: (context, index) {
-          print("build single gridview element");
-          print(library.length);
-          if (index < library.length - 1) {
-            return Card(
-              child: Text(
-                "$index",
-                textAlign: TextAlign.right,
-              ),
-              elevation: 3.0,
-              shape: CircleBorder(),
-            );
-          } else {
-            return Card(
-              child: IconButton(
-                icon: Icon(Icons.add),
-                iconSize: 25.0,
-                color: AppColors.accentColor,
-                splashColor: AppColors.accentColor,
-                onPressed: () {
-                  /*setState(() {library.add(null);});*/ print(library.length);
-                },
-              ),
-              elevation: 3.0,
-              shape: CircleBorder(),
-            );
-          }
+            return PlayerPageIcon(index);
         },
       ),
+    );
+  }
+
+  Widget deleteSnackBar(context) {
+    return BottomSheet(
+        onClosing: () {},
+        builder: (context) {
+          return Container(
+            color: AppColors.accentColor,
+            height: 60,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                // Text("Delete Players"),
+                // Expanded(child: Container()),
+                FlatButton(
+                    onPressed: () {
+                      setState(() {
+                        deleteModeOn = false;
+                        Navigator.pop(context);
+                      });
+                    },
+                    child: Text("cancel",
+                      style: TextStyle(color: AppColors.primaryColor, fontFamily: Theme.of(context).textTheme.headline1.fontFamily),
+                      textScaleFactor: 1.5,
+                    )
+                ),
+                FlatButton(
+                    onPressed: null,
+                    child: Text("delete",
+                      style: TextStyle(color: AppColors.primaryAccentDark, fontFamily: Theme.of(context).textTheme.headline1.fontFamily),
+                      textScaleFactor: 1.5,
+                    )
+                ),
+              ],
+            ),
+          );
+        },
     );
   }
 }
