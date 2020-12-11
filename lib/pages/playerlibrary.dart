@@ -20,6 +20,7 @@ class PlayerLibraryPage extends StatefulWidget {
 class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
   List<Player> library = [];
   bool deleteModeOn = false;
+  List<Player> deleteList = [];
 
   _PlayerLibraryPageState() { deleteModeOn = false; }
 
@@ -77,7 +78,7 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
           mainAxisSpacing: 20.0,
         ),
         itemBuilder: (context, index) {
-            return PlayerPageIcon(index);
+            return PlayerPageIcon(index, library[index]);
         },
       ),
     );
@@ -85,7 +86,7 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
 
   Widget deleteSnackBar(context) {
     return BottomSheet(
-        onClosing: () {},
+        onClosing: () { print("HIIIIIIIIIII"); },
         builder: (context) {
           return Container(
             color: AppColors.accentColor,
@@ -97,10 +98,11 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
                 // Expanded(child: Container()),
                 FlatButton(
                     onPressed: () {
-                      setState(() {
+                      this.setState(() {
                         deleteModeOn = false;
-                        Navigator.pop(context);
+                        deleteList.clear();
                       });
+                      Navigator.pop(context);
                     },
                     child: Text("cancel",
                       style: TextStyle(color: AppColors.primaryColor, fontFamily: Theme.of(context).textTheme.headline1.fontFamily),
@@ -108,7 +110,15 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
                     )
                 ),
                 FlatButton(
-                    onPressed: null,
+                    onPressed: () {
+                      this.setState(() {
+                        deleteModeOn = false;
+                        for (Player p in deleteList) {
+                          removePlayerByID(p);
+                        }
+                      });
+                      Navigator.pop(context);
+                    },
                     child: Text("delete",
                       style: TextStyle(color: AppColors.primaryAccentDark, fontFamily: Theme.of(context).textTheme.headline1.fontFamily),
                       textScaleFactor: 1.5,
