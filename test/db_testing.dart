@@ -7,11 +7,7 @@ import 'package:kingzcourt/classes/player.dart';
 import 'package:kingzcourt/classes/intermediate.dart';
 
 void main() {
-  List<Group> groups = [
-    Group(0, "Alpha"),
-    Group(0, "Bravo"),
-    Group(0, "Charlie")
-  ];
+  List<Group> groups = [Group("Alpha"), Group("Bravo"), Group("Charlie")];
 
   List<Player> players = [
     Player("Alex", "Wallen", "OH", 0, "path/path"),
