@@ -31,7 +31,7 @@ void main() {
   });
 
   group('Initialize playlist with one player', () {
-    Player player = Player('Nick', 'OH', 0, null);
+    Player player = Player('Nick', 'Jones', 'OH', 0, null);
     Playlist playlist = Playlist.byPlayer(player);
 
     test('Test isEmpty field', () {
@@ -57,7 +57,7 @@ void main() {
 
   group('Test add method', () {
     Playlist playlist = Playlist();
-    Player player = Player('Nick', 'OH', 0, null);
+    Player player = Player('Nick', 'Jones', 'OH', 0, null);
 
     playlist.add(player);
 
@@ -87,9 +87,9 @@ void main() {
 
     List<Player> list1 = List();
 
-    list1.add(Player('Nick', 'OH', 0, null));
-    list1.add(Player('Jack', 'MH', 0, null));
-    list1.add(Player('Jane', 'Libero', 0, null));
+    list1.add(Player('Nick', 'Jones', 'OH', 0, null));
+    list1.add(Player('Jack', 'Robinson', 'MH', 0, null));
+    list1.add(Player('Jane', 'Roberts', 'Libero', 0, null));
 
     playlist.addAll(list1);
 
@@ -119,9 +119,9 @@ void main() {
 
     List<Player> list1 = List();
 
-    list1.add(Player('Nick', 'OH', 0, null));
-    list1.add(Player('Jack', 'MH', 0, null));
-    list1.add(Player('Jane', 'Libero', 0, null));
+    list1.add(Player('Nick', 'Jones', 'OH', 0, null));
+    list1.add(Player('Jack', 'Robinson', 'MH', 0, null));
+    list1.add(Player('Jane', 'Roberts', 'Libero', 0, null));
 
     playlist.addAll(list1);
 
@@ -145,9 +145,9 @@ void main() {
 
     List<Player> list1 = List();
 
-    list1.add(Player('Nick', 'OH', 0, null));
-    list1.add(Player('Jack', 'MH', 0, null));
-    list1.add(Player('Jane', 'Libero', 0, null));
+    list1.add(Player('Nick', 'Jones', 'OH', 0, null));
+    list1.add(Player('Jack', 'Robinson', 'MH', 0, null));
+    list1.add(Player('Jane', 'Roberts', 'Libero', 0, null));
 
     playlist.addAll(list1);
 
@@ -167,9 +167,9 @@ void main() {
 
     List<Player> list1 = List();
 
-    list1.add(Player('Nick', 'OH', 0, null));
-    list1.add(Player('Jack', 'MH', 0, null));
-    list1.add(Player('Jane', 'Libero', 0, null));
+    list1.add(Player('Nick', 'Jones', 'OH', 0, null));
+    list1.add(Player('Jack', 'Robinson', 'MH', 0, null));
+    list1.add(Player('Jane', 'Roberts', 'Libero', 0, null));
 
     playlist.addAll(list1);
 
@@ -178,7 +178,8 @@ void main() {
     });
 
     test('Test does not contains', () {
-      expect(playlist.contains(Player('Jack', 'OH', 0, null)), false);
+      expect(
+          playlist.contains(Player('Jack', 'Robinson', 'OH', 0, null)), false);
     });
   });
 
@@ -187,13 +188,13 @@ void main() {
 
     List<Player> list1 = List();
 
-    list1.add(Player('Nick', 'OH', 0, null));
-    list1.add(Player('Jack', 'MH', 0, null));
-    list1.add(Player('Jane', 'Libero', 0, null));
+    list1.add(Player('Nick', 'Jones', 'OH', 0, null));
+    list1.add(Player('Jack', 'Robinson', 'MH', 0, null));
+    list1.add(Player('Jane', 'Roberts', 'Libero', 0, null));
 
     playlist.addAll(list1);
 
-    playlist.add(Player('Meghan', 'RH', 0, null));
+    playlist.add(Player('Meghan', 'Bryan', 'RH', 0, null));
 
     test('Test contains all', () {
       expect(playlist.containsAll(list1), true);
@@ -202,8 +203,8 @@ void main() {
     test('Test does not contains all', () {
       List<Player> list2 = List();
 
-      list2.add(Player('Mike', 'OH', 0, null));
-      list2.add(Player('Nick', 'OH', 0, null));
+      list2.add(Player('Mike', 'Jackson', 'OH', 0, null));
+      list2.add(Player('Nick', 'Jones', 'OH', 0, null));
 
       expect(playlist.containsAll(list2), false);
     });
@@ -214,13 +215,13 @@ void main() {
 
     List<Player> list1 = List();
 
-    list1.add(Player('Nick', 'OH', 0, null));
-    list1.add(Player('Jack', 'MH', 0, null));
-    list1.add(Player('Jane', 'Libero', 0, null));
+    list1.add(Player('Nick', 'Jones', 'OH', 0, null));
+    list1.add(Player('Jack', 'Robinson', 'MH', 0, null));
+    list1.add(Player('Jane', 'Roberts', 'Libero', 0, null));
 
     playlist.addAll(list1);
 
-    playlist.remove(Player('Jack', 'MH', 0, null));
+    playlist.remove(Player('Jack', 'Robinson', 'MH', 0, null));
 
     test('Test middle player', () {
       Iterator iterator = playlist.iterator;
@@ -240,16 +241,16 @@ void main() {
 
     List<Player> list1 = List();
 
-    list1.add(Player('Nick', 'OH', 0, null));
-    list1.add(Player('Jack', 'MH', 0, null));
-    list1.add(Player('Jane', 'Libero', 0, null));
+    list1.add(Player('Nick', 'Jones', 'OH', 0, null));
+    list1.add(Player('Jack', 'Robinson', 'MH', 0, null));
+    list1.add(Player('Jane', 'Roberts', 'Libero', 0, null));
 
     playlist.addAll(list1);
 
     List<Player> list2 = List();
 
-    list2.add(Player('Nick', 'OH', 0, null));
-    list2.add(Player('Jane', 'Libero', 0, null));
+    list2.add(Player('Nick', 'Jones', 'OH', 0, null));
+    list2.add(Player('Jane', 'Roberts', 'Libero', 0, null));
 
     playlist.removeAll(list2);
 
@@ -271,9 +272,9 @@ void main() {
 
     List<Player> list1 = List();
 
-    list1.add(Player('Nick', 'OH', 0, null));
-    list1.add(Player('Jack', 'MH', 0, null));
-    list1.add(Player('Jane', 'Libero', 0, null));
+    list1.add(Player('Nick', 'Jones', 'OH', 0, null));
+    list1.add(Player('Jack', 'Robinson', 'MH', 0, null));
+    list1.add(Player('Jane', 'Roberts', 'Libero', 0, null));
 
     playlist.addAll(list1);
 
