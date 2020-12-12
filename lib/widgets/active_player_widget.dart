@@ -8,14 +8,12 @@ class ActivePlayerWidget extends StatefulWidget {
 class _ActivePlayerWidgetState extends State<ActivePlayerWidget> {
   @override
   Widget build(BuildContext context) {
-    Stack(children: [
+    return Stack(children: [
       Positioned(bottom: 0, child: Text('Player name')),
-      Positioned(
-          left: 0,
-          top: 0,
-          child: CircleAvatar(backgroundImage: NetworkImage('defaultImage'))),
+      Positioned(left: 0, top: 0, child: Text('Testing')),
+      //child: CircleAvatar(backgroundImage: NetworkImage('defaultImage'))),
       Positioned(top: 0, right: 0, child: Text('Position'))
     ]);
-    setState() {}
+    //setState() {}
   }
 }
