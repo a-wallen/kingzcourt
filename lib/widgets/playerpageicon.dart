@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
 import 'package:kingzcourt/classes/colors.dart';
 import 'package:kingzcourt/pages/playerlibrary.dart';
 import 'package:kingzcourt/utility/theme.dart';
@@ -9,13 +9,9 @@ import '../classes/player.dart';
 import '../widgets/playerfloatingbuttons.dart';
 
 class PlayerPageIcon extends StatefulWidget {
-  int index;
   Player player;
 
-  PlayerPageIcon(index, player) {
-    this.index = index;
-    this.player = player;
-  }
+  PlayerPageIcon(player) { this.player = player; }
 
   @override
   _PlayerPageIconState createState() => _PlayerPageIconState();
@@ -28,22 +24,37 @@ class _PlayerPageIconState extends State<PlayerPageIcon> {
   Widget build(BuildContext context) {
     var state = PlayerLibraryPage().of(context);
     startupDeleteToggle(state);
-    return Card(
-      child: InkWell(
-        highlightColor: Colors.transparent,
-        splashColor: Colors.transparent,
-        child: Text("${widget.index}", textAlign: TextAlign.right,),
-        onTap: () { toggleDelete(state); },
-        onLongPress: () {
-          state.setState(() {
-            state.deleteModeOn = true;
-            Scaffold.of(context).showBottomSheet(state.deleteSnackBar);
-          });
-          toggleDelete(state);
-        },
-      ),
-      elevation: 3.0,
-      shape: border,
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        Card(shape: CircleBorder(), elevation: 0),
+        FittedBox(child: Icon(Icons.account_circle_sharp, color: AppColors.primaryAccentDark,),),
+        Card(shape: border, elevation: 0, color: Colors.transparent),
+        Positioned(right: 3, top: 10,
+            child: Text("${widget.player.getPosition()}", textAlign: TextAlign.right,
+              style: TextStyle(fontWeight: FontWeight.w900, fontFamily: 'SansitaSwashed'),),
+        ),
+        Align(alignment: Alignment.bottomCenter,
+          child: Text("${widget.player.getFirstName()}",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, fontFamily: 'SansitaSwashed'),
+          ),
+        ),
+        InkWell(
+          highlightColor: Colors.transparent,
+          splashColor: Colors.transparent,
+          onTap: () { toggleDelete(state); },
+          onLongPress: () {
+            if (!state.deleteModeOn) {
+              HapticFeedback.vibrate();
+              state.setState(() {
+                state.deleteModeOn = true;
+                Scaffold.of(context).showBottomSheet(state.deleteSnackBar);
+              });
+              toggleDelete(state);
+            }
+          },
+        ),
+      ],
     );
   }
 
@@ -52,7 +63,7 @@ class _PlayerPageIconState extends State<PlayerPageIcon> {
       if(!state.deleteList.contains(widget.player)) {
         state.setState(() { state.deleteList.add(widget.player); });
         setState(() {
-          border = CircleBorder(side: BorderSide(color: AppColors.primaryColor, width: 3.0));
+          border = CircleBorder(side: BorderSide(color: AppColors.primaryColor, width: 5.0));
         });
       }
       else {
@@ -64,7 +75,7 @@ class _PlayerPageIconState extends State<PlayerPageIcon> {
 
   startupDeleteToggle(var state) {
     if(state.deleteModeOn && state.deleteList.contains(widget.player)) {
-      border = border = CircleBorder(side: BorderSide(color: AppColors.primaryColor, width: 3.0));
+      border = border = CircleBorder(side: BorderSide(color: AppColors.primaryColor, width: 5.0));
     }
     else {
       border = CircleBorder();

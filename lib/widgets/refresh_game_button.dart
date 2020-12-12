@@ -19,7 +19,7 @@ class RefreshGameButton extends StatefulWidget {
 class _RefreshGameButton extends State<RefreshGameButton> {
   Widget build(BuildContext context) {
     floatingActionButton:
-    FloatingActionButton(
+    return FloatingActionButton(
         onPressed: () {
           Text("Button pressed");
           algorithm(team1, team2, playlist);
@@ -32,6 +32,7 @@ class _RefreshGameButton extends State<RefreshGameButton> {
         //elevation: 2, //don't know
         //clipBehavior: Clip, //not sure what to do here
         child: Icon(Icons.refresh),
-        backgroundColor: Colors.green);
+        backgroundColor: Colors.green
+    );
   }
 }

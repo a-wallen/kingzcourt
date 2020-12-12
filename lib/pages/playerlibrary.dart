@@ -73,12 +73,12 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
         padding: EdgeInsets.all(20.0),
         itemCount: library.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4,
+          crossAxisCount: 3,
           crossAxisSpacing: 7.0,
           mainAxisSpacing: 20.0,
         ),
         itemBuilder: (context, index) {
-            return PlayerPageIcon(index, library[index]);
+            return PlayerPageIcon(library[index]);
         },
       ),
     );
