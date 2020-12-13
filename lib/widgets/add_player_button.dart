@@ -10,11 +10,16 @@ class AddPlayerButton extends StatefulWidget {
 class _AddPlayerButton extends State<AddPlayerButton> {
   Playlist playlist = Playlist();
   Widget build(BuildContext context) {
-    RaisedButton(
-        onPressed: () {
-          playlist
-              .add(Player("Firstname", "Lastname", "OH", 0, "path/path")); //?
-        },
-        child: Text('Add Player:'));
+    return Positioned(
+      bottom: 20,
+      left: 100,
+      right: 100,
+      child: RaisedButton(
+          onPressed: () {
+            playlist.add(Player("Firstname", "Lastname", "OH", 0, "path/path"));
+            Text('Player added');
+          },
+          child: Text('Add Player:')),
+    );
   }
 }
