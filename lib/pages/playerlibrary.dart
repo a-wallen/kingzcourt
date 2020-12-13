@@ -22,7 +22,9 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
   bool deleteModeOn = false;
   List<Player> deleteList = [];
 
-  _PlayerLibraryPageState() { deleteModeOn = false; }
+  _PlayerLibraryPageState() {
+    deleteModeOn = false;
+  }
 
   // refresh player library or get it for the first time
   void getPlayerLibrary() async {
@@ -78,7 +80,7 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
           mainAxisSpacing: 20.0,
         ),
         itemBuilder: (context, index) {
-            return PlayerPageIcon(library[index]);
+          return PlayerPageIcon(library[index]);
         },
       ),
     );
@@ -86,48 +88,56 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
 
   Widget deleteSnackBar(context) {
     return BottomSheet(
-        onClosing: () { print("HIIIIIIIIIII"); },
-        builder: (context) {
-          return Container(
-            color: AppColors.accentColor,
-            height: 60,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                // Text("Delete Players"),
-                // Expanded(child: Container()),
-                FlatButton(
-                    onPressed: () {
-                      this.setState(() {
-                        deleteModeOn = false;
-                        deleteList.clear();
-                      });
-                      Navigator.pop(context);
-                    },
-                    child: Text("cancel",
-                      style: TextStyle(color: AppColors.primaryColor, fontFamily: Theme.of(context).textTheme.headline1.fontFamily),
-                      textScaleFactor: 1.5,
-                    )
-                ),
-                FlatButton(
-                    onPressed: () {
-                      this.setState(() {
-                        deleteModeOn = false;
-                        for (Player p in deleteList) {
-                          removePlayerByID(p);
-                        }
-                      });
-                      Navigator.pop(context);
-                    },
-                    child: Text("delete",
-                      style: TextStyle(color: AppColors.primaryAccentDark, fontFamily: Theme.of(context).textTheme.headline1.fontFamily),
-                      textScaleFactor: 1.5,
-                    )
-                ),
-              ],
-            ),
-          );
-        },
+      onClosing: () {
+        print("HIIIIIIIIIII");
+      },
+      builder: (context) {
+        return Container(
+          color: AppColors.accentColor,
+          height: 60,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              // Text("Delete Players"),
+              // Expanded(child: Container()),
+              FlatButton(
+                  onPressed: () {
+                    this.setState(() {
+                      deleteModeOn = false;
+                      deleteList.clear();
+                    });
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    "cancel",
+                    style: TextStyle(
+                        color: AppColors.primaryColor,
+                        fontFamily:
+                            Theme.of(context).textTheme.headline1.fontFamily),
+                    textScaleFactor: 1.5,
+                  )),
+              FlatButton(
+                  onPressed: () {
+                    this.setState(() {
+                      deleteModeOn = false;
+                      for (Player p in deleteList) {
+                        removePlayerByID(p);
+                      }
+                    });
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    "delete",
+                    style: TextStyle(
+                        color: AppColors.primaryAccentDark,
+                        fontFamily:
+                            Theme.of(context).textTheme.headline1.fontFamily),
+                    textScaleFactor: 1.5,
+                  )),
+            ],
+          ),
+        );
+      },
     );
   }
 }

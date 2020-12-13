@@ -11,7 +11,7 @@ class _ActivePlayerWidgetState extends State<ActivePlayerWidget> {
     return Stack(children: [
       Positioned(bottom: 0, child: Text('Player name')),
       Positioned(left: 0, top: 0, child: Text('Testing')),
-      //child: CircleAvatar(backgroundImage: NetworkImage('defaultImage'))),
+      //Icon(Icons.account_circle_sharpCircleAvatar),
       Positioned(top: 0, right: 0, child: Text('Position'))
     ]);
     //setState() {}
