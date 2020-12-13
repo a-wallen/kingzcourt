@@ -13,16 +13,28 @@ class _ActiveGameWidgetState extends State<ActiveGameWidget> {
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
-      Column(
-        //Align(alignment: Alignment.topLeft,
-        children: [
-          Row(children: [Text('Team 1'), Text('Testing')]),
-        ],
-      ),
-
-      Column(children: [Text('Team 2')])
-      //)
+      Positioned(
+          top: 0,
+          left: 50,
+          child: Column(children: [
+            Row(children: [Text('Team 1')]),
+          ])),
+      /*Positioned(
+          left: 100,
+          //right: 100,
+          child:*/
+      /*VerticalDivider(
+          width: 10,
+          thickness: 20,
+          endIndent: 0,
+          indent: 0,
+          color: Colors.black),*/
+      Positioned(
+          top: 0,
+          right: 50,
+          child: Column(children: [
+            Row(children: [Text('Team 2')])
+          ]))
     ]);
-    //Center(child: Text(player.getFirstName()))]);
   }
 }
