@@ -58,8 +58,7 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
     super.initState();
   }
 
-  String codeDialog;
-  String valueText;
+  TextEditingController groupName = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -98,13 +97,9 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
                 context: context,
                 builder: (context) => new AlertDialog(
                         title: Text("Group Names"),
-                        content: TextField(
-                          onChanged: (value) {
-                            setState(() {
-                              valueText = value;
-                            });
-                          },
-                          decoration: InputDecoration(hintText: "Enter Name"),
+                        content: TextFormField(
+                          controller: groupName,
+                          decoration: InputDecoration(hintText: 'Group Name'),
                         ),
                         actions: <Widget>[
                           new FlatButton(
@@ -123,7 +118,7 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
                               child: new Text('ADD'),
                               onPressed: () {
                                 setState(() {
-                                  codeDialog = valueText;
+                                  addGroup(Group(groupName.text));
                                 });
                                 Navigator.of(context).pop();
                               })
