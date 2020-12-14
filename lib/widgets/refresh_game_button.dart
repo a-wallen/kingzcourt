@@ -22,7 +22,7 @@ class _RefreshGameButton extends State<RefreshGameButton> {
     return FloatingActionButton(
         onPressed: () {
           Text("Button pressed");
-          algorithm(team1, team2, playlist);
+          //algorithm(team1, team2, playlist);
           //ActivePlayerWidget.setState();
           //ActiveGameWidget.setState();
           //refresh active game - update state of active game widget?
@@ -32,7 +32,6 @@ class _RefreshGameButton extends State<RefreshGameButton> {
         //elevation: 2, //don't know
         //clipBehavior: Clip, //not sure what to do here
         child: Icon(Icons.refresh),
-        backgroundColor: Colors.green
-    );
+        backgroundColor: Colors.green);
   }
 }
