@@ -26,7 +26,7 @@ class _LandingPageState extends State<LandingPage> {
         textTheme: Theme.of(context).textTheme,
         title: Text(widget.title),
       ),
-      body: ActiveGameWidget(), //PlayerPageIcon(player),
+      body: Stack(children: [ActiveGameWidget(), AddPlayerButton()]),
       drawer: KingzDrawer(),
       floatingActionButton: RefreshGameButton(),
     );
