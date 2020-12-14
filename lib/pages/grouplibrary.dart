@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 
 import 'package:kingzcourt/classes/group.dart';
 import 'package:kingzcourt/database/databaseHelper.dart';
+import '../widgets/editgroupplayers.dart';
 
 import 'package:kingzcourt/classes/colors.dart'; // class AppColors
 import 'package:kingzcourt/utility/theme.dart';
@@ -131,28 +132,6 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
           },
           child: Icon(Icons.add),
           backgroundColor: AppColors.primaryDarkColor),
-    );
-  }
-}
-
-// TODO: add players for each team
-class EditRoute extends StatelessWidget {
-  final bRad = 45.0; // I'M SORRY I COULDN'T GET RADIUS FROM THEME.DART
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        textTheme: Theme.of(context).textTheme,
-        title: Text("Edit group"),
-      ),
-      body: Center(
-        child: CircleAvatar(
-          backgroundColor: AppColors.primaryColor,
-          radius: bRad,
-          foregroundColor: AppColors.primaryAccent,
-          child: Text("Player name"),
-        ),
-      ),
     );
   }
 }
