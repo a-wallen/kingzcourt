@@ -108,8 +108,12 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                                     textColor: Colors.white,
                                     child: new Text('ADD'),
                                     onPressed: () {
-                                      state.addPlayer(Player(firstName.text,
-                                          lastName.text, "OH", 0, "path/path"));
+                                      state.addPlayer(Player(
+                                          firstName.text,
+                                          lastName.text,
+                                          positions[selectedIndex],
+                                          0,
+                                          "path/path"));
                                       {}
                                       Navigator.of(context).pop();
                                     })
