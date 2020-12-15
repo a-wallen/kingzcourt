@@ -1,4 +1,9 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 import 'package:kingzcourt/classes/colors.dart';
 import 'package:kingzcourt/utility/theme.dart';
@@ -15,15 +20,34 @@ class PlayerFloatingButtons extends StatefulWidget {
 class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
   TextEditingController firstName = new TextEditingController();
   TextEditingController lastName = new TextEditingController();
+  ImagePicker picker = new ImagePicker();
   var border = CircleBorder();
   List<String> positions;
   int selectedIndex;
+  String _img64;
+
+  Future _imgFromGallery() async {
+    PickedFile image =
+        await picker.getImage(source: ImageSource.gallery, imageQuality: 50);
+    Uint8List bytes = await image.readAsBytes();
+    setState(() {
+      _img64 = base64Encode(bytes);
+      print("bytes: $_img64");
+    });
+  }
 
   @override
   void initState() {
     selectedIndex = 0;
     positions = ['OH', 'M', 'OP', 'S', 'L'];
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    firstName.dispose();
+    lastName.dispose();
+    super.dispose();
   }
 
   @override
@@ -42,55 +66,70 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                       context: context,
                       builder: (context) => new AlertDialog(
                               title: Text("Add Player"),
-                              content: Container(
-                                height: 520,
-                                width: 240,
-                                child: Column(children: [
-                                  //TODO: Be able to have user entering pictures
-                                  TextFormField(
-                                    controller: firstName,
-                                    decoration:
-                                        InputDecoration(hintText: 'First Name'),
-                                  ),
-                                  TextFormField(
-                                    controller: lastName,
-                                    decoration:
-                                        InputDecoration(hintText: 'Last Name'),
-                                  ),
-                                  Container(
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              3,
-                                      width: 140,
-                                      child: GridView.builder(
-                                        padding: const EdgeInsets.all(16),
-                                        itemCount: positions.length,
-                                        itemBuilder:
-                                            (BuildContext context, int index) {
-                                          return FlatButton(
-                                              color: index == selectedIndex
-                                                  ? AppColors.primaryDarkColor
-                                                  : Colors.white,
-                                              onPressed: () => {
-                                                    setState(() {
-                                                      selectedIndex = index;
-                                                      print(selectedIndex);
-                                                    })
-                                                  },
-                                              child: Text(positions[index],
-                                                  style: TextStyle(
-                                                      color: index ==
-                                                              selectedIndex
-                                                          ? Colors.white
-                                                          : AppColors
-                                                              .primaryDarkColor)));
-                                        },
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 2,
+                              content: SingleChildScrollView(
+                                scrollDirection: Axis.vertical,
+                                child: Container(
+                                  width: 240,
+                                  height: 360,
+                                  child: Column(children: [
+                                    //TODO: Be able to have user entering pictures
+                                    Flexible(
+                                      child: GestureDetector(
+                                        onTap: () => _imgFromGallery(),
+                                        child: FittedBox(
+                                          child: _img64 == null
+                                              ? Icon(
+                                                  Icons.account_circle_sharp,
+                                                  color: AppColors
+                                                      .primaryAccentDark,
+                                                )
+                                              : Image.memory(
+                                                  base64Decode(_img64)),
                                         ),
-                                      )),
-                                ]),
+                                      ),
+                                    ),
+                                    TextFormField(
+                                      controller: firstName,
+                                      decoration: InputDecoration(
+                                          hintText: 'First Name'),
+                                    ),
+                                    TextFormField(
+                                      controller: lastName,
+                                      decoration: InputDecoration(
+                                          hintText: 'Last Name'),
+                                    ),
+                                    Container(
+                                        color: Colors.black,
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                12,
+                                        child: ListView.builder(
+                                          scrollDirection: Axis.horizontal,
+                                          padding: const EdgeInsets.all(16),
+                                          itemCount: positions.length,
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            return FlatButton(
+                                                color: index == selectedIndex
+                                                    ? AppColors.primaryDarkColor
+                                                    : Colors.white,
+                                                onPressed: () => {
+                                                      setState(() {
+                                                        selectedIndex = index;
+                                                        print(selectedIndex);
+                                                      })
+                                                    },
+                                                child: Text(positions[index],
+                                                    style: TextStyle(
+                                                        color: index ==
+                                                                selectedIndex
+                                                            ? Colors.white
+                                                            : AppColors
+                                                                .primaryDarkColor)));
+                                          },
+                                        )),
+                                  ]),
+                                ),
                               ),
                               actions: <Widget>[
                                 new FlatButton(
@@ -113,7 +152,7 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                                           lastName.text,
                                           positions[selectedIndex],
                                           0,
-                                          "path/path"));
+                                          _img64));
                                       {}
                                       Navigator.of(context).pop();
                                     })

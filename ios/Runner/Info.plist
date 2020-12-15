@@ -41,5 +41,14 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+
+	<!-- Image Picker Stuff -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Grant permissions to use photo library.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Grant permissions to use your camera.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Grant permissions to use your microphone.</string>
+
 </dict>
 </plist>
