@@ -26,9 +26,20 @@ class _LandingPageState extends State<LandingPage> {
           textTheme: Theme.of(context).textTheme,
           title: Text(widget.title),
         ),
-        body: ActiveGameWidget(),
-        //button: AddPlayerButton(),
+        body: _buildBody(),
         drawer: KingzDrawer(),
         floatingActionButton: RefreshGameButton());
   }
+}
+
+Widget _buildBody() {
+  return Column(
+    children: [
+      ActiveGameWidget(),
+      Divider(),
+      Text('Add Player Buton goes here'),
+      Divider(),
+      //Expanded(child: PlaylistWidget()),
+    ],
+  );
 }
