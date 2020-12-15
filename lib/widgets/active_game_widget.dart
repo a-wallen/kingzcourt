@@ -25,10 +25,10 @@ class _ActiveGameWidgetState extends State<ActiveGameWidget> {
             mainAxisSpacing: 0,
             crossAxisCount: 2,
             children: [
-              Container(height: 10, child: Text('Team 1')),
-              Container(height: 10, child: Text('Team 2')),
-              /*PlayerPageIcon(player),
-              PlayerPageIcon(player),*/
+              Text('Team 1'),
+              Text('Team 2'),
+              PlayerPageIcon(player),
+              PlayerPageIcon(player),
               Container(height: 10, child: Text('Player 1')),
               Container(height: 10, child: Text('Player 2')),
               Container(height: 10, child: Text('Player 3')),
