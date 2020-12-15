@@ -22,13 +22,13 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     Player player = Player("Alex", "Wallen", "OH", 0, "path/path");
     return Scaffold(
-      appBar: AppBar(
-        textTheme: Theme.of(context).textTheme,
-        title: Text(widget.title),
-      ),
-      body: Stack(children: [ActiveGameWidget(), AddPlayerButton()]),
-      drawer: KingzDrawer(),
-      floatingActionButton: RefreshGameButton(),
-    );
+        appBar: AppBar(
+          textTheme: Theme.of(context).textTheme,
+          title: Text(widget.title),
+        ),
+        body: ActiveGameWidget(),
+        //button: AddPlayerButton(),
+        drawer: KingzDrawer(),
+        floatingActionButton: RefreshGameButton());
   }
 }

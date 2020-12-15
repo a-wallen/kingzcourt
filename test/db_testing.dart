@@ -5,6 +5,7 @@ import 'package:kingzcourt/database/initDatabase.dart';
 import 'package:kingzcourt/classes/group.dart';
 import 'package:kingzcourt/classes/player.dart';
 import 'package:kingzcourt/classes/intermediate.dart';
+import 'package:kingzcourt/database/databaseHelper.dart';
 
 void main() {
   List<Group> groups = [Group("Alpha"), Group("Bravo"), Group("Charlie")];

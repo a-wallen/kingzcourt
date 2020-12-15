@@ -2,9 +2,12 @@ import 'playerpageicon.dart';
 import 'package:kingzcourt/classes/player.dart';
 import 'package:kingzcourt/classes/Playlist.dart';
 import 'package:flutter/material.dart';
+import 'package:kingzcourt/classes/team_ihor.dart';
 
 Player player = Player("Default", "Lastname", "Position", -1, "path/path");
 Playlist playlist = Playlist();
+Team team1 = Team("Team 1", 6);
+Team team2 = Team("Team 2", 6);
 
 class ActiveGameWidget extends StatefulWidget {
   @override
@@ -14,6 +17,29 @@ class ActiveGameWidget extends StatefulWidget {
 class _ActiveGameWidgetState extends State<ActiveGameWidget> {
   @override
   Widget build(BuildContext context) {
+    return Container(
+        height: 300,
+        color: Colors.amber,
+        child: GridView.count(
+            crossAxisSpacing: 0,
+            mainAxisSpacing: 0,
+            crossAxisCount: 2,
+            children: [
+              Container(height: 10, child: Text('Team 1')),
+              Container(height: 10, child: Text('Team 2')),
+              /*PlayerPageIcon(player),
+              PlayerPageIcon(player),*/
+              Container(height: 10, child: Text('Player 1')),
+              Container(height: 10, child: Text('Player 2')),
+              Container(height: 10, child: Text('Player 3')),
+              Container(height: 10, child: Text('Player 4')),
+              Container(height: 10, child: Text('Player 5')),
+              Container(height: 10, child: Text('Player 6')),
+              Container(height: 10, child: Text('Player 7')),
+              Container(height: 10, child: Text('Player 8')),
+            ]));
+  }
+  /*Widget build(BuildContext context) {
     return Stack(children: [
       Positioned(
           top: 0,
@@ -24,6 +50,7 @@ class _ActiveGameWidgetState extends State<ActiveGameWidget> {
               children: [
                 Text('Player 1'),
                 Text('Player 2'),
+                //PlayerPageIcon(player)
               ],
               /*Row(children: [
             Text('Player 3'),
@@ -48,5 +75,5 @@ class _ActiveGameWidgetState extends State<ActiveGameWidget> {
             Row(children: [Text('Team 2')])
           ]))
     ]);
-  }
+  }*/
 }
