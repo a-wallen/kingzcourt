@@ -36,17 +36,17 @@ class _PlayerPageIconState extends State<PlayerPageIcon> {
           shape: border,
           elevation: 0,
           color: Colors.transparent,
-          child: //widget.player.getImageFilePath() == null
-              /*?*/ FittedBox(
+          child: widget.player.getImageFilePath() == null
+              ? FittedBox(
                   fit: BoxFit.fill,
                   child: Icon(Icons.account_circle_sharp,
                       color: AppColors.primaryAccentDark))
-              // : ClipRRect(
-              //     borderRadius: BorderRadius.circular(100),
-              //     child: Image.memory(
-              //       base64Decode(widget.player.getImageFilePath()),
-              //     ),
-              //   ),
+              : ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: Image.memory(
+                    base64Decode(widget.player.getImageFilePath()),
+                  ),
+                ),
         ),
         Positioned(
           right: 3,
