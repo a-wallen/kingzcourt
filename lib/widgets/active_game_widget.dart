@@ -1,5 +1,5 @@
 import 'package:kingzcourt/widgets/refresh_game_button.dart';
-
+import 'active_player_widget.dart';
 import 'playerpageicon.dart';
 import 'package:kingzcourt/classes/player.dart';
 import 'package:kingzcourt/classes/Playlist.dart';
@@ -22,9 +22,9 @@ class ActiveGameWidget extends StatefulWidget {
 
 class _ActiveGameWidgetState extends State<ActiveGameWidget> {
   @override
-  Team team1 = Team('Team 1', 6);
+  /*Team team1 = Team('Team 1', 6);
   Team team2 = Team('Team 2', 6);
-  List<Team> _state = [team1, team2];
+  var _state = [team1, team2];
 
   makeNewGame(Team team1, Team team2, Playlist playlist) {
     algorithm(team1, team2, playlist);
@@ -33,49 +33,52 @@ class _ActiveGameWidgetState extends State<ActiveGameWidget> {
     }
 
     ;
-  }
+  }*/
 
   Widget build(BuildContext context) {
     return Stack(children: [
-      //divider between the two teams: won't show up!
-      Align(
-          child: VerticalDivider(color: Colors.black, thickness: 10),
-          alignment: Alignment.center),
-
       //displaying the players on each team:
       Container(
-          height: 300,
+          height: 350,
           color: Colors.amber,
           child: GridView.count(
-              crossAxisSpacing: 0,
-              mainAxisSpacing: 0,
+              padding: EdgeInsets.all(22),
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
               crossAxisCount: 4,
+              scrollDirection: Axis.vertical,
               children: [
-                Container(height: 10, child: Icon(Icons.person)),
-                Container(height: 10, child: Icon(Icons.person)),
-                Container(height: 10, child: Icon(Icons.person)),
-                Container(height: 10, child: Icon(Icons.person)),
-                Container(height: 10, child: Icon(Icons.person)),
-                Container(height: 10, child: Icon(Icons.person)),
-                Container(height: 10, child: Icon(Icons.person)),
-                Container(height: 10, child: Icon(Icons.person)),
-                Container(height: 10, child: Icon(Icons.person)),
-                Container(height: 10, child: Icon(Icons.person)),
-                Container(height: 10, child: Icon(Icons.person)),
-                Container(height: 10, child: Icon(Icons.person)),
+                ActivePlayerWidget(),
+                ActivePlayerWidget(),
+                ActivePlayerWidget(),
+                ActivePlayerWidget(),
+                ActivePlayerWidget(),
+                ActivePlayerWidget(),
+                ActivePlayerWidget(),
+                ActivePlayerWidget(),
+                ActivePlayerWidget(),
+                ActivePlayerWidget(),
+                ActivePlayerWidget(),
+                ActivePlayerWidget(),
+                ActivePlayerWidget(),
               ])),
+
+      //divider won't show up
+      VerticalDivider(
+          color: Colors.black, thickness: 10, indent: 0, endIndent: 0),
 
       //headings of "Team 1" and "Team 2"
       Container(
-          height: 20,
+          height: 18,
           color: Colors.lightBlue,
           child: Row(children: [
             Expanded(
-                child:
-                    Align(child: Text('Team 1'), alignment: Alignment.topLeft)),
+                child: Align(
+                    child: Text('       Team 1'),
+                    alignment: Alignment.topLeft)),
             Expanded(
-                child:
-                    Align(child: Text('Team 2'), alignment: Alignment.topRight))
+                child: Align(
+                    child: Text('Team 2      '), alignment: Alignment.topRight))
           ])),
     ]);
   }

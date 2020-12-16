@@ -20,7 +20,7 @@ class _RefreshGameButton extends State<RefreshGameButton> {
 
     return FloatingActionButton(
         onPressed: () {
-          ActiveGameWidget.makeNewGame(team1, team2, playlist);
+          //ActiveGameWidget.makeNewGame(team1, team2, playlist);
         },
         child: Icon(Icons.refresh),
         backgroundColor: Colors.green);
