@@ -24,7 +24,10 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
       child: Column(
         children: [
           GestureDetector(
-            onTap: () => print('Priorotize'),
+            onTap: () => {
+              print('Priorotize'),
+              Navigator.of(context).pop(),
+            },
             child: ListTile(
               leading: Text(
                 'Prioritize',
@@ -37,7 +40,10 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
             ),
           ),
           GestureDetector(
-            onTap: () => print('Remove'),
+            onTap: () => {
+              print('Remove'),
+              Navigator.of(context).pop(),
+            },
             child: ListTile(
               leading: Text(
                 'Remove',
@@ -50,7 +56,10 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
             ),
           ),
           GestureDetector(
-            onTap: () => print('Wait'),
+            onTap: () => {
+              print('Wait'),
+              Navigator.of(context).pop(),
+            },
             child: ListTile(
               leading: Text(
                 'Wait',

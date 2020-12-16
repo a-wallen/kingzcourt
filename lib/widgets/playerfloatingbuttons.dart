@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
@@ -64,30 +65,38 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                 onPressed: () {
                   showDialog(
                       context: context,
-                      builder: (context) => new AlertDialog(
+                      builder: (context) {
+                        return StatefulBuilder(
+                          builder: (context, setState) => new AlertDialog(
                               title: Text("Add Player"),
-                              content: SingleChildScrollView(
-                                scrollDirection: Axis.vertical,
-                                child: Container(
-                                  width: 240,
-                                  height: 360,
-                                  child: Column(children: [
-                                    //TODO: Be able to have user entering pictures
-                                    Flexible(
-                                      child: GestureDetector(
-                                        onTap: () => _imgFromGallery(),
-                                        child: FittedBox(
-                                          child: _img64 == null
-                                              ? Icon(
-                                                  Icons.account_circle_sharp,
-                                                  color: AppColors
-                                                      .primaryAccentDark,
-                                                )
-                                              : Image.memory(
-                                                  base64Decode(_img64)),
-                                        ),
-                                      ),
-                                    ),
+                              // content: SingleChildScrollView(
+                              //   scrollDirection: Axis.vertical,
+                              //   child: Container(
+                              //     width: 240,
+                              //     height: 360,
+                              //     child:
+                              //   ),
+                              // ),
+                              content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Container(
+                                        width: 100,
+                                        height: 100,
+                                        child: GestureDetector(
+                                            onTap: () => _imgFromGallery(),
+                                            child: _img64 == null
+                                                ? FittedBox(
+                                                fit: BoxFit.fill,
+                                                child: Icon(Icons.add_a_photo,
+                                                    color: AppColors
+                                                        .primaryAccentDark))
+                                                : ClipRRect(
+                                                borderRadius: BorderRadius.circular(100),
+                                                child: Image.memory(
+                                                  base64Decode(_img64),)))),
+
+
                                     TextFormField(
                                       controller: firstName,
                                       decoration: InputDecoration(
@@ -98,42 +107,47 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                                       decoration: InputDecoration(
                                           hintText: 'Last Name'),
                                     ),
+                                    Container(height: 10,),
                                     Container(
-                                        color: Colors.black,
-                                        height:
-                                            MediaQuery.of(context).size.height /
-                                                12,
-                                        child: ListView.builder(
-                                          scrollDirection: Axis.horizontal,
-                                          padding: const EdgeInsets.all(16),
-                                          itemCount: positions.length,
-                                          itemBuilder: (BuildContext context,
-                                              int index) {
-                                            return FlatButton(
-                                                color: index == selectedIndex
-                                                    ? AppColors.primaryDarkColor
-                                                    : Colors.white,
-                                                onPressed: () => {
-                                                      setState(() {
-                                                        selectedIndex = index;
-                                                        print(selectedIndex);
-                                                      })
-                                                    },
-                                                child: Text(positions[index],
-                                                    style: TextStyle(
-                                                        color: index ==
-                                                                selectedIndex
-                                                            ? Colors.white
-                                                            : AppColors
-                                                                .primaryDarkColor)));
-                                          },
-                                        )),
-                                  ]),
-                                ),
+                                      height: 55,
+                                      width: MediaQuery.of(context).size.width * 0.7,
+                                      child: GridView.builder(
+                                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisSpacing: 5,
+                                          crossAxisCount: 5,
+                                        ),
+                                        // shrinkWrap: true,
+                                        itemCount: positions.length,
+                                        itemBuilder: (BuildContext context, int index) {
+                                          return FlatButton(
+                                              shape: CircleBorder(),
+                                              color: index == selectedIndex
+                                                  ? AppColors.primaryDarkColor
+                                                  : Colors.white,
+                                              onPressed: () => {
+                                                setState(() {
+                                                  selectedIndex = index;
+                                                  print(selectedIndex);
+                                                })
+                                              },
+                                              child: Text(positions[index],
+                                                  style: TextStyle(
+                                                    fontSize: 11,
+                                                      fontWeight: FontWeight.bold,
+                                                      color: index ==
+                                                          selectedIndex
+                                                          ? Colors.white
+                                                          : AppColors
+                                                          .primaryDarkColor))
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ]
                               ),
                               actions: <Widget>[
                                 new FlatButton(
-                                  color: Colors.red,
+                                  color: AppColors.primaryDarkColor,
                                   textColor: Colors.white,
                                   child: Text('CANCEL'),
                                   onPressed: () {
@@ -143,7 +157,7 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                                   },
                                 ),
                                 new FlatButton(
-                                    color: Colors.green,
+                                    color: AppColors.primaryColor,
                                     textColor: Colors.white,
                                     child: new Text('ADD'),
                                     onPressed: () {
@@ -153,10 +167,12 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                                           positions[selectedIndex],
                                           0,
                                           _img64));
-                                      {}
                                       Navigator.of(context).pop();
                                     })
-                              ]));
+                              ]),
+                        );
+                      },
+                  );
                   /*state.addPlayer(
                       Player(firstName.text, "Wallen", "OH", 0, "path/path"));*/
                   // updatePlayerData(

@@ -17,7 +17,47 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
       itemBuilder: (context, index) {
         return Card(
           child: ListTile(
-            title: Text('${itemsTest[index]}'),
+            title: Row(
+              children: [
+                Expanded(child: Text('${itemsTest[index]}')),
+                Wrap(
+                    direction: Axis.vertical,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      Container(
+                        height: 15,
+                      ),
+                      Text(
+                        //TODO
+                        'OH',
+                        style: TextStyle(fontSize: 12),
+                      ),
+                      Text(
+                        'pos',
+                        style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+                      )
+                    ]),
+                Container(
+                  width: 15,
+                ),
+                Wrap(
+                  direction: Axis.vertical,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Container(
+                      height: 15,
+                    ),
+                    Text('0', style: TextStyle(fontSize: 12)),
+                    Text(
+                      'wait',
+                      style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+                    ),
+                  ],
+                )
+              ],
+            )
+            //Text('${itemsTest[index]}')
+            ,
             leading: Icon(Icons.account_circle_outlined),
             trailing: IconButton(
                 icon: Icon(Icons.keyboard_control),
