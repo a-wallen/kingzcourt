@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kingzcourt/widgets/bottomSheetWidget.dart';
+import '../classes/player.dart';
+import 'package:kingzcourt/database/databaseHelper.dart';
 
 class PlaylistWidget extends StatefulWidget {
   @override
@@ -8,7 +10,7 @@ class PlaylistWidget extends StatefulWidget {
 
 class _PlaylistWidgetState extends State<PlaylistWidget> {
   final List<String> itemsTest =
-      List<String>.generate(20, (i) => 'Test Player $i');
+      List<String>.generate(20, (i) => "Player $i");
 
   @override
   Widget build(BuildContext context) {
