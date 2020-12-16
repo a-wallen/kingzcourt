@@ -36,17 +36,17 @@ class _PlayerPageIconState extends State<PlayerPageIcon> {
           shape: border,
           elevation: 0,
           color: Colors.transparent,
-          child: widget.player.getImageFilePath() == null
-              ? FittedBox(
+          child: //widget.player.getImageFilePath() == null
+              /*?*/ FittedBox(
                   fit: BoxFit.fill,
                   child: Icon(Icons.account_circle_sharp,
                       color: AppColors.primaryAccentDark))
-              : ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: Image.memory(
-                    base64Decode(widget.player.getImageFilePath()),
-                  ),
-                ),
+              // : ClipRRect(
+              //     borderRadius: BorderRadius.circular(100),
+              //     child: Image.memory(
+              //       base64Decode(widget.player.getImageFilePath()),
+              //     ),
+              //   ),
         ),
         Positioned(
           right: 3,
@@ -86,9 +86,9 @@ class _PlayerPageIconState extends State<PlayerPageIcon> {
               HapticFeedback.vibrate();
               state.setState(() {
                 state.deleteModeOn = true;
+                state.deleteList.add(widget.player);
                 Scaffold.of(context).showBottomSheet(state.deleteSnackBar);
               });
-              toggleDelete(state);
             }
           },
         ),
@@ -104,7 +104,7 @@ class _PlayerPageIconState extends State<PlayerPageIcon> {
         });
         setState(() {
           border = CircleBorder(
-              side: BorderSide(color: AppColors.primaryColor, width: 5.0));
+              side: BorderSide(color: AppColors.primaryColor, width: 8.3));
         });
       } else {
         state.setState(() {
@@ -120,7 +120,7 @@ class _PlayerPageIconState extends State<PlayerPageIcon> {
   startupDeleteToggle(var state) {
     if (state.deleteModeOn && state.deleteList.contains(widget.player)) {
       border = border = CircleBorder(
-          side: BorderSide(color: AppColors.primaryColor, width: 5.0));
+          side: BorderSide(color: AppColors.primaryColor, width: 8.3));
     } else {
       border = CircleBorder();
     }
