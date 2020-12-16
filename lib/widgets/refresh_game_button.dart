@@ -14,13 +14,17 @@ class RefreshGameButton extends StatefulWidget {
 
 class _RefreshGameButton extends State<RefreshGameButton> {
   Widget build(BuildContext context) {
-    Playlist playlist = Playlist();
+    /*Playlist playlist = Playlist();
     Team team1;
-    Team team2;
+    Team team2;*/
 
     return FloatingActionButton(
         onPressed: () {
-          //ActiveGameWidget.makeNewGame(team1, team2, playlist);
+          Playlist playlist = Playlist();
+          Team team1;
+          Team team2;
+          //the following gives an error - "the getter teamSize was called on null"
+          //ActiveGameWidget(team1, team2).makeNewGame(team1, team2, playlist);
         },
         child: Icon(Icons.refresh),
         backgroundColor: Colors.green);
