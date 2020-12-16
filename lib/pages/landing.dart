@@ -8,6 +8,7 @@ import 'package:kingzcourt/widgets/active_game_widget.dart';
 import 'package:kingzcourt/widgets/playerpageicon.dart';
 import 'package:kingzcourt/classes/player.dart';
 import 'package:kingzcourt/classes/team_ihor.dart';
+import 'package:kingzcourt/widgets/playlistWidget.dart';
 
 class LandingPage extends StatefulWidget {
   LandingPage({Key key, this.title}) : super(key: key);
@@ -40,7 +41,7 @@ Widget _buildBody() {
       Divider(),
       Text('Add Player Buton goes here'),
       Divider(),
-      //Expanded(child: PlaylistWidget()),
+      Expanded(child: PlaylistWidget()),
     ],
   );
 }
