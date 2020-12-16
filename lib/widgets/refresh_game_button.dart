@@ -7,10 +7,6 @@ import 'package:kingzcourt/classes/player.dart';
 import 'active_game_widget.dart';
 import 'active_player_widget.dart';
 
-Playlist playlist = Playlist();
-Team team1 = Team("Team 1", 6);
-Team team2 = Team("Team 2", 6);
-
 class RefreshGameButton extends StatefulWidget {
   @override
   _RefreshGameButton createState() => _RefreshGameButton();
@@ -18,19 +14,14 @@ class RefreshGameButton extends StatefulWidget {
 
 class _RefreshGameButton extends State<RefreshGameButton> {
   Widget build(BuildContext context) {
-    floatingActionButton:
+    Playlist playlist = Playlist();
+    Team team1;
+    Team team2;
+
     return FloatingActionButton(
         onPressed: () {
-          Text("Button pressed");
-          //algorithm(team1, team2, playlist);
-          //ActivePlayerWidget.setState();
-          //ActiveGameWidget.setState();
-          //refresh active game - update state of active game widget?
+          ActiveGameWidget.makeNewGame(team1, team2, playlist);
         },
-
-        //mini: false,
-        //elevation: 2, //don't know
-        //clipBehavior: Clip, //not sure what to do here
         child: Icon(Icons.refresh),
         backgroundColor: Colors.green);
   }

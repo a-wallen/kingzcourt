@@ -1,79 +1,82 @@
+import 'package:kingzcourt/widgets/refresh_game_button.dart';
+
 import 'playerpageicon.dart';
 import 'package:kingzcourt/classes/player.dart';
 import 'package:kingzcourt/classes/Playlist.dart';
 import 'package:flutter/material.dart';
 import 'package:kingzcourt/classes/team_ihor.dart';
-
-Player player = Player("Default", "Lastname", "Position", -1, "path/path");
-Playlist playlist = Playlist();
-Team team1 = Team("Team 1", 6);
-Team team2 = Team("Team 2", 6);
+import 'package:kingzcourt/algorithms/matching_algo_ihor.dart';
 
 class ActiveGameWidget extends StatefulWidget {
   @override
   _ActiveGameWidgetState createState() => _ActiveGameWidgetState();
+  Team team1;
+  Team team2;
+
+  //constructor for teams that will be displayed:
+  ActiveGameWidget(Team newTeam1, Team newTeam2) {
+    team1 = newTeam1;
+    team2 = newTeam2;
+  }
 }
 
 class _ActiveGameWidgetState extends State<ActiveGameWidget> {
   @override
-  Widget build(BuildContext context) {
-    return Container(
-        height: 300,
-        color: Colors.amber,
-        child: GridView.count(
-            crossAxisSpacing: 0,
-            mainAxisSpacing: 0,
-            crossAxisCount: 2,
-            children: [
-              Text('Team 1'),
-              Text('Team 2'),
-              PlayerPageIcon(player),
-              PlayerPageIcon(player),
-              Container(height: 10, child: Text('Player 1')),
-              Container(height: 10, child: Text('Player 2')),
-              Container(height: 10, child: Text('Player 3')),
-              Container(height: 10, child: Text('Player 4')),
-              Container(height: 10, child: Text('Player 5')),
-              Container(height: 10, child: Text('Player 6')),
-              Container(height: 10, child: Text('Player 7')),
-              Container(height: 10, child: Text('Player 8')),
-            ]));
+  Team team1 = Team('Team 1', 6);
+  Team team2 = Team('Team 2', 6);
+  List<Team> _state = [team1, team2];
+
+  makeNewGame(Team team1, Team team2, Playlist playlist) {
+    algorithm(team1, team2, playlist);
+    setState() {
+      _state = [team1, team2];
+    }
+
+    ;
   }
-  /*Widget build(BuildContext context) {
+
+  Widget build(BuildContext context) {
     return Stack(children: [
-      Positioned(
-          top: 0,
-          left: 50,
-          child: Column(children: [
-            Text('Team 1'),
-            Row(
+      //divider between the two teams: won't show up!
+      Align(
+          child: VerticalDivider(color: Colors.black, thickness: 10),
+          alignment: Alignment.center),
+
+      //displaying the players on each team:
+      Container(
+          height: 300,
+          color: Colors.amber,
+          child: GridView.count(
+              crossAxisSpacing: 0,
+              mainAxisSpacing: 0,
+              crossAxisCount: 4,
               children: [
-                Text('Player 1'),
-                Text('Player 2'),
-                //PlayerPageIcon(player)
-              ],
-              /*Row(children: [
-            Text('Player 3'),
-            Text('Player 4')
-          ])*/
-            )
+                Container(height: 10, child: Icon(Icons.person)),
+                Container(height: 10, child: Icon(Icons.person)),
+                Container(height: 10, child: Icon(Icons.person)),
+                Container(height: 10, child: Icon(Icons.person)),
+                Container(height: 10, child: Icon(Icons.person)),
+                Container(height: 10, child: Icon(Icons.person)),
+                Container(height: 10, child: Icon(Icons.person)),
+                Container(height: 10, child: Icon(Icons.person)),
+                Container(height: 10, child: Icon(Icons.person)),
+                Container(height: 10, child: Icon(Icons.person)),
+                Container(height: 10, child: Icon(Icons.person)),
+                Container(height: 10, child: Icon(Icons.person)),
+              ])),
+
+      //headings of "Team 1" and "Team 2"
+      Container(
+          height: 20,
+          color: Colors.lightBlue,
+          child: Row(children: [
+            Expanded(
+                child:
+                    Align(child: Text('Team 1'), alignment: Alignment.topLeft)),
+            Expanded(
+                child:
+                    Align(child: Text('Team 2'), alignment: Alignment.topRight))
           ])),
-      /*Positioned(
-          left: 100,
-          //right: 100,
-          child:*/
-      /*VerticalDivider(
-          width: 10,
-          thickness: 20,
-          endIndent: 0,
-          indent: 0,
-          color: Colors.black),*/
-      Positioned(
-          top: 0,
-          right: 50,
-          child: Column(children: [
-            Row(children: [Text('Team 2')])
-          ]))
     ]);
-  }*/
+  }
 }

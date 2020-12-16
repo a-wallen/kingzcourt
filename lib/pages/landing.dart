@@ -7,6 +7,7 @@ import 'package:kingzcourt/widgets/active_player_widget.dart';
 import 'package:kingzcourt/widgets/active_game_widget.dart';
 import 'package:kingzcourt/widgets/playerpageicon.dart';
 import 'package:kingzcourt/classes/player.dart';
+import 'package:kingzcourt/classes/team_ihor.dart';
 
 class LandingPage extends StatefulWidget {
   LandingPage({Key key, this.title}) : super(key: key);
@@ -35,7 +36,7 @@ class _LandingPageState extends State<LandingPage> {
 Widget _buildBody() {
   return Column(
     children: [
-      ActiveGameWidget(),
+      ActiveGameWidget(Team('Team 1', 6), Team('Team 2', 6)),
       Divider(),
       Text('Add Player Buton goes here'),
       Divider(),
