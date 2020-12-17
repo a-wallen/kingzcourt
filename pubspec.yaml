@@ -62,10 +62,10 @@ flutter:
    - assets/images/Alex.jpg
    - assets/images/Ihor.jpg
    - assets/images/Andrew.jpg
-   # - assets/image/KatO.jpg
-   # - assets/image/Bryce.jpg
-   # - assets/image/David.jpg
-   # - assets/image/Ezra.jpg
+   - assets/images/KatO.jpg
+   - assets/images/Bryce.jpg
+   - assets/images/David.jpg
+   - assets/images/launcher_icon.jpg
 
   # assets:
   #   - test/pictest.jpg
