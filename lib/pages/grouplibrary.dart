@@ -128,6 +128,7 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
                               onPressed: () {
                                 setState(() {
                                   codeDialog = valueText;
+                                  addGroup(Group(codeDialog));
                                 });
                                 Navigator.of(context).pop();
                               })
