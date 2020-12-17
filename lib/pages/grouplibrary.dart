@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 
 import 'package:kingzcourt/classes/group.dart';
 import 'package:kingzcourt/database/databaseHelper.dart';
-import '../widgets/editgroupplayers.dart';
+import 'groupInspector.dart';
 
 import 'package:kingzcourt/classes/colors.dart'; // class AppColors
 import 'package:kingzcourt/utility/theme.dart';
@@ -39,6 +39,7 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
     return newGroupId;
   }
 
+  // TODO: Implement UI Features to call this function
   Future<int> updateGroupData(Group originalGroup, Group newGroup) async {
     int result =
         await DatabaseHelper.instance.updateGroup(originalGroup, newGroup);
@@ -46,6 +47,7 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
     return result;
   }
 
+  // TODO: Implement UI Features to call this function
   Future<int> removeGroupByID(Group g) async {
     int result = await DatabaseHelper.instance.removeGroup(g);
     getGroupLib();
@@ -53,13 +55,14 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
   }
 
   @override
+  // TODO: implement initState
   void initState() {
-    // TODO: implement initState
     getGroupLib();
     super.initState();
   }
 
-  TextEditingController groupName = new TextEditingController();
+  String codeDialog;
+  String valueText;
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +86,8 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => EditRoute()),
+                  MaterialPageRoute(
+                      builder: (context) => GroupInspector(library[index])),
                 );
               },
               title: Text('${library[index].getGroupName()}'),
@@ -98,9 +102,13 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
                 context: context,
                 builder: (context) => new AlertDialog(
                         title: Text("Group Names"),
-                        content: TextFormField(
-                          controller: groupName,
-                          decoration: InputDecoration(hintText: 'Group Name'),
+                        content: TextField(
+                          onChanged: (value) {
+                            setState(() {
+                              valueText = value;
+                            });
+                          },
+                          decoration: InputDecoration(hintText: "Enter Name"),
                         ),
                         actions: <Widget>[
                           new FlatButton(
@@ -119,7 +127,7 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
                               child: new Text('ADD'),
                               onPressed: () {
                                 setState(() {
-                                  addGroup(Group(groupName.text));
+                                  codeDialog = valueText;
                                 });
                                 Navigator.of(context).pop();
                               })

@@ -108,10 +108,10 @@ class DatabaseHelper {
   }
 
   // Get all players in group by group id
-  Future<List<Player>> getGroupsPlayers(int id) async {
+  Future<List<Player>> getGroupsPlayers(Group g) async {
     List<Player> groupPlayers = [];
     Database db = await instance.database;
-    List<Map<String, dynamic>> group = await getGroupRows(db, id);
+    List<Map<String, dynamic>> group = await getGroupRows(db, g.getId());
     group.forEach((entry) {
       groupPlayers.add(Player.fromMap(entry));
     });
