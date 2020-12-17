@@ -51,18 +51,22 @@ class _GroupInspectorState extends State<GroupInspector> {
           textTheme: Theme.of(context).textTheme,
           title: Text(widget.myGroup.getGroupName()),
         ),
-        body: GridView.builder(
-          padding: EdgeInsets.all(20.0),
-          itemCount: group.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            crossAxisSpacing: 7.0,
-            mainAxisSpacing: 20.0,
-          ),
-          itemBuilder: (context, index) {
-            return PlayerPageIcon(group[index]);
-          },
-        ),
+        body: group.isEmpty
+            ? Center(
+                child: Text("add players to this group"),
+              )
+            : GridView.builder(
+                padding: EdgeInsets.all(20.0),
+                itemCount: group.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 7.0,
+                  mainAxisSpacing: 20.0,
+                ),
+                itemBuilder: (context, index) {
+                  return PlayerPageIcon(group[index]);
+                },
+              ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             showDialog(
