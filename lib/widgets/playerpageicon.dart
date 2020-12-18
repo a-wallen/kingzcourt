@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kingzcourt/classes/colors.dart';
+import 'package:kingzcourt/pages/landing.dart';
 import 'package:kingzcourt/pages/playerlibrary.dart';
 import 'package:kingzcourt/utility/theme.dart';
 import 'package:kingzcourt/widgets/drawer.dart';
@@ -80,6 +81,7 @@ class _PlayerPageIconState extends State<PlayerPageIcon> {
           splashColor: Colors.transparent,
           onTap: () {
             toggleDelete(state);
+            getPlayer(state);
           },
           onLongPress: () {
             if (!state.deleteModeOn) {
@@ -94,6 +96,13 @@ class _PlayerPageIconState extends State<PlayerPageIcon> {
         ),
       ],
     );
+  }
+
+  getPlayer(state) {
+    if (!state.deleteModeOn) {
+      LandingPage.playlist.add(widget.player);
+      Navigator.of(context).pop();
+    }
   }
 
   toggleDelete(var state) {
