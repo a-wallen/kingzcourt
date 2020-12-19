@@ -75,6 +75,10 @@ class Team {
     return _positions.isEmpty;
   }
 
+  bool isNotEmpty() {
+    return !(_positions.length == _teamSize);
+  }
+
   void updateTeamSize(int newTeamSize) {
     _teamSize = newTeamSize;
 

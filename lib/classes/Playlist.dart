@@ -149,7 +149,9 @@ class Playlist extends Iterable {
       if (i == 0 && curNode.player.equals(curPlayer)) {
         _head = curNode.next;
         curNode.next = null;
-        _head.previous = null;
+        if (_head != null) {
+          _head.previous = null;
+        }
         _size--;
         return true;
       } else if (curNode.next.player.equals(curPlayer) &&
