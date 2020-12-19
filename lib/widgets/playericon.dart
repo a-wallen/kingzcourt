@@ -8,14 +8,14 @@ import 'package:kingzcourt/utility/theme.dart';
 import 'package:kingzcourt/widgets/drawer.dart';
 import '../database/databaseHelper.dart';
 import '../classes/player.dart';
-import '../widgets/playerfloatingbuttons.dart';
 
 class PlayerIcon extends StatefulWidget {
   Player player;
 
-  PlayerPageIcon(player) {
+  PlayerIcon(player) {
     this.player = player;
   }
+
   @override
   _PlayerIconState createState() => _PlayerIconState();
 }
@@ -32,17 +32,17 @@ class _PlayerIconState extends State<PlayerIcon> {
             elevation: 0,
             color: Colors.transparent,
             child: //widget.player.getImageFilePath() == null
-            /*?*/ FittedBox(
-                fit: BoxFit.fill,
-                child: Icon(Icons.account_circle_sharp,
-                    color: AppColors.primaryAccentDark))
-          // : ClipRRect(
-          //     borderRadius: BorderRadius.circular(100),
-          //     child: Image.memory(
-          //       base64Decode(widget.player.getImageFilePath()),
-          //     ),
-          //   ),
-        ),
+                /*?*/ FittedBox(
+                    fit: BoxFit.fill,
+                    child: Icon(Icons.account_circle_sharp,
+                        color: AppColors.primaryAccentDark))
+            // : ClipRRect(
+            //     borderRadius: BorderRadius.circular(100),
+            //     child: Image.memory(
+            //       base64Decode(widget.player.getImageFilePath()),
+            //     ),
+            //   ),
+            ),
         Positioned(
           right: 3,
           top: 10,
@@ -52,7 +52,7 @@ class _PlayerIconState extends State<PlayerIcon> {
             style: TextStyle(
                 shadows: [Shadow(color: Colors.white, blurRadius: 10.0)],
                 fontWeight: FontWeight.w900,
-                fontSize: 24,
+                fontSize: 18,
                 fontFamily: 'SansitaSwashed'),
           ),
         ),
@@ -66,7 +66,7 @@ class _PlayerIconState extends State<PlayerIcon> {
                 //     ? Colors.black
                 //     : AppColors.primaryColor,
                 fontWeight: FontWeight.bold,
-                fontSize: 20,
+                fontSize: 16,
                 fontFamily: 'SansitaSwashed'),
           ),
         ),

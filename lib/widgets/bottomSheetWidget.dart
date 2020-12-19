@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:kingzcourt/pages/landing.dart';
+import 'package:kingzcourt/classes/player.dart';
 
 class BottomSheetWidget extends StatefulWidget {
+  final Player sender;
+
+  BottomSheetWidget({Key key, @required this.sender}) : super(key: key);
+
   @override
   _BottomSheetWidgetState createState() => _BottomSheetWidgetState();
 }
@@ -11,7 +17,6 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(15), topRight: Radius.circular(15)),
 
@@ -25,7 +30,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
         children: [
           GestureDetector(
             onTap: () => {
-              print('Priorotize'),
+              LandingPage.playlist.prioritize(widget.sender),
               Navigator.of(context).pop(),
             },
             child: ListTile(
@@ -41,7 +46,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
           ),
           GestureDetector(
             onTap: () => {
-              print('Remove'),
+              LandingPage.playlist.remove(widget.sender),
               Navigator.of(context).pop(),
             },
             child: ListTile(
@@ -57,7 +62,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
           ),
           GestureDetector(
             onTap: () => {
-              print('Wait'),
+              LandingPage.playlist.wait(widget.sender),
               Navigator.of(context).pop(),
             },
             child: ListTile(

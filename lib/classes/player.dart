@@ -7,7 +7,7 @@ class Player {
   String _imageFilePath; //file path to the profile picture
   bool _skipGame = false; //whether player wants to skip a game
 
-  int _waitingTime; //measured by the number of games waited
+  int _waitingTime = 0; //measured by the number of games waited
 
   Player(String myFirstName, String myLastName, String myPosition,
       int myWaitingTime, String myImageFilePath) {

@@ -3,10 +3,7 @@ import 'package:kingzcourt/widgets/add_player_button.dart';
 import 'package:kingzcourt/widgets/drawer.dart';
 import 'package:flutter/widgets.dart';
 import 'package:kingzcourt/widgets/refresh_game_button.dart';
-import 'package:kingzcourt/widgets/active_player_widget.dart';
 import 'package:kingzcourt/widgets/active_game_widget.dart';
-import 'package:kingzcourt/widgets/playericon.dart';
-import 'package:kingzcourt/classes/player.dart';
 import 'package:kingzcourt/classes/team_ihor.dart';
 import 'package:kingzcourt/widgets/playlistWidget.dart';
 import 'package:kingzcourt/classes/Playlist.dart';
@@ -17,6 +14,7 @@ class LandingPage extends StatefulWidget {
   static Team team1L = Team('Team1', 6);
   static Team team2L = Team('team2', 6);
   static Playlist playlist = Playlist();
+
   @override
   _LandingPageState createState() => _LandingPageState();
 }
@@ -25,7 +23,6 @@ class _LandingPageState extends State<LandingPage> {
   int currentIndex = 0;
 
   refresh() {
-    print('refresh');
     setState(() {});
   }
 
@@ -54,7 +51,10 @@ class _LandingPageState extends State<LandingPage> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text('Team1'),
+                    Text(
+                      'Team1',
+                      style: TextStyle(fontSize: 18),
+                    ),
                     Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
@@ -82,12 +82,15 @@ class _LandingPageState extends State<LandingPage> {
                                 });
                               }),
                         ]),
-                    Text('Team2'),
+                    Text(
+                      'Team2',
+                      style: TextStyle(fontSize: 18),
+                    ),
                   ],
                 )),
             Divider(),
             ActiveGameWidget(LandingPage.team1L, LandingPage.team2L),
-            AddPlayerButton(callback: refresh()),
+            AddPlayerButton(callback: refresh),
             Expanded(child: PlaylistWidget()),
           ],
         ),
