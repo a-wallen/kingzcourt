@@ -11,9 +11,16 @@ import '../classes/player.dart';
 
 class PlayerIcon extends StatefulWidget {
   Player player;
+  CircleBorder border = CircleBorder();
 
-  PlayerIcon(player) {
+  PlayerIcon(player, {bool isTeam}) {
     this.player = player;
+    if (isTeam == true) {
+      border = CircleBorder(side: BorderSide(color: Colors.amber, width: 3));
+    } else if (isTeam == false) {
+      border =
+          CircleBorder(side: BorderSide(color: Colors.lightGreen, width: 3));
+    }
   }
 
   @override
@@ -28,21 +35,21 @@ class _PlayerIconState extends State<PlayerIcon> {
       children: [
         Card(shape: CircleBorder(), elevation: 3),
         Card(
-            shape: CircleBorder(),
-            elevation: 0,
-            color: Colors.transparent,
-            child: //widget.player.getImageFilePath() == null
-                /*?*/ FittedBox(
-                    fit: BoxFit.fill,
-                    child: Icon(Icons.account_circle_sharp,
-                        color: AppColors.primaryAccentDark))
-            // : ClipRRect(
-            //     borderRadius: BorderRadius.circular(100),
-            //     child: Image.memory(
-            //       base64Decode(widget.player.getImageFilePath()),
-            //     ),
-            //   ),
-            ),
+          shape: widget.border,
+          elevation: 0,
+          color: Colors.transparent,
+          child: widget.player.getImageFilePath() == null
+              ? FittedBox(
+                  fit: BoxFit.fill,
+                  child: Icon(Icons.account_circle_sharp,
+                      color: AppColors.primaryAccentDark))
+              : ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: Image.memory(
+                    base64Decode(widget.player.getImageFilePath()),
+                  ),
+                ),
+        ),
         Positioned(
           right: 3,
           top: 10,
@@ -62,9 +69,7 @@ class _PlayerIconState extends State<PlayerIcon> {
             "${widget.player.getFirstName()}",
             style: TextStyle(
                 shadows: [Shadow(color: Colors.white, blurRadius: 10.0)],
-                // color: widget.player.getImageFilePath() == null
-                //     ? Colors.black
-                //     : AppColors.primaryColor,
+                color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
                 fontFamily: 'SansitaSwashed'),

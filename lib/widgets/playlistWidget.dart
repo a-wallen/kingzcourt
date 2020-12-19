@@ -23,6 +23,9 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
           Player curPlayer = playlist.elementAt(index);
           return Card(
             child: ListTile(
+              tileColor: curPlayer.getSkipGame() == false
+                  ? Colors.transparent
+                  : Colors.grey[400],
               title: Row(
                 children: [
                   Expanded(

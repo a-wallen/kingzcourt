@@ -95,6 +95,9 @@ class _LandingPageState extends State<LandingPage> {
           ],
         ),
         drawer: KingzDrawer(),
-        floatingActionButton: RefreshGameButton());
+        floatingActionButton: RefreshGameButton(
+            team1: LandingPage.team1L,
+            team2: LandingPage.team2L,
+            callback: refresh));
   }
 }
