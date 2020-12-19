@@ -114,6 +114,7 @@ class DatabaseHelper {
     List<Map<String, dynamic>> group = await getGroupRows(db, g.getId());
     group.forEach((entry) {
       groupPlayers.add(Player.fromMap(entry));
+      print("ARGH" + Player.fromMap(entry).toString());
     });
     return groupPlayers;
   }

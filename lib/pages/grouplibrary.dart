@@ -73,7 +73,7 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
     // /Since the widget reacts to those changes,
     // and calls the function every time, it is infinite.
     // Please remove the two lines below.
-
+    print("library: ${library[0].getGroupName()}");
     return Scaffold(
       appBar: AppBar(
         textTheme: Theme.of(context).textTheme,
@@ -84,6 +84,8 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
           itemBuilder: (context, index) {
             return ListTile(
               onTap: () {
+                print("ontap: ${library[index].getGroupName()}");
+                print("lib[${index}]: ${library[index].getPlayerList()}");
                 Navigator.push(
                   context,
                   MaterialPageRoute(
