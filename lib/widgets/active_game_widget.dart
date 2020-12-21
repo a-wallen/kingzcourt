@@ -64,7 +64,8 @@ class _ActiveGameWidgetState extends State<ActiveGameWidget> {
                   children: [
                     //makes the number of active player widgets that correspond to the team size:
                     for (Player i in widget._team1.getPlayersOnTeam())
-                      PlayerIcon(i, isTeam: true)
+                      //PlayerIcon(i, isTeam: true)
+                      PlayerIcon(i)
                   ])),
           Padding(
               padding: EdgeInsets.only(left: 10, right: 10),
@@ -88,7 +89,8 @@ class _ActiveGameWidgetState extends State<ActiveGameWidget> {
                   children: [
                     //makes the number of active player widgets that correspond to the team size:
                     for (Player i in widget._team2.getPlayersOnTeam())
-                      PlayerIcon(i, isTeam: false)
+                      //PlayerIcon(i, isTeam: false)
+                      PlayerIcon(i)
                   ])),
         ]));
   }

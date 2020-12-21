@@ -8,8 +8,8 @@ import '../classes/player.dart';
 class PlayerIcon extends StatefulWidget {
   Player player;
 
-  PlayerIcon(player) {
-    this.player = player;
+  PlayerIcon(Player p) {
+    this.player = p;
   }
 
   @override
