@@ -13,7 +13,7 @@ import '../widgets/playerfloatingbuttons.dart';
 class PlayerIcon extends StatefulWidget {
   Player player;
 
-  PlayerPageIcon(player) {
+  PlayerIcon(player) {
     this.player = player;
   }
   @override
@@ -32,17 +32,17 @@ class _PlayerIconState extends State<PlayerIcon> {
             elevation: 0,
             color: Colors.transparent,
             child: //widget.player.getImageFilePath() == null
-            /*?*/ FittedBox(
-                fit: BoxFit.fill,
-                child: Icon(Icons.account_circle_sharp,
-                    color: AppColors.primaryAccentDark))
-          // : ClipRRect(
-          //     borderRadius: BorderRadius.circular(100),
-          //     child: Image.memory(
-          //       base64Decode(widget.player.getImageFilePath()),
-          //     ),
-          //   ),
-        ),
+                /*?*/ FittedBox(
+                    fit: BoxFit.fill,
+                    child: Icon(Icons.account_circle_sharp,
+                        color: AppColors.primaryAccentDark))
+            // : ClipRRect(
+            //     borderRadius: BorderRadius.circular(100),
+            //     child: Image.memory(
+            //       base64Decode(widget.player.getImageFilePath()),
+            //     ),
+            //   ),
+            ),
         Positioned(
           right: 3,
           top: 10,

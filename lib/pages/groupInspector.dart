@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/playericon.dart';
 import 'package:kingzcourt/utility/theme.dart';
 import 'package:kingzcourt/classes/colors.dart';
 import 'package:kingzcourt/classes/group.dart';
@@ -41,7 +42,6 @@ class _GroupInspectorState extends State<GroupInspector> {
     group = [];
     getPlayersInGroup();
     getPlayerLibrary();
-    print(group);
   }
 
   @override
@@ -53,7 +53,17 @@ class _GroupInspectorState extends State<GroupInspector> {
         ),
         body: group.isEmpty
             ? Center(
-                child: Text("add players to this group"),
+                child: Text(
+                  "add players to this group",
+                  style: TextStyle(
+                    color: AppColors.primaryDarkColor,
+                    fontWeight:
+                        Theme.of(context).textTheme.bodyText1.fontWeight,
+                    fontFamily:
+                        Theme.of(context).textTheme.bodyText1.fontFamily,
+                    fontSize: Theme.of(context).textTheme.headline6.fontSize,
+                  ),
+                ),
               )
             : GridView.builder(
                 padding: EdgeInsets.all(20.0),
@@ -64,7 +74,7 @@ class _GroupInspectorState extends State<GroupInspector> {
                   mainAxisSpacing: 20.0,
                 ),
                 itemBuilder: (context, index) {
-                  return PlayerPageIcon(group[index]);
+                  return PlayerIcon(group[index]);
                 },
               ),
         floatingActionButton: FloatingActionButton(
@@ -113,7 +123,6 @@ class _GroupInspectorState extends State<GroupInspector> {
                                 color: AppColors.primaryColor,
                                 textColor: Colors.white,
                                 onPressed: () {
-                                  print(selectedIndexes);
                                   List<Player> temp = [];
                                   selectedIndexes.forEach((i) {
                                     temp.add(library[i]);

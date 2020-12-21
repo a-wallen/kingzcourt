@@ -66,20 +66,12 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
 
   @override
   Widget build(BuildContext context) {
-    // MediaQueryData media = MediaQuery.of(context);
-    // Since the function changes the state of the widget,
-    // and the widget is Stateful,
-    // the widget will call the function when it builds.
-    // /Since the widget reacts to those changes,
-    // and calls the function every time, it is infinite.
-    // Please remove the two lines below.
-
     return Scaffold(
       appBar: AppBar(
         textTheme: Theme.of(context).textTheme,
         title: Text("Saved Groups"),
       ),
-      body: ListView.builder(
+      body: ListView.separated(
           itemCount: library.length,
           itemBuilder: (context, index) {
             return ListTile(
@@ -90,7 +82,25 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
                       builder: (context) => GroupInspector(library[index])),
                 );
               },
-              title: Text('${library[index].getGroupName()}'),
+              title: Text('${library[index].getGroupName()}',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: AppColors.primaryDarkColor,
+                    fontWeight:
+                        Theme.of(context).textTheme.bodyText1.fontWeight,
+                    fontFamily:
+                        Theme.of(context).textTheme.bodyText1.fontFamily,
+                    fontSize: Theme.of(context)
+                        .textTheme
+                        .headline6
+                        .fontSize, // textTheme font size was too small
+                  )),
+            );
+          },
+          separatorBuilder: (context, index) {
+            return Divider(
+              height: 10.0,
+              color: AppColors.primaryAccentDark,
             );
           }),
       floatingActionButton: FloatingActionButton(
