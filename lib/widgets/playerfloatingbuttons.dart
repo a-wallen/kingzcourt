@@ -31,10 +31,11 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
     PickedFile image =
         await picker.getImage(source: ImageSource.gallery, imageQuality: 50);
     Uint8List bytes = await image.readAsBytes();
-    setState(() {
-      _img64 = base64Encode(bytes);
-      print("bytes: $_img64");
-    });
+    _img64 = base64Encode(bytes);
+    // setState(() {
+    //   _img64 = base64Encode(bytes);
+    //   print("bytes: $_img64");
+    // });
   }
 
   @override
@@ -84,7 +85,8 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                                       width: 100,
                                       height: 100,
                                       child: GestureDetector(
-                                          onTap: () => _imgFromGallery(),
+                                          onTap: () => _imgFromGallery()
+                                              .then((value) => setState(() {})),
                                           child: _img64 == null
                                               ? FittedBox(
                                                   fit: BoxFit.fill,
