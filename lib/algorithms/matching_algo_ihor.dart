@@ -89,6 +89,8 @@ void algorithm(Team team1, Team team2, Playlist playlist) {
 
   for (Player player in playlist) {
     player.increaseWaitingTime();
-    player.changeSkipGame();
+    if (player.getSkipGame() == true) {
+      player.changeSkipGame();
+    }
   }
 }

@@ -1,10 +1,10 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:kingzcourt/classes/Playlist.dart';
 import 'package:kingzcourt/classes/colors.dart';
-import 'package:kingzcourt/pages/landing.dart';
 import 'package:kingzcourt/widgets/bottomSheetWidget.dart';
-import '../classes/player.dart';
-import 'package:kingzcourt/database/databaseHelper.dart';
+import 'package:kingzcourt/classes/player.dart';
+import 'package:kingzcourt/pages/landing.dart';
+import 'package:kingzcourt/classes/Playlist.dart';
 
 class PlaylistWidget extends StatefulWidget {
   @override
@@ -12,20 +12,25 @@ class PlaylistWidget extends StatefulWidget {
 }
 
 class _PlaylistWidgetState extends State<PlaylistWidget> {
-  final List<String> itemsTest = List<String>.generate(20, (i) => "Player $i");
   final Playlist playlist = LandingPage.playlist;
 
   @override
   Widget build(BuildContext context) {
     if (playlist.isNotEmpty) {
       return ListView.builder(
-        itemCount: itemsTest.length,
+        itemCount: playlist.length,
         itemBuilder: (context, index) {
+          Player curPlayer = playlist.elementAt(index);
           return Card(
             child: ListTile(
+              tileColor: curPlayer.getSkipGame() == false
+                  ? Colors.transparent
+                  : Colors.grey[400],
               title: Row(
                 children: [
-                  Expanded(child: Text('${playlist.elementAt(index)}')),
+                  Expanded(
+                      child: Text(
+                          '${curPlayer.getFirstName()} \t ${curPlayer.getLastName()}')),
                   Wrap(
                       direction: Axis.vertical,
                       crossAxisAlignment: WrapCrossAlignment.center,
@@ -34,8 +39,7 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                           height: 15,
                         ),
                         Text(
-                          //TODO
-                          '',
+                          '${curPlayer.getPosition()}',
                           style: TextStyle(fontSize: 12),
                         ),
                         Text(
@@ -54,7 +58,8 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                       Container(
                         height: 15,
                       ),
-                      Text('0', style: TextStyle(fontSize: 12)),
+                      Text('${curPlayer.getWaitingTime()}',
+                          style: TextStyle(fontSize: 12)),
                       Text(
                         'wait',
                         style: TextStyle(fontSize: 16, color: Colors.grey[700]),
@@ -63,14 +68,25 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                   )
                 ],
               ),
-              leading: Icon(Icons.account_circle_outlined),
+              leading: curPlayer.getImageFilePath() == null
+                  ? Container(
+                      width: 40,
+                      height: 40,
+                      child:
+                          FittedBox(child: Icon(Icons.account_circle_outlined)))
+                  : CircleAvatar(
+                      backgroundImage: MemoryImage(
+                          base64Decode(curPlayer.getImageFilePath())),
+                    ),
               trailing: IconButton(
                   icon: Icon(Icons.keyboard_control),
                   onPressed: () {
-                    showModalBottomSheet(
+                    var sheetController = showModalBottomSheet(
                       context: context,
-                      builder: (context) => BottomSheetWidget(),
+                      builder: (context) =>
+                          BottomSheetWidget(sender: curPlayer),
                     );
+                    sheetController.whenComplete(() => setState(() {}));
                   }),
             ),
           );

@@ -5,13 +5,14 @@ import 'package:kingzcourt/classes/colors.dart';
 import 'package:kingzcourt/classes/group.dart';
 import 'package:kingzcourt/classes/player.dart';
 import 'package:kingzcourt/classes/intermediate.dart';
-import 'package:kingzcourt/widgets/playerpageicon.dart';
+import 'package:kingzcourt/widgets/playericon.dart';
 import 'package:kingzcourt/database/databaseHelper.dart';
 
 class GroupInspector extends StatefulWidget {
   Group myGroup;
   GroupInspector(Group g) {
     this.myGroup = g;
+    print("g: ${g.getPlayerList()}");
   }
   @override
   _GroupInspectorState createState() => _GroupInspectorState();
@@ -26,7 +27,9 @@ class _GroupInspectorState extends State<GroupInspector> {
   void getPlayersInGroup() async {
     DatabaseHelper.instance
         .getGroupsPlayers(widget.myGroup)
-        .then((players) => group = players);
+        .then((players) {setState(() {
+          group = players;
+        });});
   }
 
   void getPlayerLibrary() async {
@@ -93,6 +96,7 @@ class _GroupInspectorState extends State<GroupInspector> {
                                     itemCount: library.length,
                                     itemBuilder:
                                         (BuildContext context, int index) {
+                                      print("group: ${group.length}");
                                       return ListTile(
                                         onTap: () {
                                           if (selectedIndexes.contains(index)) {
@@ -132,6 +136,7 @@ class _GroupInspectorState extends State<GroupInspector> {
                                         Intermediate(player.getId(),
                                             widget.myGroup.getId()));
                                   });
+                                  Navigator.pop(context);
                                 },
                               ),
                             ],

@@ -22,7 +22,7 @@ class _DatabaseTestPageState extends State<DatabaseTestPage> {
   void printGroupLibrary(List<Group> lib) {
     print("Print Group Library");
     lib.forEach((group) {
-      print(group.toString());
+      print("${group.getGroupName()}, ${group.getPlayerList()}");
     });
     print("");
   }

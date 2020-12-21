@@ -42,6 +42,9 @@ class Playlist extends Iterable {
 
   /// Prioritizes a player in playlist (invoked by Queue button).
   void prioritize(Player player) {
+    if (player.getSkipGame()) {
+      player.changeSkipGame();
+    }
     if (player.equals(_head.player)) {
       return;
     }
@@ -52,6 +55,7 @@ class Playlist extends Iterable {
     for (int i = 1; i < _size; i++) {
       if (curNode.player.equals(targetPlayer.player)) {
         remove(player);
+        _size++;
         _head.previous = targetPlayer;
         targetPlayer.next = _head;
         _head = targetPlayer;
@@ -75,6 +79,7 @@ class Playlist extends Iterable {
     for (int i = 0; i < _size; i++) {
       if (curNode.player.equals(targetPlayer.player)) {
         remove(player);
+        _size++;
         _tail.next = targetPlayer;
         targetPlayer.previous = _tail;
         _tail = targetPlayer;
@@ -144,7 +149,9 @@ class Playlist extends Iterable {
       if (i == 0 && curNode.player.equals(curPlayer)) {
         _head = curNode.next;
         curNode.next = null;
-        _head.previous = null;
+        if (_head != null) {
+          _head.previous = null;
+        }
         _size--;
         return true;
       } else if (curNode.next.player.equals(curPlayer) &&

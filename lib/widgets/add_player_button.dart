@@ -1,17 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:kingzcourt/classes/Playlist.dart';
 import 'package:kingzcourt/classes/colors.dart';
-import 'package:kingzcourt/classes/player.dart';
 import 'package:kingzcourt/pages/playerlibrary.dart';
 
 class AddPlayerButton extends StatefulWidget {
-  final Function() callback;
-
-  FutureOr refresh() {
-    callback;
-  }
+  final Function callback;
 
   AddPlayerButton({Key key, @required this.callback}) : super(key: key);
 
@@ -26,8 +19,7 @@ class _AddPlayerButton extends State<AddPlayerButton> {
       onPressed: () {
         Navigator.push(context,
                 MaterialPageRoute(builder: (context) => PlayerLibraryPage()))
-            .then(widget.refresh());
-        print('testButton');
+            .then((value) => widget.callback());
       },
       color: AppColors.accentColor,
       child: Text(
