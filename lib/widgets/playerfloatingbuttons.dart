@@ -156,6 +156,10 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                                 child: Text('CANCEL'),
                                 onPressed: () {
                                   setState(() {
+                                    firstName.clear();
+                                    lastName.clear();
+                                    selectedIndex = -1;
+                                    _img64 = null;
                                     Navigator.pop(context);
                                   });
                                 },
@@ -171,6 +175,10 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                                         positions[selectedIndex],
                                         0,
                                         _img64));
+                                    firstName.clear();
+                                    lastName.clear();
+                                    selectedIndex = -1;
+                                    _img64 = null;
                                     Navigator.of(context).pop();
                                   })
                             ]),

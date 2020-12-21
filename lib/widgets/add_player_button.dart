@@ -40,10 +40,10 @@ class _AddPlayerButton extends State<AddPlayerButton> {
                   FlatButton(
                       onPressed: () {
                         Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => GroupLibraryPage()))
-                            .then((_) {
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    GroupLibraryPage(true))).then((_) {
                           Navigator.of(context).pop();
                           widget.callback();
                         });
