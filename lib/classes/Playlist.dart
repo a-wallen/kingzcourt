@@ -185,7 +185,8 @@ class Playlist extends Iterable {
   int numberOfPlayersByWaitingTime(int waitingTime) {
     int number = 0;
     for (Player player in this) {
-      if (player.getWaitingTime() == waitingTime) {
+      if (player.getWaitingTime() == waitingTime &&
+          player.getSkipGame() == false) {
         number++;
       }
     }

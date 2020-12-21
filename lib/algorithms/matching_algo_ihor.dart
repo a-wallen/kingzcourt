@@ -10,11 +10,6 @@ void algorithm(Team team1, Team team2, Playlist playlist) {
   Player currentPlayer;
   Player firstPlayer; //to be matched and removed in while loop
 
-  //TODO Make check if playlist is less then teams size;
-  if (playlist.length < team1.teamSize + team2.teamSize) {
-    print('ALERT_' * 5);
-  }
-
   int index;
   int curNumberWaited;
   int curCheckPlayer = playlist.first.getWaitingTime();
@@ -55,12 +50,18 @@ void algorithm(Team team1, Team team2, Playlist playlist) {
             index++;
           }
         }
+      } else {
+        index++;
       }
     }
 
     while (
         curNumberWaited != 0 && (!team1.isTeamFull() || !team2.isTeamFull())) {
-      firstPlayer = playlist.first;
+      if (playlist.first.getSkipGame() == false) {
+        firstPlayer = playlist.first;
+      } else {
+        firstPlayer = playlist.elementAt(1);
+      }
       if (team1.isTeamFull() == false) {
         team1.addPlayer(firstPlayer);
         team1.getPositions().remove(team1.getPositions().last);
