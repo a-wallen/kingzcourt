@@ -85,11 +85,11 @@ class _RefreshGameButton extends State<RefreshGameButton> {
   addPlayers() {
     for (Player i in widget.team1.getPlayersOnTeam()) {
       i.waitingTime = 0;
+      LandingPage.playlist.add(i);
     }
     for (Player i in widget.team2.getPlayersOnTeam()) {
       i.waitingTime = 0;
+      LandingPage.playlist.add(i);
     }
-    LandingPage.playlist.addAll(widget.team1.getPlayersOnTeam());
-    LandingPage.playlist.addAll(widget.team2.getPlayersOnTeam());
   }
 }
