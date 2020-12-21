@@ -70,8 +70,10 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
       appBar: AppBar(
         title: Text("Saved Groups"),
       ),
+      body: ListView.separated(
           itemCount: library.length,
           itemBuilder: (context, index) {
+            return ListTile(
               onTap: () {
                 print("ontap: ${library[index].getGroupName()}");
                 Navigator.push(
