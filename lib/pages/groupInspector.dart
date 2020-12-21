@@ -135,6 +135,7 @@ class _GroupInspectorState extends State<GroupInspector> {
                                         Intermediate(player.getId(),
                                             widget.myGroup.getId()));
                                   });
+                                  getPlayersInGroup();
                                   Navigator.pop(context);
                                 },
                               ),

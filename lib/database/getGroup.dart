@@ -20,6 +20,6 @@ Future<List<Map<String, dynamic>>> getGroupRows(Database db, int gid) async {
   return await db.rawQuery('''
 select * from PLAYER p
 where p.p_id in (select pg.p_id from PLAYER_GROUP pg
-where pg.g_id = 1);
+where pg.g_id = ${gid});
 ''');
 }
