@@ -9,6 +9,12 @@ import '../widgets/playerfloatingbuttons.dart';
 import '../widgets/playerpageicon.dart';
 
 class PlayerLibraryPage extends StatefulWidget {
+  bool addPlayer;
+
+  PlayerLibraryPage({bool addPlayer = false}) {
+    this.addPlayer = addPlayer;
+  }
+
   _PlayerLibraryPageState of(BuildContext c) {
     return c.findAncestorStateOfType<_PlayerLibraryPageState>();
   }
@@ -80,7 +86,7 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
           mainAxisSpacing: 20.0,
         ),
         itemBuilder: (context, index) {
-          return PlayerPageIcon(library[index]);
+          return PlayerPageIcon(library[index], addPlayer: widget.addPlayer);
         },
       ),
     );

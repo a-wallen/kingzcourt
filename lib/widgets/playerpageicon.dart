@@ -13,9 +13,11 @@ import '../widgets/playerfloatingbuttons.dart';
 
 class PlayerPageIcon extends StatefulWidget {
   Player player;
+  bool addPlayer;
 
-  PlayerPageIcon(player) {
+  PlayerPageIcon(player, {bool addPlayer = false}) {
     this.player = player;
+    this.addPlayer = addPlayer;
   }
 
   @override
@@ -81,7 +83,9 @@ class _PlayerPageIconState extends State<PlayerPageIcon> {
           splashColor: Colors.transparent,
           onTap: () {
             toggleDelete(state);
-            getPlayer(state);
+            if (widget.addPlayer) {
+              getPlayer(state);
+            }
           },
           onLongPress: () {
             if (!state.deleteModeOn) {

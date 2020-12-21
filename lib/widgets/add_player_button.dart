@@ -30,7 +30,8 @@ class _AddPlayerButton extends State<AddPlayerButton> {
                         Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => PlayerLibraryPage()))
+                                    builder: (context) =>
+                                        PlayerLibraryPage(addPlayer: true)))
                             .then((_) {
                           Navigator.of(context).pop();
                           widget.callback();
