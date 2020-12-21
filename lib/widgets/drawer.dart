@@ -53,7 +53,7 @@ class _KingzDrawerState extends State<KingzDrawer> {
                 onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => GroupLibraryPage()))),
+                        builder: (context) => GroupLibraryPage(false)))),
             Divider(
               thickness: 1,
               height: 10,

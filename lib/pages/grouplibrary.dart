@@ -11,6 +11,10 @@ import 'package:kingzcourt/utility/theme.dart';
 import 'package:kingzcourt/pages/landing.dart';
 
 class GroupLibraryPage extends StatefulWidget {
+  bool addGroup;
+  GroupLibraryPage(bool isOn) {
+    this.addGroup = isOn;
+  }
   _GroupLibraryPageState of(BuildContext c) {
     return c.findAncestorStateOfType<_GroupLibraryPageState>();
   }
@@ -69,24 +73,26 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Saved Groups"),
+        title: Text("Saved Groups"), // TODO add font
       ),
       body: ListView.separated(
           itemCount: library.length,
           itemBuilder: (context, index) {
             return ListTile(
-              onLongPress: () async {
-                LandingPage.playlist.addAll(await DatabaseHelper.instance
-                    .getGroupsPlayers(library[index]));
-                Navigator.pop(context);
-              },
-              onTap: () {
+              onTap: () async {
                 print("ontap: ${library[index].getGroupName()}");
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => GroupInspector(library[index])),
-                );
+                if (widget.addGroup == true) {
+                  LandingPage.playlist.addAll(await DatabaseHelper.instance
+                      .getGroupsPlayers(library[index]));
+
+                  Navigator.pop(context);
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => GroupInspector(library[index])),
+                  );
+                }
               },
               title: Text('${library[index].getGroupName()}',
                   textAlign: TextAlign.center,
