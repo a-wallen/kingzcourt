@@ -8,6 +8,7 @@ import 'groupInspector.dart';
 
 import 'package:kingzcourt/classes/colors.dart'; // class AppColors
 import 'package:kingzcourt/utility/theme.dart';
+import 'package:kingzcourt/pages/landing.dart';
 
 class GroupLibraryPage extends StatefulWidget {
   _GroupLibraryPageState of(BuildContext c) {
@@ -74,6 +75,11 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
           itemCount: library.length,
           itemBuilder: (context, index) {
             return ListTile(
+              onLongPress: () async {
+                LandingPage.playlist.addAll(await DatabaseHelper.instance
+                    .getGroupsPlayers(library[index]));
+                Navigator.pop(context);
+              },
               onTap: () {
                 print("ontap: ${library[index].getGroupName()}");
                 Navigator.push(
