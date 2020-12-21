@@ -5,18 +5,18 @@ import 'package:flutter/services.dart';
 import 'package:kingzcourt/classes/colors.dart';
 import '../classes/player.dart';
 
-class PlayerPageIcon extends StatefulWidget {
+class PlayerIcon extends StatefulWidget {
   Player player;
 
-  PlayerPageIcon(player) {
+  PlayerIcon(player) {
     this.player = player;
   }
 
   @override
-  _PlayerPageIconState createState() => _PlayerPageIconState();
+  _PlayerIconState createState() => _PlayerIconState();
 }
 
-class _PlayerPageIconState extends State<PlayerPageIcon> {
+class _PlayerIconState extends State<PlayerIcon> {
   var border = CircleBorder();
 
   @override

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../widgets/playericon.dart';
 import 'package:kingzcourt/utility/theme.dart';
 import 'package:kingzcourt/classes/colors.dart';
 import 'package:kingzcourt/classes/group.dart';
@@ -25,11 +24,11 @@ class _GroupInspectorState extends State<GroupInspector> {
   List<int> selectedIndexes = [];
 
   void getPlayersInGroup() async {
-    DatabaseHelper.instance
-        .getGroupsPlayers(widget.myGroup)
-        .then((players) {setState(() {
-          group = players;
-        });});
+    DatabaseHelper.instance.getGroupsPlayers(widget.myGroup).then((players) {
+      setState(() {
+        group = players;
+      });
+    });
   }
 
   void getPlayerLibrary() async {
