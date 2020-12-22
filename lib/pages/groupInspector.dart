@@ -145,6 +145,7 @@ class _GroupInspectorState extends State<GroupInspector> {
           }, // navigate to player library
           child: Icon(Icons.edit),
           backgroundColor: AppColors.primaryDarkColor,
-        ));
+        ),
+        );
   }
 }

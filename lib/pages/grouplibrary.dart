@@ -96,18 +96,19 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
                 }
               },
               title: Text('${library[index].getGroupName()}',
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.left,
                   style: TextStyle(
                     color: AppColors.primaryDarkColor,
                     fontWeight:
                         Theme.of(context).textTheme.bodyText1.fontWeight,
                     fontFamily:
                         Theme.of(context).textTheme.bodyText1.fontFamily,
-                    fontSize: Theme.of(context)
-                        .textTheme
-                        .headline6
-                        .fontSize, // textTheme font size was too small
+                    fontSize: Theme.of(context).textTheme.headline6.fontSize,
                   )),
+              trailing: Text(
+                'group ID: ${library[index].getId()}',
+                style: TextStyle(color: AppColors.primaryDarkColor),
+              ),
             );
           },
           separatorBuilder: (context, index) {
@@ -135,8 +136,8 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
                         ),
                         actions: <Widget>[
                           new FlatButton(
-                            color: Colors.red,
-                            textColor: Colors.white,
+                            color: AppColors.primaryDarkColor,
+                            textColor: AppColors.primaryAccent,
                             child: Text('CANCEL'),
                             onPressed: () {
                               setState(() {
@@ -145,8 +146,8 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
                             },
                           ),
                           new FlatButton(
-                              color: Colors.green,
-                              textColor: Colors.white,
+                              color: AppColors.primaryColor,
+                              textColor: AppColors.primaryAccent,
                               child: new Text('ADD'),
                               onPressed: () {
                                 setState(() {
