@@ -110,44 +110,50 @@ class _AboutPageState extends State<AboutPage> {
                   color: AppColors.primaryDarkColor,
                 ),
               ),
-              Text(
-                "Bryce Chinn",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 25.0,
-                  color: AppColors.primaryDarkColor,
+              ListTile(
+                title: Text(
+                  "Bryce Chinn",
+                  // textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 25.0,
+                    color: AppColors.primaryDarkColor,
+                  ),
+                ),
+                trailing: Image.asset(
+                  'assets/images/Bryce.jpg',
+                  height: 50,
+                  width: 50,
                 ),
               ),
-              Image.asset(
-                'assets/images/Bryce.jpg',
-                height: 50,
-                width: 50,
-              ),
-              Text(
-                "David Stanko",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 25.0,
-                  color: AppColors.primaryDarkColor,
+              ListTile(
+                title: Text(
+                  "David Stanko",
+                  //textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 25.0,
+                    color: AppColors.primaryDarkColor,
+                  ),
+                ),
+                trailing: Image.asset(
+                  'assets/images/David.jpg',
+                  height: 50,
+                  width: 50,
                 ),
               ),
-              Image.asset(
-                'assets/images/David.jpg',
-                height: 50,
-                width: 50,
-              ),
-              Text(
-                "Ihor Sherstiuk",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 25.0,
-                  color: AppColors.primaryDarkColor,
+              ListTile(
+                title: Text(
+                  "Ihor Sherstiuk",
+                  // textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 25.0,
+                    color: AppColors.primaryDarkColor,
+                  ),
                 ),
-              ),
-              Image.asset(
-                'assets/images/Ihor.jpg',
-                height: 50,
-                width: 50,
+                trailing: Image.asset(
+                  'assets/images/Ihor.jpg',
+                  height: 50,
+                  width: 50,
+                ),
               ),
               Text(
                 "Databases",
