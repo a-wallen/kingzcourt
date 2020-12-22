@@ -10,9 +10,11 @@ class TestWidget extends StatefulWidget {
 class _TestWidgetState extends State<TestWidget> {
   @override
   Widget build(BuildContext context) {
-    var state = GroupLibraryPage().of(context);
+    var state = GroupLibraryPage(false).of(context);
     return RaisedButton(
-      onPressed: () { state.setState(() => state.test++); },
+      onPressed: () {
+        state.setState(() => state.test++);
+      },
       child: Text(state.test.toString(), style: TextStyle(fontSize: 15)),
     );
   }
