@@ -10,8 +10,7 @@ class TestWidget extends StatefulWidget {
 class _TestWidgetState extends State<TestWidget> {
   @override
   Widget build(BuildContext context) {
-    var state = GroupLibraryPage(true)
-        .of(context); // this was producing an error, Kat changed to true
+    var state = GroupLibraryPage(false).of(context);
     return RaisedButton(
       onPressed: () {
         state.setState(() => state.test++);
