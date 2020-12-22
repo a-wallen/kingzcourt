@@ -24,7 +24,12 @@ class PlayerLibraryPage extends StatefulWidget {
 }
 
 class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
-  List<Player> library = [];
+  // Data for library related actions
+  TextEditingController _textEditingController = new TextEditingController();
+  Future<List<Player>> library;
+  Future<List<Player>> filteredData;
+
+  // Data for deletion methods
   bool deleteModeOn = false;
   List<Player> deleteList = [];
 
@@ -33,12 +38,8 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
   }
 
   // refresh player library or get it for the first time
-  void getPlayerLibrary() async {
-    DatabaseHelper.instance.getPlayerLibrary().then((result) {
-      setState(() {
-        library = result;
-      });
-    });
+  Future<List<Player>> getPlayerLibrary() async {
+    return await DatabaseHelper.instance.getPlayerLibrary();
   }
 
   // add player to database
@@ -52,7 +53,6 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
     int result =
         await DatabaseHelper.instance.updatePlayer(originalData, newData);
     getPlayerLibrary();
-    return result;
   }
 
   Future<int> removePlayerByID(Player p) async {
@@ -63,33 +63,45 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    getPlayerLibrary();
+    this.library = this.getPlayerLibrary();
+    this.filteredData = this.library;
     super.initState();
-    // library.add(null);
   }
 
   @override
   Widget build(BuildContext context) {
     // setState(() { deleteModeOn = false; });
     return Scaffold(
-      appBar: AppBar(
-          textTheme: Theme.of(context).textTheme,
-          title: (Text("Saved Players"))),
-      floatingActionButton: PlayerFloatingButtons(),
-      body: GridView.builder(
-        padding: EdgeInsets.all(20.0),
-        itemCount: library.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          crossAxisSpacing: 7.0,
-          mainAxisSpacing: 20.0,
-        ),
-        itemBuilder: (context, index) {
-          return PlayerPageIcon(library[index], addPlayer: widget.addPlayer);
-        },
-      ),
-    );
+        appBar: AppBar(
+            textTheme: Theme.of(context).textTheme,
+            title: (Text("Saved Players"))),
+        floatingActionButton: PlayerFloatingButtons(),
+        body: FutureBuilder(
+            future: filteredData,
+            builder:
+                (BuildContext context, AsyncSnapshot<List<Player>> snapshot) {
+              if (snapshot.hasData) {
+                return GridView.builder(
+                  padding: EdgeInsets.all(20.0),
+                  itemCount: snapshot.data.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 7.0,
+                    mainAxisSpacing: 20.0,
+                  ),
+                  itemBuilder: (context, index) {
+                    return PlayerPageIcon(snapshot.data[index],
+                        addPlayer: widget.addPlayer);
+                  },
+                );
+              } else {
+                return Container(
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+            }));
   }
 
   Widget deleteSnackBar(context) {
