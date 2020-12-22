@@ -106,7 +106,7 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
                     fontSize: Theme.of(context).textTheme.headline6.fontSize,
                   )),
               trailing: Text(
-                'group ID: ${library[index].getId()}',
+                'total: ${library[index].getNumPlayers()}',
                 style: TextStyle(color: AppColors.primaryDarkColor),
               ),
             );

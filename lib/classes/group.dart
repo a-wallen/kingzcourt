@@ -42,6 +42,10 @@ class Group {
     return _group_name;
   }
 
+  int getNumPlayers() {
+    return this._num_players;
+  }
+
   int getId() {
     return this._gid;
   }

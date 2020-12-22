@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kingzcourt/algorithms/matching_algo_ihor.dart';
 import 'package:kingzcourt/classes/Playlist.dart';
+import 'package:kingzcourt/classes/colors.dart';
 import 'package:kingzcourt/classes/team_ihor.dart';
 import 'package:kingzcourt/classes/player.dart';
 import 'package:kingzcourt/pages/landing.dart';
@@ -79,7 +80,7 @@ class _RefreshGameButton extends State<RefreshGameButton> {
           }
         },
         child: Icon(Icons.refresh),
-        backgroundColor: Colors.green);
+        backgroundColor: AppColors.primaryColor);
   }
 
   addPlayers() {

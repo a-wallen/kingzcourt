@@ -54,7 +54,7 @@ class _AddPlayerButton extends State<AddPlayerButton> {
               );
             });
       },
-      color: AppColors.accentColor,
+      color: AppColors.primaryDarkColor,
       child: Text(
         'Add player',
         style: TextStyle(fontSize: 16, color: AppColors.primaryAccent),
