@@ -26,7 +26,7 @@ class _AboutPageState extends State<AboutPage> {
                 "Our Mission",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 10.0,
+                  fontSize: 40.0,
                   color: AppColors.primaryDarkColor,
                 ),
               ),
@@ -35,7 +35,7 @@ class _AboutPageState extends State<AboutPage> {
                 "scenario where teams would be picked based on our algorithm.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 5.0,
+                  fontSize: 25.0,
                   color: AppColors.primaryDarkColor,
                 ),
               ),
@@ -43,7 +43,7 @@ class _AboutPageState extends State<AboutPage> {
                 "Project Manager",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 10.0,
+                  fontSize: 40.0,
                   color: AppColors.primaryDarkColor,
                 ),
               ),
@@ -51,15 +51,20 @@ class _AboutPageState extends State<AboutPage> {
                 "Alex Wallen",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 5.0,
+                  fontSize: 25.0,
                   color: AppColors.primaryDarkColor,
                 ),
+              ),
+              Image.asset(
+                'assets/images/Alex.jpg',
+                height: 50,
+                width: 50,
               ),
               Text(
                 "Front-End",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 10.0,
+                  fontSize: 40.0,
                   color: AppColors.primaryDarkColor,
                 ),
               ),
@@ -67,23 +72,33 @@ class _AboutPageState extends State<AboutPage> {
                 "Andrew Varela",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 5.0,
+                  fontSize: 25.0,
                   color: AppColors.primaryDarkColor,
                 ),
+              ),
+              Image.asset(
+                'assets/images/Andrew.jpg',
+                height: 50,
+                width: 50,
               ),
               Text(
                 "Katherine Outcalt",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 5.0,
+                  fontSize: 25.0,
                   color: AppColors.primaryDarkColor,
                 ),
+              ),
+              Image.asset(
+                'assets/images/KatO.jpg',
+                height: 50,
+                width: 50,
               ),
               Text(
                 "Ezra Sackstein",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 5.0,
+                  fontSize: 25.0,
                   color: AppColors.primaryDarkColor,
                 ),
               ),
@@ -91,7 +106,7 @@ class _AboutPageState extends State<AboutPage> {
                 "Back-End",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 10.0,
+                  fontSize: 40.0,
                   color: AppColors.primaryDarkColor,
                 ),
               ),
@@ -99,31 +114,46 @@ class _AboutPageState extends State<AboutPage> {
                 "Bryce Chinn",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 5.0,
+                  fontSize: 25.0,
                   color: AppColors.primaryDarkColor,
                 ),
+              ),
+              Image.asset(
+                'assets/images/Bryce.jpg',
+                height: 50,
+                width: 50,
               ),
               Text(
                 "David Stanko",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 5.0,
+                  fontSize: 25.0,
                   color: AppColors.primaryDarkColor,
                 ),
+              ),
+              Image.asset(
+                'assets/images/David.jpg',
+                height: 50,
+                width: 50,
               ),
               Text(
                 "Ihor Sherstiuk",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 5.0,
+                  fontSize: 25.0,
                   color: AppColors.primaryDarkColor,
                 ),
+              ),
+              Image.asset(
+                'assets/images/Ihor.jpg',
+                height: 50,
+                width: 50,
               ),
               Text(
                 "Databases",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 10.0,
+                  fontSize: 40.0,
                   color: AppColors.primaryDarkColor,
                 ),
               ),
@@ -131,9 +161,14 @@ class _AboutPageState extends State<AboutPage> {
                 "Hector Herrada",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 5.0,
+                  fontSize: 25.0,
                   color: AppColors.primaryDarkColor,
                 ),
+              ),
+              Image.asset(
+                'assets/images/Hector.jpg',
+                height: 50,
+                width: 50,
               ),
             ],
           ),
