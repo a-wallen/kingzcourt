@@ -42,14 +42,17 @@ class _AboutPageState extends State<AboutPage> {
                   color: AppColors.primaryDarkColor,
                 ),
               ),
-              Text(
-                "Project Manager",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 40.0,
-                  fontFamily: 'SansitaSwashed',
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.primaryDarkColor,
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 10.0, 0, 0),
+                child: Text(
+                  "Project Manager",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 40.0,
+                    fontFamily: 'SansitaSwashed',
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.primaryDarkColor,
+                  ),
                 ),
               ),
               ListTile(
@@ -166,7 +169,7 @@ class _AboutPageState extends State<AboutPage> {
                 ),
               ),
               Text(
-                "Databases",
+                "Database",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 40.0,
