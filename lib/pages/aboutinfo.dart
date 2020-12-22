@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kingzcourt/classes/colors.dart';
 import 'package:kingzcourt/widgets/drawer.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AboutPage extends StatefulWidget {
   @override
@@ -27,11 +28,13 @@ class _AboutPageState extends State<AboutPage> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 40.0,
+                  fontFamily: 'SansitaSwashed',
+                  fontWeight: FontWeight.bold,
                   color: AppColors.primaryDarkColor,
                 ),
               ),
               Text(
-                "We wanted to make an ease of access app that simulated an open-gym"
+                "We wanted to make an ease of access app that simulated an open-gym "
                 "scenario where teams would be picked based on our algorithm.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -44,62 +47,70 @@ class _AboutPageState extends State<AboutPage> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 40.0,
+                  fontFamily: 'SansitaSwashed',
+                  fontWeight: FontWeight.bold,
                   color: AppColors.primaryDarkColor,
                 ),
               ),
-              Text(
-                "Alex Wallen",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 25.0,
-                  color: AppColors.primaryDarkColor,
+              ListTile(
+                title: Text(
+                  "Alex Wallen",
+                  style: TextStyle(
+                    fontSize: 25.0,
+                    color: AppColors.primaryDarkColor,
+                  ),
                 ),
-              ),
-              Image.asset(
-                'assets/images/Alex.jpg',
-                height: 50,
-                width: 50,
+                trailing: Image.asset(
+                  'assets/images/Alex.jpg',
+                  height: 100,
+                  width: 50,
+                ),
               ),
               Text(
                 "Front-End",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 40.0,
+                  fontFamily: 'SansitaSwashed',
+                  fontWeight: FontWeight.bold,
                   color: AppColors.primaryDarkColor,
                 ),
               ),
-              Text(
-                "Andrew Varela",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 25.0,
-                  color: AppColors.primaryDarkColor,
+              ListTile(
+                title: Text(
+                  "Andrew Varela",
+                  style: TextStyle(
+                    fontSize: 25.0,
+                    color: AppColors.primaryDarkColor,
+                  ),
+                ),
+                trailing: Image.asset(
+                  'assets/images/Andrew.jpg',
+                  height: 50,
+                  width: 50,
                 ),
               ),
-              Image.asset(
-                'assets/images/Andrew.jpg',
-                height: 50,
-                width: 50,
-              ),
-              Text(
-                "Katherine Outcalt",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 25.0,
-                  color: AppColors.primaryDarkColor,
+              ListTile(
+                title: Text(
+                  "Katherine Outcalt",
+                  style: TextStyle(
+                    fontSize: 25.0,
+                    color: AppColors.primaryDarkColor,
+                  ),
+                ),
+                trailing: Image.asset(
+                  'assets/images/KatO.jpg',
+                  height: 50,
+                  width: 50,
                 ),
               ),
-              Image.asset(
-                'assets/images/KatO.jpg',
-                height: 50,
-                width: 50,
-              ),
-              Text(
-                "Ezra Sackstein",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 25.0,
-                  color: AppColors.primaryDarkColor,
+              ListTile(
+                title: Text(
+                  "Ezra Sackstein",
+                  style: TextStyle(
+                    fontSize: 25.0,
+                    color: AppColors.primaryDarkColor,
+                  ),
                 ),
               ),
               Text(
@@ -107,13 +118,14 @@ class _AboutPageState extends State<AboutPage> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 40.0,
+                  fontFamily: 'SansitaSwashed',
+                  fontWeight: FontWeight.bold,
                   color: AppColors.primaryDarkColor,
                 ),
               ),
               ListTile(
                 title: Text(
                   "Bryce Chinn",
-                  // textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 25.0,
                     color: AppColors.primaryDarkColor,
@@ -128,7 +140,6 @@ class _AboutPageState extends State<AboutPage> {
               ListTile(
                 title: Text(
                   "David Stanko",
-                  //textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 25.0,
                     color: AppColors.primaryDarkColor,
@@ -143,7 +154,6 @@ class _AboutPageState extends State<AboutPage> {
               ListTile(
                 title: Text(
                   "Ihor Sherstiuk",
-                  // textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 25.0,
                     color: AppColors.primaryDarkColor,
@@ -160,21 +170,24 @@ class _AboutPageState extends State<AboutPage> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 40.0,
+                  fontFamily: 'SansitaSwashed',
+                  fontWeight: FontWeight.bold,
                   color: AppColors.primaryDarkColor,
                 ),
               ),
-              Text(
-                "Hector Herrada",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 25.0,
-                  color: AppColors.primaryDarkColor,
+              ListTile(
+                title: Text(
+                  "Hector Herrada",
+                  style: TextStyle(
+                    fontSize: 25.0,
+                    color: AppColors.primaryDarkColor,
+                  ),
                 ),
-              ),
-              Image.asset(
-                'assets/images/Hector.jpg',
-                height: 50,
-                width: 50,
+                trailing: Image.asset(
+                  'assets/images/Hector.jpg',
+                  height: 50,
+                  width: 50,
+                ),
               ),
             ],
           ),
