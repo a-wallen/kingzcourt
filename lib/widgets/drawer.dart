@@ -5,7 +5,6 @@ import 'package:kingzcourt/classes/colors.dart';
 import 'package:kingzcourt/pages/playerlibrary.dart';
 import 'package:kingzcourt/pages/grouplibrary.dart';
 import 'package:kingzcourt/pages/aboutinfo.dart';
-import 'package:kingzcourt/pages/databasetest.dart';
 
 class KingzDrawer extends StatefulWidget {
   @override
@@ -66,20 +65,6 @@ class _KingzDrawerState extends State<KingzDrawer> {
                 ),
                 onTap: () => Navigator.push(context,
                     MaterialPageRoute(builder: (context) => AboutPage()))),
-            Divider(
-              thickness: 1,
-              height: 10,
-            ),
-            ListTile(
-                leading: Icon(Icons.data_usage_outlined),
-                title: Text(
-                  "Database Test",
-                  style: Theme.of(context).textTheme.title,
-                ),
-                onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => DatabaseTestPage()))),
             Divider(
               thickness: 1,
               height: 10,

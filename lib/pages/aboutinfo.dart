@@ -10,136 +10,133 @@ class AboutPage extends StatefulWidget {
 class _AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          textTheme: Theme.of(context).textTheme,
-          title: Text("About"),
-        ),
-        body: Row(
-          children: <Widget>[
-            Text(
-              "Our Mission",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 10.0,
-                color: AppColors.primaryDarkColor,
+    return Scaffold(
+      appBar: AppBar(
+        textTheme: Theme.of(context).textTheme,
+        title: Text("About"),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(10.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                "Our Mission",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 10.0,
+                  color: AppColors.primaryDarkColor,
+                ),
               ),
-            ),
-            Text(
-              "We wanted to make an ease of access app that simulated an open-gym"
-              "scenario where teams would be picked based on our algorithm.",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 5.0,
-                color: AppColors.primaryDarkColor,
+              Text(
+                "We wanted to make an ease of access app that simulated an open-gym"
+                "scenario where teams would be picked based on our algorithm.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 5.0,
+                  color: AppColors.primaryDarkColor,
+                ),
               ),
-            ),
-            Text(
-              "Project Manager",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 10.0,
-                color: AppColors.primaryDarkColor,
+              Text(
+                "Project Manager",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 10.0,
+                  color: AppColors.primaryDarkColor,
+                ),
               ),
-            ),
-            Text(
-              "Alex Wallen",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 5.0,
-                color: AppColors.primaryDarkColor,
+              Text(
+                "Alex Wallen",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 5.0,
+                  color: AppColors.primaryDarkColor,
+                ),
               ),
-            ),
-            Text(
-              "Front-End",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 10.0,
-                color: AppColors.primaryDarkColor,
+              Text(
+                "Front-End",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 10.0,
+                  color: AppColors.primaryDarkColor,
+                ),
               ),
-            ),
-            Text(
-              "Andrew Varela",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 5.0,
-                color: AppColors.primaryDarkColor,
+              Text(
+                "Andrew Varela",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 5.0,
+                  color: AppColors.primaryDarkColor,
+                ),
               ),
-            ),
-            Text(
-              "Katherine Outcalt",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 5.0,
-                color: AppColors.primaryDarkColor,
+              Text(
+                "Katherine Outcalt",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 5.0,
+                  color: AppColors.primaryDarkColor,
+                ),
               ),
-            ),
-            Text(
-              "Ezra Sackstein",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 5.0,
-                color: AppColors.primaryDarkColor,
+              Text(
+                "Ezra Sackstein",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 5.0,
+                  color: AppColors.primaryDarkColor,
+                ),
               ),
-            ),
-            Text(
-              "Back-End",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 10.0,
-                color: AppColors.primaryDarkColor,
+              Text(
+                "Back-End",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 10.0,
+                  color: AppColors.primaryDarkColor,
+                ),
               ),
-            ),
-            Text(
-              "Bryce Chinn",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 5.0,
-                color: AppColors.primaryDarkColor,
+              Text(
+                "Bryce Chinn",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 5.0,
+                  color: AppColors.primaryDarkColor,
+                ),
               ),
-            ),
-            Text(
-              "David Stanko",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 5.0,
-                color: AppColors.primaryDarkColor,
+              Text(
+                "David Stanko",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 5.0,
+                  color: AppColors.primaryDarkColor,
+                ),
               ),
-            ),
-            Text(
-              "Ihor Sherstiuk",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 5.0,
-                color: AppColors.primaryDarkColor,
+              Text(
+                "Ihor Sherstiuk",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 5.0,
+                  color: AppColors.primaryDarkColor,
+                ),
               ),
-            ),
-            Text(
-              "DataBases",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 10.0,
-                color: AppColors.primaryDarkColor,
+              Text(
+                "Databases",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 10.0,
+                  color: AppColors.primaryDarkColor,
+                ),
               ),
-            ),
-            Text(
-              "Alex Wallen",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 5.0,
-                color: AppColors.primaryDarkColor,
+              Text(
+                "Hector Herrada",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 5.0,
+                  color: AppColors.primaryDarkColor,
+                ),
               ),
-            ),
-            Text(
-              "Hector Herrada",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 5.0,
-                color: AppColors.primaryDarkColor,
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

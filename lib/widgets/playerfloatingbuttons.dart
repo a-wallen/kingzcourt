@@ -30,12 +30,12 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
   Future _imgFromGallery() async {
     PickedFile image =
         await picker.getImage(source: ImageSource.gallery, imageQuality: 50);
-    Uint8List bytes = await image.readAsBytes();
-    _img64 = base64Encode(bytes);
-    // setState(() {
-    //   _img64 = base64Encode(bytes);
-    //   print("bytes: $_img64");
-    // });
+    if (image != null) {
+      Uint8List bytes = await image.readAsBytes();
+      setState(() {
+        _img64 = base64Encode(bytes);
+      });
+    }
   }
 
   @override
@@ -70,14 +70,6 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                       return StatefulBuilder(
                         builder: (context, setState) => new AlertDialog(
                             title: Text("Add Player"),
-                            // content: SingleChildScrollView(
-                            //   scrollDirection: Axis.vertical,
-                            //   child: Container(
-                            //     width: 240,
-                            //     height: 360,
-                            //     child:
-                            //   ),
-                            // ),
                             content: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
@@ -85,8 +77,7 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                                       width: 100,
                                       height: 100,
                                       child: GestureDetector(
-                                          onTap: () => _imgFromGallery()
-                                              .then((value) => setState(() {})),
+                                          onTap: () => _imgFromGallery(),
                                           child: _img64 == null
                                               ? FittedBox(
                                                   fit: BoxFit.fill,
@@ -135,7 +126,6 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                                             onPressed: () => {
                                                   setState(() {
                                                     selectedIndex = index;
-                                                    print(selectedIndex);
                                                   })
                                                 },
                                             child: Text(positions[index],

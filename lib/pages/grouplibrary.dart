@@ -73,6 +73,7 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        textTheme: Theme.of(context).textTheme,
         title: Text("Saved Groups"), // TODO add font
       ),
       body: ListView.separated(
