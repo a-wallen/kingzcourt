@@ -1,4 +1,4 @@
-import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -7,7 +7,6 @@ import 'package:kingzcourt/database/databaseHelper.dart';
 import 'groupInspector.dart';
 
 import 'package:kingzcourt/classes/colors.dart'; // class AppColors
-import 'package:kingzcourt/utility/theme.dart';
 import 'package:kingzcourt/pages/landing.dart';
 
 class GroupLibraryPage extends StatefulWidget {
@@ -39,7 +38,6 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
     int newGroupId = await DatabaseHelper.instance.insertGroup(g);
     getGroupLib();
     library.forEach((group) {
-      print("Group Name: ${group.getGroupName()}. ID: ${group.getId()}");
     });
     return newGroupId;
   }
@@ -81,7 +79,6 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
           itemBuilder: (context, index) {
             return ListTile(
               onTap: () async {
-                print("ontap: ${library[index].getGroupName()}");
                 if (widget.addGroup == true) {
                   LandingPage.playlist.addAll(await DatabaseHelper.instance
                       .getGroupsPlayers(library[index]));

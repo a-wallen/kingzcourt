@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:kingzcourt/classes/colors.dart';
-import 'package:kingzcourt/utility/theme.dart';
-import 'package:kingzcourt/widgets/drawer.dart';
 import '../database/databaseHelper.dart';
 import '../classes/player.dart';
 import '../widgets/playerfloatingbuttons.dart';
@@ -25,7 +23,7 @@ class PlayerLibraryPage extends StatefulWidget {
 
 class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
   // Data for library related actions
-  TextEditingController _textEditingController = new TextEditingController();
+  // TextEditingController _textEditingController = new TextEditingController();
   Future<List<Player>> library;
   Future<List<Player>> filteredData;
 
@@ -53,6 +51,7 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
     int result =
         await DatabaseHelper.instance.updatePlayer(originalData, newData);
     getPlayerLibrary();
+    return result;
   }
 
   Future<int> removePlayerByID(Player p) async {
@@ -65,6 +64,7 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
   void initState() {
     this.library = this.getPlayerLibrary();
     this.filteredData = this.library;
+    this.deleteModeOn = false;
     super.initState();
   }
 
@@ -106,9 +106,7 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
 
   Widget deleteSnackBar(context) {
     return BottomSheet(
-      onClosing: () {
-        print("HIIIIIIIIIII");
-      },
+      onClosing: () {},
       builder: (context) {
         return Container(
           color: AppColors.accentColor,
@@ -141,6 +139,7 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
                       for (Player p in deleteList) {
                         removePlayerByID(p);
                       }
+                      deleteList.clear();
                     });
                     Navigator.pop(context);
                   },

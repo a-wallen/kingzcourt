@@ -4,12 +4,8 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:io';
 
 import 'package:kingzcourt/classes/colors.dart';
-import 'package:kingzcourt/utility/theme.dart';
-import 'package:kingzcourt/widgets/drawer.dart';
-import '../database/databaseHelper.dart';
 import '../classes/player.dart';
 import '../pages/playerlibrary.dart';
 
@@ -198,7 +194,7 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                     Scaffold.of(context).showBottomSheet(state.deleteSnackBar);
                   });
                 },
-                child: Icon(Icons.edit),
+                child: Icon(Icons.delete_forever_sharp),
                 backgroundColor: AppColors.primaryDarkColor,
               ),
             ],

@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'dart:io';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
@@ -47,11 +45,8 @@ class DatabaseHelper {
   // Creates all tables for the database
   Future _onCreate(Database db, int version) async {
     await createGroupTable(db, version);
-    print("Created Group Table");
     await createPlayerTable(db, version);
-    print("Created Player Table");
     await createIntermediateTable(db, version);
-    print("Create Intermediate Table");
   }
 
   // Get all groups in db
@@ -114,7 +109,6 @@ class DatabaseHelper {
     List<Map<String, dynamic>> group = await getGroupRows(db, g.getId());
     group.forEach((entry) {
       groupPlayers.add(Player.fromMap(entry));
-      print("ARGH" + Player.fromMap(entry).toString());
     });
     return groupPlayers;
   }

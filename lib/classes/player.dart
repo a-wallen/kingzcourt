@@ -106,13 +106,17 @@ class Player {
 
   //checks if one player is equal to another to avoid the same player being added multiple times
   bool equals(Object o) {
-    if (this == o) return true;
+    // if (this == o) return true;
     Player player = o;
     return (player._first_name == this._first_name &&
         player._last_name == this._last_name &&
         player._position == this._position &&
         player._waitingTime == this._waitingTime &&
         player._imageFilePath == this._imageFilePath);
+  }
+  @override
+  bool operator ==(Object other) {
+    return this.equals(other);
   }
 
   //idea: players should have unique names, so when a player is added,
