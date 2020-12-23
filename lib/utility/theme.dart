@@ -24,7 +24,11 @@ ThemeData kingzTheme() {
   AppBarTheme _appbarTheme(AppBarTheme base) {
     return base.copyWith(
       centerTitle: true,
-      color: AppColors.primaryDarkColor,
+      elevation: 0,
+      iconTheme: IconThemeData(
+        color: AppColors.primaryColor,
+      ),
+      color: Colors.transparent,
     );
   }
 
@@ -45,6 +49,16 @@ ThemeData kingzTheme() {
     );
   }
 
+  FloatingActionButtonThemeData _floatingActionButtonTheme(
+      FloatingActionButtonThemeData base) {
+    return base.copyWith(
+      backgroundColor: AppColors.primaryColor,
+      foregroundColor: Colors.white,
+      splashColor: AppColors.primaryAccent,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+    );
+  }
+
   final ThemeData base = ThemeData.light();
   return base.copyWith(
     canvasColor: AppColors.accentColor,
@@ -52,5 +66,7 @@ ThemeData kingzTheme() {
     appBarTheme: _appbarTheme(base.appBarTheme),
     bottomAppBarTheme: _bottombarTheme(base.bottomAppBarTheme),
     cardTheme: _cardTheme(base.cardTheme),
+    floatingActionButtonTheme:
+        _floatingActionButtonTheme(base.floatingActionButtonTheme),
   );
 }
