@@ -56,7 +56,7 @@ class _AddPlayerButton extends State<AddPlayerButton> {
       },
       color: AppColors.primaryDarkColor,
       child: Text(
-        'Add player',
+        'Add Players',
         style: TextStyle(fontSize: 16, color: AppColors.primaryAccent),
       ),
     );
