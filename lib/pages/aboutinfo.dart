@@ -108,14 +108,18 @@ class _AboutPageState extends State<AboutPage> {
                 ),
               ),
               ListTile(
-                title: Text(
-                  "Ezra Sackstein",
-                  style: TextStyle(
-                    fontSize: 25.0,
-                    color: AppColors.primaryDarkColor,
+                  title: Text(
+                    "Ezra Sackstein",
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      color: AppColors.primaryDarkColor,
+                    ),
                   ),
-                ),
-              ),
+                  trailing: Image.asset(
+                    'assets/images/Ezra.jpg',
+                    height: 50,
+                    width: 50,
+                  )),
               Text(
                 "Back-End",
                 textAlign: TextAlign.center,

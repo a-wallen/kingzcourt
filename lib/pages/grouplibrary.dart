@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -37,8 +36,7 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
   Future<int> addGroup(Group g) async {
     int newGroupId = await DatabaseHelper.instance.insertGroup(g);
     getGroupLib();
-    library.forEach((group) {
-    });
+    library.forEach((group) {});
     return newGroupId;
   }
 
@@ -50,7 +48,6 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
     return result;
   }
 
-  // TODO: Implement UI Features to call this function
   Future<int> removeGroupByID(Group g) async {
     int result = await DatabaseHelper.instance.removeGroup(g);
     getGroupLib();
@@ -72,41 +69,50 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
     return Scaffold(
       appBar: AppBar(
         textTheme: Theme.of(context).textTheme,
-        title: Text("Saved Groups"), // TODO add font
+        title: Text("Saved Groups"),
       ),
       body: ListView.separated(
           itemCount: library.length,
           itemBuilder: (context, index) {
-            return ListTile(
-              onTap: () async {
-                if (widget.addGroup == true) {
-                  LandingPage.playlist.addAll(await DatabaseHelper.instance
-                      .getGroupsPlayers(library[index]));
-
-                  Navigator.pop(context);
-                } else {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => GroupInspector(library[index])),
-                  );
-                }
-              },
-              title: Text('${library[index].getGroupName()}',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: AppColors.primaryDarkColor,
-                    fontWeight:
-                        Theme.of(context).textTheme.bodyText1.fontWeight,
-                    fontFamily:
-                        Theme.of(context).textTheme.bodyText1.fontFamily,
-                    fontSize: Theme.of(context).textTheme.headline6.fontSize,
-                  )),
-              trailing: Text(
-                'total: ${library[index].getNumPlayers()}',
-                style: TextStyle(color: AppColors.primaryDarkColor),
-              ),
-            );
+            return Card(
+                elevation: Theme.of(context).cardTheme.elevation,
+                child: ListTile(
+                  onTap: () async {
+                    if (widget.addGroup == true) {
+                      LandingPage.playlist.addAll(await DatabaseHelper.instance
+                          .getGroupsPlayers(library[index]));
+                      Navigator.pop(context);
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                GroupInspector(library[index])),
+                      );
+                    }
+                  },
+                  leading: Text('${library[index].getGroupName()}',
+                      style: TextStyle(
+                        color: AppColors.primaryDarkColor,
+                        fontWeight:
+                            Theme.of(context).textTheme.bodyText1.fontWeight,
+                        fontFamily:
+                            Theme.of(context).textTheme.bodyText1.fontFamily,
+                        fontSize:
+                            Theme.of(context).textTheme.headline6.fontSize,
+                      )),
+                  title: Text(
+                    'total: ${library[index].getNumPlayers()}',
+                    textAlign: TextAlign.right,
+                    style: TextStyle(color: AppColors.primaryDarkColor),
+                  ),
+                  trailing: IconButton(
+                      onPressed: () {
+                        // deletes group
+                        removeGroupByID(library[index]);
+                      },
+                      icon: Icon(Icons.delete)),
+                ));
           },
           separatorBuilder: (context, index) {
             return Divider(

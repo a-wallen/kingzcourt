@@ -65,6 +65,7 @@ flutter:
    - assets/images/KatO.jpg
    - assets/images/Bryce.jpg
    - assets/images/David.jpg
+   - assets/images/Ezra.jpg
 
   # assets:
   #   - test/pictest.jpg
