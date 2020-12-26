@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:typed_data';
+import 'package:image_cropper/image_cropper.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -21,13 +23,17 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
   var border = CircleBorder();
   List<String> positions;
   int selectedIndex;
+  PickedFile _img_from_gallery;
   String _img64;
 
   Future _imgFromGallery() async {
-    PickedFile image =
-        await picker.getImage(source: ImageSource.gallery, imageQuality: 50);
-    if (image != null) {
-      Uint8List bytes = await image.readAsBytes();
+    _img_from_gallery = await picker.getImage(
+        source: ImageSource.gallery,
+        imageQuality: 50,
+        maxHeight: 700,
+        maxWidth: 700);
+    if (_img_from_gallery != null) {
+      Uint8List bytes = await _img_from_gallery.readAsBytes();
       setState(() {
         _img64 = base64Encode(bytes);
       });
@@ -76,26 +82,26 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                                           onTap: () => _imgFromGallery(),
                                           child: _img64 == null
                                               ? FittedBox(
-                                              fit: BoxFit.fill,
-                                              child: Icon(Icons.add_a_photo,
-                                                  color: AppColors
-                                                      .primaryAccentDark))
+                                                  fit: BoxFit.fill,
+                                                  child: Icon(Icons.add_a_photo,
+                                                      color: AppColors
+                                                          .primaryAccentDark))
                                               : ClipRRect(
-                                              borderRadius:
-                                              BorderRadius.circular(
-                                                  100),
-                                              child: Image.memory(
-                                                base64Decode(_img64),
-                                              )))),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          100),
+                                                  child: Image.memory(
+                                                    base64Decode(_img64),
+                                                  )))),
                                   TextFormField(
                                     controller: firstName,
                                     decoration:
-                                    InputDecoration(hintText: 'First Name'),
+                                        InputDecoration(hintText: 'First Name'),
                                   ),
                                   TextFormField(
                                     controller: lastName,
                                     decoration:
-                                    InputDecoration(hintText: 'Last Name'),
+                                        InputDecoration(hintText: 'Last Name'),
                                   ),
                                   Container(
                                     height: 10,
@@ -103,10 +109,10 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                                   Container(
                                     height: 55,
                                     width:
-                                    MediaQuery.of(context).size.width * 0.7,
+                                        MediaQuery.of(context).size.width * 0.7,
                                     child: GridView.builder(
                                       gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                          SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisSpacing: 5,
                                         crossAxisCount: 5,
                                       ),
@@ -115,24 +121,25 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                                       itemBuilder:
                                           (BuildContext context, int index) {
                                         return FlatButton(
+                                            splashColor: AppColors.primaryColor,
                                             shape: CircleBorder(),
                                             color: index == selectedIndex
-                                                ? AppColors.primaryDarkColor
+                                                ? AppColors.primaryColor
                                                 : Colors.white,
                                             onPressed: () => {
-                                              setState(() {
-                                                selectedIndex = index;
-                                              })
-                                            },
+                                                  setState(() {
+                                                    selectedIndex = index;
+                                                  })
+                                                },
                                             child: Text(positions[index],
                                                 style: TextStyle(
                                                     fontSize: 11,
                                                     fontWeight: FontWeight.bold,
                                                     color: index ==
-                                                        selectedIndex
+                                                            selectedIndex
                                                         ? Colors.white
                                                         : AppColors
-                                                        .primaryDarkColor)));
+                                                            .primaryDarkColor)));
                                       },
                                     ),
                                   ),

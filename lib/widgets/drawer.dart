@@ -23,6 +23,12 @@ class _KingzDrawerState extends State<KingzDrawer> {
             DrawerHeader(
               decoration: BoxDecoration(
                 color: AppColors.primaryDarkColor,
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage(
+                    "assets/Images/drawer_header.jpeg",
+                  ),
+                ),
               ),
               child: Text(
                 "King's Court",

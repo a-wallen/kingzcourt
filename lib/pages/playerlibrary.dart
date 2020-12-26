@@ -24,8 +24,8 @@ class PlayerLibraryPage extends StatefulWidget {
 class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
   // Data for library related actions
   // TextEditingController _textEditingController = new TextEditingController();
-  Future<List<Player>> library;
-  Future<List<Player>> filteredData;
+  List<Player> library;
+  List<Player> filteredData;
 
   // Data for deletion methods
   bool deleteModeOn = false;
@@ -36,8 +36,10 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
   }
 
   // refresh player library or get it for the first time
-  Future<List<Player>> getPlayerLibrary() async {
-    return await DatabaseHelper.instance.getPlayerLibrary();
+  void getPlayerLibrary() async {
+    DatabaseHelper.instance.getPlayerLibrary().then((result) => setState(() {
+          library = result;
+        }));
   }
 
   // add player to database
@@ -62,8 +64,7 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
 
   @override
   void initState() {
-    this.library = this.getPlayerLibrary();
-    this.filteredData = this.library;
+    getPlayerLibrary();
     this.deleteModeOn = false;
     super.initState();
   }
@@ -76,32 +77,21 @@ class _PlayerLibraryPageState extends State<PlayerLibraryPage> {
             textTheme: Theme.of(context).textTheme,
             title: (Text("Saved Players"))),
         floatingActionButton: PlayerFloatingButtons(),
-        body: FutureBuilder(
-            future: filteredData,
-            builder:
-                (BuildContext context, AsyncSnapshot<List<Player>> snapshot) {
-              if (snapshot.hasData) {
-                return GridView.builder(
-                  padding: EdgeInsets.all(20.0),
-                  itemCount: snapshot.data.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 7.0,
-                    mainAxisSpacing: 20.0,
-                  ),
-                  itemBuilder: (context, index) {
-                    return PlayerPageIcon(snapshot.data[index],
-                        addPlayer: widget.addPlayer);
-                  },
-                );
-              } else {
-                return Container(
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
-              }
-            }));
+        body: library == null
+            ? Container()
+            : GridView.builder(
+                padding: EdgeInsets.all(20.0),
+                itemCount: library.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 7.0,
+                  mainAxisSpacing: 20.0,
+                ),
+                itemBuilder: (context, index) {
+                  return PlayerPageIcon(library[index],
+                      addPlayer: widget.addPlayer);
+                },
+              ));
   }
 
   Widget deleteSnackBar(context) {
