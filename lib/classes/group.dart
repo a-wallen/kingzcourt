@@ -66,6 +66,10 @@ class Group {
     this._gid = id;
   }
 
+  void setNumPlayers(int num_players) {
+    this._num_players = num_players;
+  }
+
   //sets group name
   void setGroupName(String newGroupName) {
     _group_name = newGroupName;

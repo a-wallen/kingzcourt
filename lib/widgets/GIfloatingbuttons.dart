@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:kingzcourt/classes/group.dart';
 
 import 'package:kingzcourt/classes/colors.dart';
+import 'package:kingzcourt/database/getGroupLibrary.dart';
 import '../database/databaseHelper.dart';
 import '../classes/player.dart';
 import '../pages/groupInspector.dart';
@@ -38,68 +40,74 @@ class _GI_FloatingButtonsState extends State<GI_FloatingButtons> {
                     builder: (context) {
                       return StatefulBuilder(
                           builder: (context, setState) => AlertDialog(
-                            title: Text("Add Players"),
-                            content: Container(
-                                height: 360.0,
-                                width: 240.0,
-                                child: ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: state.library.length,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return ListTile(
-                                        onTap: () {
-                                          if (state.selectedIndexes.contains(index)) {
-                                            setState(() {
-                                              state.selectedIndexes.remove(index);
-                                            });
-                                          } else {
-                                            setState(() {
-                                              state.selectedIndexes.add(index);
-                                            });
-                                          }
-                                        },
-                                        leading: Icon(Icons.person),
-                                        trailing: state.selectedIndexes
-                                            .contains(index)
-                                            ? Icon(Icons.check_box,
-                                            color: AppColors.primaryColor)
-                                            : Icon(
-                                            Icons.check_box_outline_blank),
-                                        title:
-                                        Text(state.library[index].getFirstName()),
-                                      );
-                                    })),
-                            actions: <Widget>[
-                              FlatButton(
-                                child: Text("add players"),
-                                color: AppColors.primaryColor,
-                                textColor: Colors.white,
-                                onPressed: () {
-                                  List<Player> temp = [];
-                                  state.selectedIndexes.forEach((i) {
-                                    temp.add(state.library[i]);
-                                  });
-                                  temp.forEach((player) {
-                                    DatabaseHelper.instance.insertIntermediate(
-                                        Intermediate(player.getId(),
-                                            state.widget.myGroup.getId()));
-                                  });
-                                  state.selectedIndexes.clear();
-                                  state.getPlayersInGroup();
-                                  state.getPlayerLibrary();
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ],
-                          ));
+                                title: Text("Add Players"),
+                                content: Container(
+                                    height: 360.0,
+                                    width: 240.0,
+                                    child: ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: state.library.length,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          return ListTile(
+                                            onTap: () {
+                                              if (state.selectedIndexes
+                                                  .contains(index)) {
+                                                setState(() {
+                                                  state.selectedIndexes
+                                                      .remove(index);
+                                                });
+                                              } else {
+                                                setState(() {
+                                                  state.selectedIndexes
+                                                      .add(index);
+                                                });
+                                              }
+                                            },
+                                            leading: Icon(Icons.person),
+                                            trailing: state.selectedIndexes
+                                                    .contains(index)
+                                                ? Icon(Icons.check_box,
+                                                    color:
+                                                        AppColors.primaryColor)
+                                                : Icon(Icons
+                                                    .check_box_outline_blank),
+                                            title: Text(state.library[index]
+                                                .getFirstName()),
+                                          );
+                                        })),
+                                actions: <Widget>[
+                                  FlatButton(
+                                    child: Text("add players"),
+                                    color: AppColors.primaryColor,
+                                    textColor: Colors.white,
+                                    onPressed: () {
+                                      List<Player> temp = [];
+                                      Group newgroup = state.widget.myGroup;
+                                      state.selectedIndexes.forEach((i) {
+                                        temp.add(state.library[i]);
+                                      });
+                                      temp.forEach((player) {
+                                        DatabaseHelper.instance
+                                            .insertIntermediate(Intermediate(
+                                                player.getId(),
+                                                state.widget.myGroup.getId()));
+                                      });
+                                      newgroup.setNumPlayers(
+                                          state.widget.myGroup.getNumPlayers() +
+                                              temp.length);
+                                      DatabaseHelper.instance.updateGroup(
+                                          state.widget.myGroup, newgroup);
+                                      state.selectedIndexes.clear();
+                                      state.getPlayersInGroup();
+                                      state.getPlayerLibrary();
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ],
+                              ));
                     },
                   );
-                  /*state.addPlayer(
-                      Player(firstName.text, "Wallen", "OH", 0, "path/path"));*/
-                  // updatePlayerData(
-                  //     library[9], Player("Hector", "Herrada", "OH", 0, "path/path"));
-                  // removePlayerByID(library[1]);
                 },
                 child: Icon(Icons.add),
                 backgroundColor: AppColors.primaryDarkColor,

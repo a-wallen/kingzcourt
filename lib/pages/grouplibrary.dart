@@ -36,7 +36,6 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
   Future<int> addGroup(Group g) async {
     int newGroupId = await DatabaseHelper.instance.insertGroup(g);
     getGroupLib();
-    library.forEach((group) {});
     return newGroupId;
   }
 
