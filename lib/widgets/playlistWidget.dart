@@ -17,11 +17,18 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
   @override
   Widget build(BuildContext context) {
     if (playlist.isNotEmpty) {
-      return ListView.builder(
+      return ListView.separated(
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        separatorBuilder: (BuildContext context, int index) => Divider(
+          color: AppColors.primaryAccentDark,
+          height: 1.0,
+        ),
         itemCount: playlist.length,
         itemBuilder: (context, index) {
           Player curPlayer = playlist.elementAt(index);
           return Card(
+            elevation: 0.0,
             child: ListTile(
               tileColor: curPlayer.getSkipGame() == false
                   ? Colors.transparent
@@ -93,10 +100,13 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
         },
       );
     } else {
-      return Container(
-        alignment: Alignment.center,
-        child: Text('Playlist is empty. Try adding players.',
-            style: TextStyle(fontSize: 20, color: AppColors.primaryAccentDark)),
+      return Center(
+        child: Container(
+          alignment: Alignment.center,
+          child: Text('Playlist is empty. Add players.',
+              style:
+                  TextStyle(fontSize: 20, color: AppColors.primaryAccentDark)),
+        ),
       );
     }
   }

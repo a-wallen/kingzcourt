@@ -96,6 +96,8 @@ class _GI_FloatingButtonsState extends State<GI_FloatingButtons> {
                                       newgroup.setNumPlayers(
                                           state.widget.myGroup.getNumPlayers() +
                                               temp.length);
+                                      state.widget.myGroup.setNumPlayers(
+                                          newgroup.getNumPlayers());
                                       DatabaseHelper.instance.updateGroup(
                                           state.widget.myGroup, newgroup);
                                       state.selectedIndexes.clear();

@@ -14,10 +14,21 @@ ThemeData kingzTheme() {
 
   TextTheme _basicText(TextTheme base) {
     return base.copyWith(
-      title: base.headline1.copyWith(
+      title: base.title.copyWith(
           fontFamily: 'SansitaSwashed',
           fontWeight: FontWeight.w700,
           color: AppColors.primaryColor),
+      body2: base.body2.copyWith(
+          fontFamily: 'SansitaSwashed',
+          fontWeight: FontWeight.w700,
+          color: Colors.white,
+          fontSize: 16),
+      body1: base.body1.copyWith(
+        fontFamily: 'SansitaSwashed',
+        fontWeight: FontWeight.w700,
+        color: AppColors.primaryDarkColor,
+        fontSize: 16,
+      ),
     );
   }
 

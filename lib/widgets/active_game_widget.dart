@@ -1,5 +1,6 @@
 import 'package:kingzcourt/widgets/refresh_game_button.dart';
 import 'active_player_widget.dart';
+import 'package:kingzcourt/classes/colors.dart';
 import 'playerpageicon.dart';
 import 'package:kingzcourt/classes/player.dart';
 import 'package:kingzcourt/classes/Playlist.dart';
@@ -12,7 +13,8 @@ class ActiveGameWidget extends StatefulWidget {
   _ActiveGameWidgetState createState() => _ActiveGameWidgetState();
   Team _team1;
   Team _team2;
-
+  final double circleLabelRadius = 24.0;
+  final double dividerSize = 5.0;
   //constructor for teams that will be displayed:
   ActiveGameWidget(Team newTeam1, Team newTeam2) {
     _team1 = newTeam1;
@@ -41,57 +43,99 @@ class _ActiveGameWidgetState extends State<ActiveGameWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 410,
-        height: 300,
+        width: MediaQuery.of(context).size.width,
+        // height: MediaQuery.of(context).size.height / 2,
         decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.red[500],
-            ),
-            borderRadius: BorderRadius.all(Radius.circular(20))),
-        child: Wrap(children: [
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [AppColors.primaryColor, Colors.white]),
+        ),
+        child: Row(children: [
           //displaying the players on each team:
-
-          Container(
-              height: 300,
-              width: 190,
-              //color: Colors.amber,
-              child: GridView.count(
-                  padding: EdgeInsets.only(left: 3),
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  crossAxisCount: 2,
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    //makes the number of active player widgets that correspond to the team size:
-                    for (Player i in widget._team1.getPlayersOnTeam())
-                      //PlayerIcon(i, isTeam: true)
-                      PlayerIcon(i)
-                  ])),
-          Padding(
-              padding: EdgeInsets.only(left: 10, right: 10),
-              child: Container(
-                  width: 5,
-                  height: 298,
-                  decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  child: Text(''))),
-          Container(
-              height: 300,
-              width: 190,
-              //color: Colors.lightGreen,
-              child: GridView.count(
-                  padding: EdgeInsets.only(right: 3),
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  crossAxisCount: 2,
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    //makes the number of active player widgets that correspond to the team size:
-                    for (Player i in widget._team2.getPlayersOnTeam())
-                      //PlayerIcon(i, isTeam: false)
-                      PlayerIcon(i)
-                  ])),
+          Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Container(
+                  // height: MediaQuery.of(context).size.height / 2,
+                  width: (MediaQuery.of(context).size.width / 2) -
+                      widget.dividerSize / 2,
+                  // color: Colors.amber,
+                  child: GridView.count(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 3, vertical: 15.0),
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      crossAxisCount: 2,
+                      scrollDirection: Axis.vertical,
+                      children: [
+                        //makes the number of active player widgets that correspond to the team size:
+                        for (Player i in widget._team1.getPlayersOnTeam())
+                          //PlayerIcon(i, isTeam: true)
+                          PlayerIcon(i)
+                      ])),
+              Positioned(
+                  top: -widget.circleLabelRadius,
+                  left: (MediaQuery.of(context).size.width / 4) -
+                      widget.dividerSize / 2 -
+                      widget.circleLabelRadius,
+                  child: CircleAvatar(
+                    radius: widget.circleLabelRadius,
+                    backgroundColor: Colors.white,
+                    child: Text(
+                      "T1",
+                      style: Theme.of(context).textTheme.title,
+                    ),
+                  )),
+            ],
+          ),
+          Expanded(
+            child: Container(
+              height:
+                  100, // this container should adjust to the height of the widget
+              width: widget.dividerSize,
+              color: Colors.white38,
+            ),
+          ),
+          Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Container(
+                  // height: MediaQuery.of(context).size.height / 2,
+                  width: (MediaQuery.of(context).size.width / 2) - 2.5,
+                  //color: Colors.lightGreen,
+                  child: GridView.count(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 3, vertical: 15.0),
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      crossAxisCount: 2,
+                      scrollDirection: Axis.vertical,
+                      children: [
+                        //makes the number of active player widgets that correspond to the team size:
+                        for (Player i in widget._team2.getPlayersOnTeam())
+                          //PlayerIcon(i, isTeam: false)
+                          PlayerIcon(i)
+                      ])),
+              Positioned(
+                  top: -widget.circleLabelRadius,
+                  left: (MediaQuery.of(context).size.width / 4) -
+                      widget.dividerSize / 2 -
+                      widget.circleLabelRadius,
+                  child: CircleAvatar(
+                    radius: widget.circleLabelRadius,
+                    backgroundColor: Colors.white,
+                    child: Text(
+                      "T2",
+                      style: Theme.of(context).textTheme.title,
+                    ),
+                  )),
+            ],
+          ),
         ]));
   }
 }
