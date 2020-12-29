@@ -1,8 +1,10 @@
 import 'package:sqflite/sqflite.dart';
 
-Future<List<Map<String, dynamic>>> getGroupLib(Database db, int gid) async {
+Future<List<Map<String, dynamic>>> getGroupLibPlayerCount(
+    Database db, int gid) async {
   return await db.rawQuery('''
-select num_players from [GROUP] g
-where g.g_id = ${gid});
+select COUNT(*)
+from PLAYER_GROUP pg
+where pg.g_id = ${gid};
 ''');
 }
