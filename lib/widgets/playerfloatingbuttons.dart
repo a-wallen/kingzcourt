@@ -11,6 +11,9 @@ import 'package:kingzcourt/classes/colors.dart';
 import '../classes/player.dart';
 import '../pages/playerlibrary.dart';
 
+//Source for image cropper: Youtube: Flutter Camera Tutorial - Image Pick and Crop | Quick & Easy.
+//Link: https://www.youtube.com/watch?v=U_yqwBdb1jE
+
 class PlayerFloatingButtons extends StatefulWidget {
   @override
   _PlayerFloatingButtonsState createState() => _PlayerFloatingButtonsState();
@@ -26,7 +29,14 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
   PickedFile _img_from_gallery;
   String _img64;
 
+  //from tutorial:
+  bool _inProcess =
+      false; //this is to address the short pause that happens while the cropper loads
+
   Future _imgFromGallery() async {
+    this.setState(() {
+      _inProcess = true;
+    });
     _img_from_gallery = await picker.getImage(
         source: ImageSource.gallery,
         imageQuality: 50,
@@ -34,8 +44,30 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
         maxWidth: 700);
     if (_img_from_gallery != null) {
       Uint8List bytes = await _img_from_gallery.readAsBytes();
+      //crops to a 1-by-1 image
+      //MADE FOR ANDROID USERS
+      File cropped = await ImageCropper.cropImage(
+          sourcePath: _img_from_gallery.path,
+          aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+          compressQuality: 100,
+          maxWidth: 700,
+          maxHeight: 700,
+          compressFormat: ImageCompressFormat.jpg,
+          androidUiSettings: AndroidUiSettings(
+              toolbarColor: Colors.deepOrange,
+              toolbarTitle: "Image cropper",
+              statusBarColor: Colors.deepOrange.shade700,
+              backgroundColor: Colors.white));
       setState(() {
+        //casting because I got an error that said I can't assign a File to a PickedFile
+        //this was not in the tutorial
+        _img_from_gallery = cropped as PickedFile;
+        _inProcess = false;
         _img64 = base64Encode(bytes);
+      });
+    } else {
+      this.setState(() {
+        _inProcess = false;
       });
     }
   }
@@ -93,6 +125,23 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                                                   child: Image.memory(
                                                     base64Decode(_img64),
                                                   )))),
+                                  //a conditional statement to check _inProcess
+                                  (_inProcess)
+                                      ? Container(
+                                          child: Center(
+                                            //a loading sign
+                                            child: CircularProgressIndicator(),
+                                          ),
+                                          color: Colors.white,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.95,
+
+                                          //if false, display nothing
+                                        )
+                                      : Center(),
+
                                   TextFormField(
                                     controller: firstName,
                                     decoration:
