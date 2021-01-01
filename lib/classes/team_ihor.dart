@@ -76,7 +76,7 @@ class Team {
   }
 
   bool isNotEmpty() {
-    return !(_positions.length == _teamSize);
+    return _playerList.isNotEmpty;
   }
 
   void updateTeamSize(int newTeamSize) {
