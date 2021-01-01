@@ -40,6 +40,7 @@ ThemeData kingzTheme() {
         color: AppColors.primaryColor,
       ),
       color: Colors.transparent,
+      brightness: Brightness.light,
     );
   }
 
