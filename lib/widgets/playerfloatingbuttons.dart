@@ -37,13 +37,13 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
     this.setState(() {
       _inProcess = true;
     });
+    //_inProcess = true;
     _img_from_gallery = await picker.getImage(
         source: ImageSource.gallery,
         imageQuality: 50,
         maxHeight: 700,
         maxWidth: 700);
     if (_img_from_gallery != null) {
-      Uint8List bytes = await _img_from_gallery.readAsBytes();
       //crops to a 1-by-1 image
       //MADE FOR ANDROID USERS
       File cropped = await ImageCropper.cropImage(
@@ -58,17 +58,20 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
               toolbarTitle: "Image cropper",
               statusBarColor: Colors.deepOrange.shade700,
               backgroundColor: Colors.white));
-      setState(() {
-        //casting because I got an error that said I can't assign a File to a PickedFile
-        //this was not in the tutorial
-        _img_from_gallery = cropped as PickedFile;
+
+      Uint8List bytes = await cropped.readAsBytes();
+      //_img_from_gallery = cropped as PickedFile;
+      _img64 = base64Encode(bytes);
+      //_inProcess = false;
+
+      this.setState(() {
         _inProcess = false;
-        _img64 = base64Encode(bytes);
       });
     } else {
       this.setState(() {
         _inProcess = false;
       });
+      //_inProcess = false;
     }
   }
 
@@ -111,7 +114,9 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                                       width: 100,
                                       height: 100,
                                       child: GestureDetector(
-                                          onTap: () => _imgFromGallery(),
+                                          onTap: () => _imgFromGallery().then(
+                                              (_) => setState(
+                                                  () {})), //From what it looks like when you call setState inside that function it calls setState of the whole widget, not the Stateful builder. I am not sure how it works, but it works
                                           child: _img64 == null
                                               ? FittedBox(
                                                   fit: BoxFit.fill,
