@@ -3,6 +3,7 @@ import 'package:kingzcourt/classes/colors.dart';
 import 'package:kingzcourt/classes/group.dart';
 import 'package:kingzcourt/classes/player.dart';
 import 'package:kingzcourt/classes/intermediate.dart';
+import 'package:kingzcourt/database/getGroupLibrary.dart';
 import 'package:kingzcourt/widgets/groupinspectorpageicon.dart';
 import 'package:kingzcourt/database/databaseHelper.dart';
 import '../widgets/GIfloatingbuttons.dart';
@@ -51,8 +52,12 @@ class _GroupInspectorState extends State<GroupInspector> {
   }
 
   Future<int> removePlayerFromGroup(Player p, Group g) async {
-    int result = await DatabaseHelper.instance.removeIntermediate(Intermediate(p.getId(), g.getId()));
-    getPlayerLibrary();
+    int result = await DatabaseHelper.instance
+        .removeIntermediate(Intermediate(p.getId(), g.getId()));
+    Group groupUpdatedSize = widget.myGroup;
+    groupUpdatedSize.setNumPlayers(widget.myGroup.getNumPlayers() - 1);
+    await DatabaseHelper.instance.updateGroup(widget.myGroup, groupUpdatedSize);
+    getPlayersInGroup();
     return result;
   }
 
@@ -68,38 +73,36 @@ class _GroupInspectorState extends State<GroupInspector> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          textTheme: Theme.of(context).textTheme,
-          title: Text(widget.myGroup.getGroupName()),
-        ),
-        body: group.isEmpty
-            ? Center(
-                child: Text(
-                  "add players to this group",
-                  style: TextStyle(
-                    color: AppColors.primaryDarkColor,
-                    fontWeight:
-                        Theme.of(context).textTheme.bodyText1.fontWeight,
-                    fontFamily:
-                        Theme.of(context).textTheme.bodyText1.fontFamily,
-                    fontSize: Theme.of(context).textTheme.headline6.fontSize,
-                  ),
+      appBar: AppBar(
+        textTheme: Theme.of(context).textTheme,
+        title: Text(widget.myGroup.getGroupName()),
+      ),
+      body: group.isEmpty
+          ? Center(
+              child: Text(
+                "add players to this group",
+                style: TextStyle(
+                  color: AppColors.primaryDarkColor,
+                  fontWeight: Theme.of(context).textTheme.bodyText1.fontWeight,
+                  fontFamily: Theme.of(context).textTheme.bodyText1.fontFamily,
+                  fontSize: Theme.of(context).textTheme.headline6.fontSize,
                 ),
-              )
-            : GridView.builder(
-                padding: EdgeInsets.all(20.0),
-                itemCount: group.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 7.0,
-                  mainAxisSpacing: 20.0,
-                ),
-                itemBuilder: (context, index) {
-                  return GroupInspIcon(group[index]);
-                },
               ),
-        floatingActionButton: GI_FloatingButtons(),
-        );
+            )
+          : GridView.builder(
+              padding: EdgeInsets.all(20.0),
+              itemCount: group.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 7.0,
+                mainAxisSpacing: 20.0,
+              ),
+              itemBuilder: (context, index) {
+                return GroupInspIcon(group[index]);
+              },
+            ),
+      floatingActionButton: GI_FloatingButtons(),
+    );
   }
 
   Widget deleteSnackBar(context) {
@@ -127,7 +130,7 @@ class _GroupInspectorState extends State<GroupInspector> {
                     style: TextStyle(
                         color: AppColors.primaryColor,
                         fontFamily:
-                        Theme.of(context).textTheme.headline1.fontFamily),
+                            Theme.of(context).textTheme.headline1.fontFamily),
                     textScaleFactor: 1.5,
                   )),
               FlatButton(
@@ -147,7 +150,7 @@ class _GroupInspectorState extends State<GroupInspector> {
                     style: TextStyle(
                         color: AppColors.primaryAccentDark,
                         fontFamily:
-                        Theme.of(context).textTheme.headline1.fontFamily),
+                            Theme.of(context).textTheme.headline1.fontFamily),
                     textScaleFactor: 1.5,
                   )),
             ],

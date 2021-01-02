@@ -87,7 +87,7 @@ class _GroupLibraryPageState extends State<GroupLibraryPage> {
                         MaterialPageRoute(
                             builder: (context) =>
                                 GroupInspector(library[index])),
-                      );
+                      ).then((value) => getGroupLib());
                     }
                   },
                   leading: Text('${library[index].getGroupName()}',
