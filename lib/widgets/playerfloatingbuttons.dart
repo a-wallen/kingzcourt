@@ -108,93 +108,87 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                             content: SingleChildScrollView(
                               child: Column(
                                 children: [
-                                  Row(children: [
-                                    //just to fill the space
-                                    Container(width: 25, height: 100),
-                                    Container(
-                                        width: 100,
-                                        height: 100,
-                                        child: GestureDetector(
+                                  if (_img64 == null)
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Container(
+                                              child: GestureDetector(
                                             onTap: () => _getImage(
                                                     ImageSource.gallery)
                                                 .then((_) => setState(
                                                     () {})), //From what it looks like when you call setState inside that function it calls setState of the whole widget, not the Stateful builder. I am not sure how it works, but it works
-                                            child: _img64 == null
-                                                ? Container(
-                                                    child: Text(
-                                                        "Add picture from gallery",
-                                                        style: TextStyle(
-                                                            color: Colors.black,
-                                                            fontFamily:
-                                                            Theme.of(context).textTheme.headline1.fontFamily)
-                                                    ),
-                                                    color:
-                                                        Colors.deepOrangeAccent)
-
-                                                //this button displays the image; the other one doesn't
-                                                : Container(
-                                                    child: ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(100),
-                                                        child: Image.memory(
-                                                          base64Decode(_img64),
-                                                        ))))),
-                                    //a conditional statement to check _inProcess
-                                    (_inProcess)
-                                        ? Container(
-                                            child: Center(
-                                              //a loading sign
-                                              child:
-                                                  CircularProgressIndicator(),
-                                            ),
-                                            color: Colors.white,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.95,
-
-                                            //if false, display nothing
-                                          )
-                                        : Center(),
-                                    //to fill the space between the buttons:
-                                    Container(width: 10, height: 100),
-                                    Container(
-                                        width: 100,
-                                        height: 100,
-                                        child: GestureDetector(
-                                            onTap: () => _getImage(
-                                                    ImageSource.camera)
-                                                .then((_) => setState(
-                                                    () {})), //From what it looks like when you call setState inside that function it calls setState of the whole widget, not the Stateful builder. I am not sure how it works, but it works
-                                            child: _img64 == null
-                                                ? Container(
-                                                    child: Text(
-                                                        "Take picture from camera",
-                                                        style: TextStyle(
-                                                            color: Colors.black,
-                                                            fontFamily:
-                                                            Theme.of(context).textTheme.headline1.fontFamily)),
-                                                    color: Colors.blueGrey)
-                                                : Container() //empty container
+                                            child: Container(
+                                                child: Column(
+                                              children: [
+                                                Icon(
+                                                  Icons.photo_album_outlined,
+                                                  size: 40.0,
+                                                ),
+                                                Text("Gallery",
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontFamily:
+                                                            Theme.of(context)
+                                                                .textTheme
+                                                                .headline1
+                                                                .fontFamily)),
+                                              ],
                                             )),
-                                    (_inProcess)
-                                        ? Container(
-                                            child: Center(
-                                              //a loading sign
-                                              child:
-                                                  CircularProgressIndicator(),
-                                            ),
-                                            color: Colors.white,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.95,
+                                            //this button displays the image; the other one doesn't
+                                          )),
+                                          Padding(
+                                              padding: EdgeInsets.all(10.0)),
+                                          Container(
+                                              child: GestureDetector(
+                                                  onTap: () => _getImage(
+                                                          ImageSource.camera)
+                                                      .then((_) => setState(
+                                                          () {})), //From what it looks like when you call setState inside that function it calls setState of the whole widget, not the Stateful builder. I am not sure how it works, but it works
+                                                  child: Container(
+                                                    child: Column(
+                                                      children: [
+                                                        Icon(Icons.camera,
+                                                            size: 40.0),
+                                                        Text("Camera",
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .black,
+                                                                fontFamily: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .headline1
+                                                                    .fontFamily)),
+                                                      ],
+                                                    ),
+                                                  )
+                                                  //empty container
+                                                  )),
+                                        ])
+                                  else if (_img64 != null)
+                                    Container(
+                                        child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(100.0),
+                                            child: Image.memory(
+                                              base64Decode(_img64),
+                                            )))
+                                  else if (_inProcess)
+                                    Container(
+                                      child: Center(
+                                        //a loading sign
+                                        child: CircularProgressIndicator(),
+                                      ),
+                                      color: Colors.white,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.95,
 
-                                            //if false, display nothing
-                                          )
-                                        : Center(),
-                                  ]),
+                                      //if false, display nothing
+                                    )
+                                  else
+                                    Container(),
                                   TextFormField(
                                     controller: firstName,
                                     decoration:
@@ -205,9 +199,10 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                                     decoration:
                                         InputDecoration(hintText: 'Last Name'),
                                   ),
-                                  Container(
-                                    height: 10,
-                                  ),
+                                  // Container(
+                                  //   height: 10,
+                                  // ),
+                                  Padding(padding: EdgeInsets.all(10.0)),
                                   Container(
                                     height: 55,
                                     width:
