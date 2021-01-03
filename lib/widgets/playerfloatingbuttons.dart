@@ -26,37 +26,35 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
   var border = CircleBorder();
   List<String> positions;
   int selectedIndex;
-  PickedFile _img_from_gallery;
+  PickedFile _img;
+  //File _img;
   String _img64;
 
   //from tutorial:
   bool _inProcess =
       false; //this is to address the short pause that happens while the cropper loads
 
-  Future _imgFromGallery() async {
+  Future _getImage(ImageSource source) async {
     this.setState(() {
       _inProcess = true;
     });
     //_inProcess = true;
-    _img_from_gallery = await picker.getImage(
-        source: ImageSource.gallery,
-        imageQuality: 50,
-        maxHeight: 700,
-        maxWidth: 700);
-    if (_img_from_gallery != null) {
+    _img = await picker.getImage(
+        source: source, imageQuality: 50, maxHeight: 700, maxWidth: 700);
+    if (_img != null) {
       //crops to a 1-by-1 image
       //MADE FOR ANDROID USERS
       File cropped = await ImageCropper.cropImage(
-          sourcePath: _img_from_gallery.path,
+          sourcePath: _img.path,
           aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
           compressQuality: 100,
           maxWidth: 700,
           maxHeight: 700,
           compressFormat: ImageCompressFormat.jpg,
           androidUiSettings: AndroidUiSettings(
-              toolbarColor: Colors.deepOrange,
+              toolbarColor: Colors.deepOrangeAccent,
               toolbarTitle: "Image cropper",
-              statusBarColor: Colors.deepOrange.shade700,
+              statusBarColor: Colors.deepOrangeAccent,
               backgroundColor: Colors.white));
 
       Uint8List bytes = await cropped.readAsBytes();
@@ -110,43 +108,93 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                             content: SingleChildScrollView(
                               child: Column(
                                 children: [
-                                  Container(
-                                      width: 100,
-                                      height: 100,
-                                      child: GestureDetector(
-                                          onTap: () => _imgFromGallery().then(
-                                              (_) => setState(
-                                                  () {})), //From what it looks like when you call setState inside that function it calls setState of the whole widget, not the Stateful builder. I am not sure how it works, but it works
-                                          child: _img64 == null
-                                              ? FittedBox(
-                                                  fit: BoxFit.fill,
-                                                  child: Icon(Icons.add_a_photo,
-                                                      color: AppColors
-                                                          .primaryAccentDark))
-                                              : ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          100),
-                                                  child: Image.memory(
-                                                    base64Decode(_img64),
-                                                  )))),
-                                  //a conditional statement to check _inProcess
-                                  (_inProcess)
-                                      ? Container(
-                                          child: Center(
-                                            //a loading sign
-                                            child: CircularProgressIndicator(),
-                                          ),
-                                          color: Colors.white,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.95,
+                                  Row(children: [
+                                    //just to fill the space
+                                    Container(width: 25, height: 100),
+                                    Container(
+                                        width: 100,
+                                        height: 100,
+                                        child: GestureDetector(
+                                            onTap: () => _getImage(
+                                                    ImageSource.gallery)
+                                                .then((_) => setState(
+                                                    () {})), //From what it looks like when you call setState inside that function it calls setState of the whole widget, not the Stateful builder. I am not sure how it works, but it works
+                                            child: _img64 == null
+                                                ? Container(
+                                                    child: Text(
+                                                        "Add picture from gallery",
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontFamily:
+                                                            Theme.of(context).textTheme.headline1.fontFamily)
+                                                    ),
+                                                    color:
+                                                        Colors.deepOrangeAccent)
 
-                                          //if false, display nothing
-                                        )
-                                      : Center(),
+                                                //this button displays the image; the other one doesn't
+                                                : Container(
+                                                    child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(100),
+                                                        child: Image.memory(
+                                                          base64Decode(_img64),
+                                                        ))))),
+                                    //a conditional statement to check _inProcess
+                                    (_inProcess)
+                                        ? Container(
+                                            child: Center(
+                                              //a loading sign
+                                              child:
+                                                  CircularProgressIndicator(),
+                                            ),
+                                            color: Colors.white,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.95,
 
+                                            //if false, display nothing
+                                          )
+                                        : Center(),
+                                    //to fill the space between the buttons:
+                                    Container(width: 10, height: 100),
+                                    Container(
+                                        width: 100,
+                                        height: 100,
+                                        child: GestureDetector(
+                                            onTap: () => _getImage(
+                                                    ImageSource.camera)
+                                                .then((_) => setState(
+                                                    () {})), //From what it looks like when you call setState inside that function it calls setState of the whole widget, not the Stateful builder. I am not sure how it works, but it works
+                                            child: _img64 == null
+                                                ? Container(
+                                                    child: Text(
+                                                        "Take picture from camera",
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontFamily:
+                                                            Theme.of(context).textTheme.headline1.fontFamily)),
+                                                    color: Colors.blueGrey)
+                                                : Container() //empty container
+                                            )),
+                                    (_inProcess)
+                                        ? Container(
+                                            child: Center(
+                                              //a loading sign
+                                              child:
+                                                  CircularProgressIndicator(),
+                                            ),
+                                            color: Colors.white,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.95,
+
+                                            //if false, display nothing
+                                          )
+                                        : Center(),
+                                  ]),
                                   TextFormField(
                                     controller: firstName,
                                     decoration:
