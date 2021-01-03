@@ -4,7 +4,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:kingzcourt/classes/group.dart';
 
 import 'package:kingzcourt/classes/colors.dart';
-import 'package:kingzcourt/database/getGroupLibrary.dart';
 import '../database/databaseHelper.dart';
 import '../classes/player.dart';
 import '../pages/groupInspector.dart';

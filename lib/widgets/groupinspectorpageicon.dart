@@ -37,15 +37,15 @@ class _GroupInspIconState extends State<GroupInspIcon> {
           color: Colors.transparent,
           child: widget.player.getImageFilePath() == null
               ? FittedBox(
-              fit: BoxFit.fill,
-              child: Icon(Icons.account_circle_sharp,
-                  color: AppColors.primaryAccentDark))
+                  fit: BoxFit.fill,
+                  child: Icon(Icons.account_circle_sharp,
+                      color: AppColors.primaryAccentDark))
               : ClipRRect(
-            borderRadius: BorderRadius.circular(100),
-            child: Image.memory(
-              base64Decode(widget.player.getImageFilePath()),
-            ),
-          ),
+                  borderRadius: BorderRadius.circular(100),
+                  child: Image.memory(
+                    base64Decode(widget.player.getImageFilePath()),
+                  ),
+                ),
         ),
         Positioned(
           right: 3,
