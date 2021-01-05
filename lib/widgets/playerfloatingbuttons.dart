@@ -125,6 +125,7 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                                                 Icon(
                                                   Icons.photo_album_outlined,
                                                   size: 40.0,
+                                                  color: AppColors.accentColor,
                                                 ),
                                                 Text("Gallery",
                                                     style: TextStyle(
@@ -150,6 +151,7 @@ class _PlayerFloatingButtonsState extends State<PlayerFloatingButtons> {
                                                     child: Column(
                                                       children: [
                                                         Icon(Icons.camera,
+                                                            color: AppColors.accentColor,
                                                             size: 40.0),
                                                         Text("Camera",
                                                             style: TextStyle(

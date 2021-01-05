@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kingzcourt/classes/colors.dart';
-import 'package:kingzcourt/widgets/drawer.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AboutPage extends StatefulWidget {
   @override
@@ -64,7 +62,7 @@ class _AboutPageState extends State<AboutPage> {
                   ),
                 ),
                 trailing: Image.asset(
-                  'assets/images/Alex.jpg',
+                  'assets/Images/Alex.jpg',
                   height: 100,
                   width: 50,
                 ),
@@ -88,7 +86,7 @@ class _AboutPageState extends State<AboutPage> {
                   ),
                 ),
                 trailing: Image.asset(
-                  'assets/images/Andrew.jpg',
+                  'assets/Images/Andrew.jpg',
                   height: 50,
                   width: 50,
                 ),
@@ -102,7 +100,7 @@ class _AboutPageState extends State<AboutPage> {
                   ),
                 ),
                 trailing: Image.asset(
-                  'assets/images/KatO.jpg',
+                  'assets/Images/KatO.jpg',
                   height: 50,
                   width: 50,
                 ),
@@ -115,11 +113,8 @@ class _AboutPageState extends State<AboutPage> {
                       color: AppColors.primaryDarkColor,
                     ),
                   ),
-                  trailing: Image.asset(
-                    'assets/images/Ezra.jpg',
-                    height: 50,
-                    width: 50,
-                  )),
+                  trailing: Icon(Icons.person, size: 50,),
+                  ),
               Text(
                 "Back-End",
                 textAlign: TextAlign.center,
@@ -139,7 +134,7 @@ class _AboutPageState extends State<AboutPage> {
                   ),
                 ),
                 trailing: Image.asset(
-                  'assets/images/Bryce.jpg',
+                  'assets/Images/Bryce.jpg',
                   height: 50,
                   width: 50,
                 ),
@@ -153,7 +148,7 @@ class _AboutPageState extends State<AboutPage> {
                   ),
                 ),
                 trailing: Image.asset(
-                  'assets/images/David.jpg',
+                  'assets/Images/David.jpg',
                   height: 50,
                   width: 50,
                 ),
@@ -167,7 +162,7 @@ class _AboutPageState extends State<AboutPage> {
                   ),
                 ),
                 trailing: Image.asset(
-                  'assets/images/Ihor.jpg',
+                  'assets/Images/Ihor.jpg',
                   height: 50,
                   width: 50,
                 ),
@@ -191,7 +186,7 @@ class _AboutPageState extends State<AboutPage> {
                   ),
                 ),
                 trailing: Image.asset(
-                  'assets/images/Hector.jpg',
+                  'assets/Images/Hector.jpg',
                   height: 50,
                   width: 50,
                 ),
