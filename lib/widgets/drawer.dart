@@ -31,7 +31,7 @@ class _KingzDrawerState extends State<KingzDrawer> {
                 ),
               ),
               child: Text(
-                "King's Court",
+                "Court Royale",
                 style: Theme.of(context).textTheme.title,
               ),
             ),

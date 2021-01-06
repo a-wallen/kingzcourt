@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: kingzTheme(),
-      home: LandingPage(title: "King's Court"),
+      home: LandingPage(title: "Court Royale"),
     );
   }
 }
